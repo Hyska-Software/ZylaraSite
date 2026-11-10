@@ -1,12 +1,12 @@
 {
   "Metadata": {
-    "title": "Lumina — o workspace de agentes local-first",
+    "title": "Zylara — o workspace de agentes local-first",
     "description": "Um workspace desktop para agentes de código. Planeje antes de escrever, aprove o que roda e revise cada diff — nos modos Chat, Code e Agentes."
   },
   "Nav": {
     "features": "Recursos",
     "workflow": "Como funciona",
-    "positioning": "Por que Lumina",
+    "positioning": "Por que Zylara",
     "faq": "FAQ",
     "download": "Baixar",
     "github": "GitHub",
@@ -20,11 +20,11 @@
     "eyebrow": "App desktop · local-first",
     "title": "Seu código fica na sua máquina.",
     "titleAccent": "Seu agente também.",
-    "subtitle": "Lumina é um workspace desktop para agentes de código. Planeje antes de escrever, aprove o que roda e revise cada diff — sem sair do seu computador.",
+    "subtitle": "Zylara é um workspace desktop para agentes de código. Planeje antes de escrever, aprove o que roda e revise cada diff — sem sair do seu computador.",
     "ctaPrimary": "Baixar para desktop",
     "ctaSecondary": "Ver no GitHub",
     "note": "Windows, macOS e Linux",
-    "previewLabel": "Prévia do Lumina",
+    "previewLabel": "Prévia do Zylara",
     "prompt": "Adicione rate limiting ao endpoint de login",
     "planLabel": "Plano",
     "planSteps": [
@@ -54,7 +54,7 @@
   },
   "Download": {
     "eyebrow": "Baixe o app",
-    "title": "Baixar o Lumina",
+    "title": "Baixar o Zylara",
     "subtitle": "Instaladores nativos, sem conta para abrir o app. Sua pasta de dados é criada no primeiro uso.",
     "note": "Prefere compilar do código? O repositório tem o guia completo de instalação.",
     "checksums": "Verificar SHA-256",
@@ -76,11 +76,11 @@
   },
   "DownloadPage": {
     "eyebrow": "Baixe o app",
-    "title": "Baixar o Lumina",
+    "title": "Baixar o Zylara",
     "subtitle": "Um instalador por plataforma. Sem conta para abrir o app — sua pasta de dados é criada no primeiro uso.",
     "guide": "Ler o guia de instalação",
-    "metaTitle": "Baixar o Lumina",
-    "metaDescription": "Baixe o Lumina para Windows, macOS e Linux. Escolha o formato, copie o comando ou confira o checksum SHA-256 antes de instalar.",
+    "metaTitle": "Baixar o Zylara",
+    "metaDescription": "Baixe o Zylara para Windows, macOS e Linux. Escolha o formato, copie o comando ou confira o checksum SHA-256 antes de instalar.",
     "versionLabel": "Versão atual",
     "versionBadge": "Publicada",
     "releaseNotes": "Notas da versão",
@@ -95,7 +95,7 @@
     },
     "notes": {
       "windows": "Execute o .exe e siga o assistente. Se o Windows não reconhecer o publicador, continue em “Mais informações”.",
-      "macos": "Abra o .dmg e arraste o Lumina para Aplicativos. Se o macOS bloquear a primeira abertura, libere em Ajustes do Sistema › Privacidade e Segurança.",
+      "macos": "Abra o .dmg e arraste o Zylara para Aplicativos. Se o macOS bloquear a primeira abertura, libere em Ajustes do Sistema › Privacidade e Segurança.",
       "linux": "O AppImage roda sem instalar; o .deb é para Debian e Ubuntu, o .rpm para Fedora e openSUSE."
     },
     "allFormats": "Todos os formatos no GitHub",
@@ -180,9 +180,9 @@
     ]
   },
   "Positioning": {
-    "eyebrow": "Por que Lumina",
+    "eyebrow": "Por que Zylara",
     "title": "Feito para quem lê o diff",
-    "subtitle": "Lumina é opinativo numa direção só: você precisa conseguir ver o que o agente está prestes a fazer, e conseguir parar.",
+    "subtitle": "Zylara é opinativo numa direção só: você precisa conseguir ver o que o agente está prestes a fazer, e conseguir parar.",
     "points": [
       {
         "title": "Nada roda em silêncio",
@@ -197,7 +197,7 @@
         "description": "Não existe workspace na nuvem para sincronizar. O app lê as pastas que você abre e escreve só onde você permite."
       }
     ],
-    "note": "Lumina não afirma ser mais rápido que qualquer outra ferramenta. Afirma mostrar o que aconteceu."
+    "note": "Zylara não afirma ser mais rápido que qualquer outra ferramenta. Afirma mostrar o que aconteceu."
   },
   "Faq": {
     "eyebrow": "Perguntas",
@@ -230,7 +230,7 @@
     ]
   },
   "FinalCta": {
-    "title": "Traga sua próxima tarefa para o Lumina",
+    "title": "Traga sua próxima tarefa para o Zylara",
     "subtitle": "Baixe o app, abra uma pasta e planeje a primeira mudança antes que qualquer coisa seja escrita.",
     "ctaPrimary": "Baixar para desktop",
     "ctaSecondary": "Ler o repositório"

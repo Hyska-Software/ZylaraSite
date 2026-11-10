@@ -2,7 +2,7 @@ import type { DownloadPlatform } from '@/lib/site';
 
 /**
  * Silhuetas monocromáticas das plataformas, no mesmo traço dos ícones do site.
- * São nomes de plataforma (uso nominativo), não a marca Lumina: herdam
+ * São nomes de plataforma (uso nominativo), não a marca Zylara: herdam
  * `currentColor` para acompanhar o estado ativo da aba.
  */
 export function PlatformIcon({

@@ -1,12 +1,12 @@
 {
   "Metadata": {
-    "title": "Lumina — the local-first agent workspace",
+    "title": "Zylara — the local-first agent workspace",
     "description": "A desktop workspace for coding agents. Plan before it writes, approve what it runs, and review every diff — in Chat, Code and Agents modes."
   },
   "Nav": {
     "features": "Features",
     "workflow": "How it works",
-    "positioning": "Why Lumina",
+    "positioning": "Why Zylara",
     "faq": "FAQ",
     "download": "Download",
     "github": "GitHub",
@@ -20,11 +20,11 @@
     "eyebrow": "Desktop app · local-first",
     "title": "Your code stays on your machine.",
     "titleAccent": "So does your agent.",
-    "subtitle": "Lumina is a desktop workspace for coding agents. Plan before it writes, approve what it runs, and review every diff — without leaving your computer.",
+    "subtitle": "Zylara is a desktop workspace for coding agents. Plan before it writes, approve what it runs, and review every diff — without leaving your computer.",
     "ctaPrimary": "Download for desktop",
     "ctaSecondary": "View on GitHub",
     "note": "Windows, macOS and Linux",
-    "previewLabel": "Lumina Preview",
+    "previewLabel": "Zylara Preview",
     "prompt": "Add rate limiting to the login endpoint",
     "planLabel": "Plan",
     "planSteps": [
@@ -54,7 +54,7 @@
   },
   "Download": {
     "eyebrow": "Get the app",
-    "title": "Download Lumina",
+    "title": "Download Zylara",
     "subtitle": "Native installers, no account required to open the app. Your data folder is created on first launch.",
     "note": "Prefer to build from source? The repository has the full setup guide.",
     "checksums": "Verify SHA-256",
@@ -76,11 +76,11 @@
   },
   "DownloadPage": {
     "eyebrow": "Get the app",
-    "title": "Download Lumina",
+    "title": "Download Zylara",
     "subtitle": "One installer per platform. No account to open the app — your data folder is created on first launch.",
     "guide": "Read the install guide",
-    "metaTitle": "Download Lumina",
-    "metaDescription": "Download Lumina for Windows, macOS and Linux. Pick the format, copy the command or verify the SHA-256 checksum before installing.",
+    "metaTitle": "Download Zylara",
+    "metaDescription": "Download Zylara for Windows, macOS and Linux. Pick the format, copy the command or verify the SHA-256 checksum before installing.",
     "versionLabel": "Current version",
     "versionBadge": "Published",
     "releaseNotes": "Release notes",
@@ -95,7 +95,7 @@
     },
     "notes": {
       "windows": "Run the .exe and follow the wizard. If Windows doesn't recognise the publisher, continue from “More info”.",
-      "macos": "Open the .dmg and drag Lumina to Applications. If macOS blocks the first launch, allow it in System Settings › Privacy & Security.",
+      "macos": "Open the .dmg and drag Zylara to Applications. If macOS blocks the first launch, allow it in System Settings › Privacy & Security.",
       "linux": "AppImage runs without installing; .deb is for Debian and Ubuntu, .rpm for Fedora and openSUSE."
     },
     "allFormats": "All formats on GitHub",
@@ -180,9 +180,9 @@
     ]
   },
   "Positioning": {
-    "eyebrow": "Why Lumina",
+    "eyebrow": "Why Zylara",
     "title": "Built for people who read the diff",
-    "subtitle": "Lumina is opinionated in one direction: you should be able to see what the agent is about to do, and stop it.",
+    "subtitle": "Zylara is opinionated in one direction: you should be able to see what the agent is about to do, and stop it.",
     "points": [
       {
         "title": "Nothing runs silently",
@@ -197,7 +197,7 @@
         "description": "There is no workspace in the cloud to sync. The app reads the folders you open and writes only where you allow it."
       }
     ],
-    "note": "Lumina does not claim to be faster than any other tool. It claims to show you what happened."
+    "note": "Zylara does not claim to be faster than any other tool. It claims to show you what happened."
   },
   "Faq": {
     "eyebrow": "Questions",
@@ -230,7 +230,7 @@
     ]
   },
   "FinalCta": {
-    "title": "Bring your next task to Lumina",
+    "title": "Bring your next task to Zylara",
     "subtitle": "Download the app, open a folder, and plan the first change before anything is written.",
     "ctaPrimary": "Download for desktop",
     "ctaSecondary": "Read the repository"

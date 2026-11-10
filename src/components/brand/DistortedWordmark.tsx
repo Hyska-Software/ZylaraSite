@@ -4,7 +4,7 @@ import { useEffect, useId, useRef } from 'react';
 import { cn } from '@/lib/cn';
 
 /**
- * Wordmark "LUMINA" que se deforma sob o cursor.
+ * Wordmark "ZYLARA" que se deforma sob o cursor.
  *
  * O efeito é **distorção de geometria**, não deslocamento de blocos: cada letra
  * é um `<text>` dentro de um `<g>` com um filtro de `feTurbulence` +
@@ -29,7 +29,7 @@ import { cn } from '@/lib/cn';
  * `prefers-reduced-motion` mantém o texto intacto.
  */
 
-const WORD = 'LUMINA';
+const WORD = 'ZYLARA';
 const LETTERS = [...WORD];
 
 /** Deslocamento máximo do filtro, em unidades do viewBox. */

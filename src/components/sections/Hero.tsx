@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { AnimatedLumina } from '@/components/brand/AnimatedLumina';
+import { AnimatedZylara } from '@/components/brand/AnimatedZylara';
 import { ExternalButtonLink } from '@/components/ui/Button';
 import { AppPreview } from '@/components/sections/AppPreview';
 import { Link } from '@/i18n/navigation';
@@ -50,7 +50,7 @@ export async function Hero() {
           </div>
 
           <div className="relative">
-            <AnimatedLumina
+            <AnimatedZylara
               size={140}
               className="absolute -top-16 -right-2 z-10 hidden lg:block"
             />

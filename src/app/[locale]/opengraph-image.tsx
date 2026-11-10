@@ -5,7 +5,7 @@ import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { theme } from '@/lib/theme';
 
-export const alt = 'Lumina — desktop workspace for coding agents';
+export const alt = 'Zylara — desktop workspace for coding agents';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -39,7 +39,7 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ loc
               display: 'flex',
             }}
           />
-          <div style={{ color: theme.foreground, fontSize: 32, fontWeight: 600 }}>Lumina</div>
+          <div style={{ color: theme.foreground, fontSize: 32, fontWeight: 600 }}>Zylara</div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>

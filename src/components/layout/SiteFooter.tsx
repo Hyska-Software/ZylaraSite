@@ -65,7 +65,7 @@ export async function SiteFooter() {
       <div className="border-t border-border">
         <div className="container-page py-6 text-xs text-foreground-subtle">
           <p>
-            © {year} Lumina. {t('rights')}
+            © {year} Zylara. {t('rights')}
           </p>
         </div>
       </div>

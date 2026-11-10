@@ -2,8 +2,8 @@
 /**
  * Gera os assets de marca a partir da arte oficial do app.
  *
- * Fonte única: public/brand/lumina-mark.svg (arte oficial, não recolorida).
- * Saídas:      public/brand/lumina-tile.svg  (tile grafite-claro, macOS/favicon)
+ * Fonte única: public/brand/zylara-mark.svg (arte oficial, não recolorida).
+ * Saídas:      public/brand/zylara-tile.svg  (tile grafite-claro, macOS/favicon)
  *              public/icon.svg               (favicon 32px)
  *
  * Uso: npm run brand
@@ -12,16 +12,16 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const root = process.cwd();
-const sourcePath = join(root, 'public/brand/lumina-mark.svg');
+const sourcePath = join(root, 'public/brand/zylara-mark.svg');
 const source = readFileSync(sourcePath, 'utf8');
 
 // viewBox oficial: "-400 -400 6025 6025" → conteúdo com ~400 de respiro por lado.
 const VIEW_MIN = -400;
 const VIEW_SIZE = 6025;
 
-const inner = /<g id="Lumina">([\s\S]*?)<\/g>/.exec(source);
+const inner = /<g id="Zylara">([\s\S]*?)<\/g>/.exec(source);
 if (!inner) {
-  console.error('Não encontrei <g id="Lumina"> em public/brand/lumina-mark.svg.');
+  console.error('Não encontrei <g id="Zylara"> em public/brand/zylara-mark.svg.');
   process.exit(1);
 }
 const artwork = inner[1].trim();
@@ -46,7 +46,7 @@ const tile = buildTile({
   inset: 0.11,
   background: '#EBEBEB',
   radius: 40,
-  label: 'Lumina',
+  label: 'Zylara',
 });
 
 const icon = buildTile({
@@ -54,12 +54,12 @@ const icon = buildTile({
   inset: 0.09,
   background: '#EBEBEB',
   radius: 7,
-  label: 'Lumina',
+  label: 'Zylara',
 });
 
-writeFileSync(join(root, 'public/brand/lumina-tile.svg'), tile, 'utf8');
+writeFileSync(join(root, 'public/brand/zylara-tile.svg'), tile, 'utf8');
 writeFileSync(join(root, 'public/icon.svg'), icon, 'utf8');
 
-console.log('Marca gerada a partir de public/brand/lumina-mark.svg:');
-console.log('  public/brand/lumina-tile.svg');
+console.log('Marca gerada a partir de public/brand/zylara-mark.svg:');
+console.log('  public/brand/zylara-tile.svg');
 console.log('  public/icon.svg');

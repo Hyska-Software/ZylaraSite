@@ -1,8 +1,8 @@
 {
-  "name": "lumina-site",
+  "name": "zylara-site",
   "version": "0.1.0",
   "private": true,
-  "description": "Landing page do Projeto Lumina — agente de código local-first para desktop.",
+  "description": "Landing page do Projeto Zylara — agente de código local-first para desktop.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -28,8 +28,8 @@ import {
  *   `@/lib/site`, com warning no log do servidor — a página nunca quebra.
  */
 
-const REPO = 'https://github.com/Hyska-Software/LuminaAi';
-const RELEASE_API = 'https://api.github.com/repos/Hyska-Software/LuminaAi/releases/latest';
+const REPO = 'https://github.com/Hyska-Software/ZylaraAi';
+const RELEASE_API = 'https://api.github.com/repos/Hyska-Software/ZylaraAi/releases/latest';
 const RELEASE_TTL = 60 * 30;
 const RELEASE_TAG = 'github-release';
 

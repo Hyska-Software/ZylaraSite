@@ -8,7 +8,7 @@
  * TODO(P4): substituir `community.x` pelo perfil real quando definido.
  */
 
-const REPO = 'https://github.com/Hyska-Software/LuminaAi';
+const REPO = 'https://github.com/Hyska-Software/ZylaraAi';
 
 /**
  * Versão usada só se a API do GitHub falhar no build e no ISR. É o último
@@ -65,8 +65,8 @@ export const fallbackDownloads = {
       {
         format: '.exe',
         arch: 'x64',
-        file: `Lumina-Setup-${fallbackReleaseVersion}-windows-x64.exe`,
-        url: fallbackAsset(`Lumina-Setup-${fallbackReleaseVersion}-windows-x64.exe`),
+        file: `Zylara-Setup-${fallbackReleaseVersion}-windows-x64.exe`,
+        url: fallbackAsset(`Zylara-Setup-${fallbackReleaseVersion}-windows-x64.exe`),
       },
     ],
   },
@@ -75,8 +75,8 @@ export const fallbackDownloads = {
       {
         format: '.dmg',
         arch: 'arm64',
-        file: `Lumina-${fallbackReleaseVersion}-macos-arm64.dmg`,
-        url: fallbackAsset(`Lumina-${fallbackReleaseVersion}-macos-arm64.dmg`),
+        file: `Zylara-${fallbackReleaseVersion}-macos-arm64.dmg`,
+        url: fallbackAsset(`Zylara-${fallbackReleaseVersion}-macos-arm64.dmg`),
       },
     ],
   },
@@ -85,27 +85,27 @@ export const fallbackDownloads = {
       {
         format: 'AppImage',
         arch: 'x64',
-        file: `Lumina-${fallbackReleaseVersion}-linux-x64.AppImage`,
-        url: fallbackAsset(`Lumina-${fallbackReleaseVersion}-linux-x64.AppImage`),
+        file: `Zylara-${fallbackReleaseVersion}-linux-x64.AppImage`,
+        url: fallbackAsset(`Zylara-${fallbackReleaseVersion}-linux-x64.AppImage`),
       },
       {
         format: '.deb',
         arch: 'x64',
-        file: `Lumina-${fallbackReleaseVersion}-linux-x64.deb`,
-        url: fallbackAsset(`Lumina-${fallbackReleaseVersion}-linux-x64.deb`),
+        file: `Zylara-${fallbackReleaseVersion}-linux-x64.deb`,
+        url: fallbackAsset(`Zylara-${fallbackReleaseVersion}-linux-x64.deb`),
       },
       {
         format: '.rpm',
         arch: 'x64',
-        file: `Lumina-${fallbackReleaseVersion}-linux-x64.rpm`,
-        url: fallbackAsset(`Lumina-${fallbackReleaseVersion}-linux-x64.rpm`),
+        file: `Zylara-${fallbackReleaseVersion}-linux-x64.rpm`,
+        url: fallbackAsset(`Zylara-${fallbackReleaseVersion}-linux-x64.rpm`),
       },
     ],
   },
 } satisfies Record<DownloadPlatform, DownloadTarget>;
 
 export const site = {
-  name: 'Lumina',
+  name: 'Zylara',
   /** Usado em <title>, JSON-LD e rodapé. */
   tagline: {
     en: 'The local-first agent workspace',
@@ -114,7 +114,7 @@ export const site = {
   repoUrl: REPO,
   releasesUrl: `${REPO}/releases`,
   community: {
-    x: 'https://x.com/lumina',
+    x: 'https://x.com/zylara',
   },
   license: 'MIT',
 } as const;

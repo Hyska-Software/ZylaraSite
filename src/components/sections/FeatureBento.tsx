@@ -54,7 +54,7 @@ function FeatureVisual({ kind }: { kind: VisualKind }) {
   if (kind === 'folder') {
     return (
       <div aria-hidden="true" className="rounded-xl border border-border bg-background p-3">
-        <p className="font-mono text-2xs text-foreground-subtle">~/.lumina</p>
+        <p className="font-mono text-2xs text-foreground-subtle">~/.zylara</p>
         <ul className="mt-2 grid grid-cols-2 gap-1.5 font-mono text-2xs text-foreground-subtle">
           <li className="rounded bg-surface px-2 py-1">conversations/</li>
           <li className="rounded bg-surface px-2 py-1">artifacts/</li>

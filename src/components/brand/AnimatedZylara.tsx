@@ -1,9 +1,9 @@
 'use client';
 
 import { motion, useReducedMotion } from 'motion/react';
-import { LUMINA_PARTS, LUMINA_VIEWBOX } from './LuminaGlyph';
+import { ZYLARA_PARTS, ZYLARA_VIEWBOX } from './ZylaraGlyph';
 
-type AnimatedLuminaProps = {
+type AnimatedZylaraProps = {
   size?: number;
   className?: string;
 };
@@ -16,11 +16,11 @@ const TONE_FILL: Record<string, string> = {
 };
 
 /**
- * O logo oficial do Lumina com uma única animação: flutuação lenta.
+ * O logo oficial do Zylara com uma única animação: flutuação lenta.
  * A arte nunca é alterada (mesmos paths, mesmas cores) e não há efeito
  * passando por cima da marca. Com `prefers-reduced-motion` fica estático.
  */
-export function AnimatedLumina({ size = 280, className }: AnimatedLuminaProps) {
+export function AnimatedZylara({ size = 280, className }: AnimatedZylaraProps) {
   const reduced = useReducedMotion();
 
   return (
@@ -31,7 +31,7 @@ export function AnimatedLumina({ size = 280, className }: AnimatedLuminaProps) {
       data-reduced={reduced ? 'true' : undefined}
     >
       <motion.svg
-        viewBox={LUMINA_VIEWBOX}
+        viewBox={ZYLARA_VIEWBOX}
         width="100%"
         height="100%"
         focusable="false"
@@ -47,7 +47,7 @@ export function AnimatedLumina({ size = 280, className }: AnimatedLuminaProps) {
               }
         }
       >
-        {LUMINA_PARTS.map((part, index) => (
+        {ZYLARA_PARTS.map((part, index) => (
           <path key={index} d={part.d} fill={TONE_FILL[part.tone]} />
         ))}
       </motion.svg>

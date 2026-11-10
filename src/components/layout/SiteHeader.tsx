@@ -89,7 +89,7 @@ export function SiteHeader() {
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link
           href="/"
-          aria-label="Lumina"
+          aria-label="Zylara"
           className="rounded-lg transition-opacity hover:opacity-80"
         >
           <Logo />

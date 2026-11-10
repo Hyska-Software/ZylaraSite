@@ -1,5 +1,5 @@
 /**
- * O site do Lumina tem um único tema: escuro.
+ * O site do Zylara tem um único tema: escuro.
  *
  * Não existe alternância claro/escuro nem persistência de preferência — os
  * tokens vivem em `globals.css` (`:root`, sempre escuro) e estes valores

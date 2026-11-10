@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: Omit<Props, 'children'>): Pro
     metadataBase: new URL(siteUrl),
     title: t('title'),
     description: t('description'),
-    applicationName: 'Lumina',
+    applicationName: 'Zylara',
     alternates: {
       canonical: path || '/',
       languages: {
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: Omit<Props, 'children'>): Pro
     },
     openGraph: {
       type: 'website',
-      siteName: 'Lumina',
+      siteName: 'Zylara',
       title: t('title'),
       description: t('description'),
       url: absoluteUrl(path || '/'),
@@ -73,7 +73,7 @@ export async function generateMetadata({ params }: Omit<Props, 'children'>): Pro
     },
     icons: {
       icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
-      apple: [{ url: '/brand/lumina-tile.svg' }],
+      apple: [{ url: '/brand/zylara-tile.svg' }],
     },
   };
 }

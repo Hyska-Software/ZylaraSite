@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /* ---------------------------------------------------------------------------
- * Tokens do Projeto Lumina — tema escuro único.
+ * Tokens do Projeto Zylara — tema escuro único.
  * Fonte: DESIGN.md §3 (coluna Dark). O site não tem tema claro nem toggle.
  * Regra: nenhum hex solto em componentes; use bg-background, text-foreground-muted…
  * ------------------------------------------------------------------------- */
@@ -205,7 +205,7 @@
   mask-image: radial-gradient(ellipse 60% 55% at 50% 0%, #000 20%, transparent 78%);
 }
 
-@keyframes lumina-blink {
+@keyframes zylara-blink {
   0%,
   92%,
   100% {
@@ -217,7 +217,7 @@
   }
 }
 
-@keyframes lumina-float {
+@keyframes zylara-float {
   0%,
   100% {
     transform: translate3d(0, 0, 0);
@@ -227,7 +227,7 @@
   }
 }
 
-@keyframes lumina-caret {
+@keyframes zylara-caret {
   0%,
   45% {
     opacity: 1;
