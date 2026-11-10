@@ -1,0 +1,254 @@
+{
+  "Metadata": {
+    "title": "Lumina — the local-first agent workspace",
+    "description": "A desktop workspace for coding agents. Plan before it writes, approve what it runs, and review every diff — in Chat, Code and Agents modes."
+  },
+  "Nav": {
+    "features": "Features",
+    "workflow": "How it works",
+    "positioning": "Why Lumina",
+    "faq": "FAQ",
+    "download": "Download",
+    "github": "GitHub",
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "Switch language",
+    "language": "Language"
+  },
+  "Hero": {
+    "eyebrow": "Desktop app · local-first",
+    "title": "Your code stays on your machine.",
+    "titleAccent": "So does your agent.",
+    "subtitle": "Lumina is a desktop workspace for coding agents. Plan before it writes, approve what it runs, and review every diff — without leaving your computer.",
+    "ctaPrimary": "Download for desktop",
+    "ctaSecondary": "View on GitHub",
+    "note": "Windows, macOS and Linux",
+    "previewLabel": "Lumina Preview",
+    "prompt": "Add rate limiting to the login endpoint",
+    "planLabel": "Plan",
+    "planSteps": [
+      "Read the auth middleware and its tests",
+      "Add a token bucket per IP",
+      "Cover the limit with a test"
+    ],
+    "permissionLabel": "Permission mode",
+    "permissionValue": "Review",
+    "diffLabel": "Changes",
+    "diffFile": "src/server/auth.ts",
+    "diffAdded": "+24",
+    "diffRemoved": "−3",
+    "approvedLabel": "Approved",
+    "appliedLabel": "3 files changed"
+  },
+  "Providers": {
+    "label": "Bring the models you already use",
+    "caption": "The app talks to four gateways and reaches seventeen model families. Each answer keeps the model that produced it.",
+    "routes": "Access routes",
+    "routeDetail": {
+      "go": "Go subscription",
+      "zen": "Credits",
+      "openai": "ChatGPT plan or API key",
+      "anthropic": "API key"
+    }
+  },
+  "Download": {
+    "eyebrow": "Get the app",
+    "title": "Download Lumina",
+    "subtitle": "Native installers, no account required to open the app. Your data folder is created on first launch.",
+    "note": "Prefer to build from source? The repository has the full setup guide.",
+    "checksums": "Verify SHA-256",
+    "choose": "Choose format",
+    "latest": "Latest release: v{version}",
+    "platforms": "Windows, macOS and Linux",
+    "windows": {
+      "label": "Windows",
+      "detail": "Installer .exe · x64"
+    },
+    "macos": {
+      "label": "macOS",
+      "detail": "DMG · Apple Silicon"
+    },
+    "linux": {
+      "label": "Linux",
+      "detail": "AppImage, .deb and .rpm · x64"
+    }
+  },
+  "DownloadPage": {
+    "eyebrow": "Get the app",
+    "title": "Download Lumina",
+    "subtitle": "One installer per platform. No account to open the app — your data folder is created on first launch.",
+    "guide": "Read the install guide",
+    "metaTitle": "Download Lumina",
+    "metaDescription": "Download Lumina for Windows, macOS and Linux. Pick the format, copy the command or verify the SHA-256 checksum before installing.",
+    "versionLabel": "Current version",
+    "versionBadge": "Published",
+    "releaseNotes": "Release notes",
+    "allReleases": "All releases",
+    "chooseTitle": "Choose your platform",
+    "platformsLabel": "Choose your platform",
+    "formatLabel": "Format",
+    "download": "Download for {platform} · v{version}",
+    "arch": {
+      "x64": "x64",
+      "arm64": "Apple Silicon"
+    },
+    "notes": {
+      "windows": "Run the .exe and follow the wizard. If Windows doesn't recognise the publisher, continue from “More info”.",
+      "macos": "Open the .dmg and drag Lumina to Applications. If macOS blocks the first launch, allow it in System Settings › Privacy & Security.",
+      "linux": "AppImage runs without installing; .deb is for Debian and Ubuntu, .rpm for Fedora and openSUSE."
+    },
+    "allFormats": "All formats on GitHub",
+    "copyLink": "Copy download link",
+    "linkCopied": "Link copied",
+    "commandLabel": "Or install from the terminal",
+    "commandHint": "Paste in the terminal of the selected platform. The file lands in the current folder.",
+    "copyCommand": "Copy command",
+    "commandCopied": "Command copied",
+    "verify": "Verify this download",
+    "verifyBody": "Compare the SHA-256 of the downloaded file with the checksums published next to the release.",
+    "checksums": "Open SHA256SUMS.txt",
+    "highlights": [
+      {
+        "title": "No account required",
+        "description": "The app opens without sign-in. Connecting a model provider is what needs credentials, and you choose which one."
+      },
+      {
+        "title": "Your data stays local",
+        "description": "Conversations, artifacts and settings live in a folder on your machine. Export everything or wipe it in two clicks."
+      },
+      {
+        "title": "Plan before it writes",
+        "description": "Plan mode disables edits. The agent reads the project, returns the steps and waits for your approval."
+      }
+    ]
+  },
+  "Features": {
+    "eyebrow": "What is inside",
+    "title": "A workspace, not a chat box",
+    "subtitle": "Three modes, one place. Everything the agent does is visible before, during and after it happens.",
+    "items": {
+      "localFirst": {
+        "title": "Your data stays local",
+        "description": "Conversations, artifacts and settings live in a folder on your machine. Export everything or wipe it in two clicks."
+      },
+      "planMode": {
+        "title": "Plan before it writes",
+        "description": "Plan mode disables edits and turns your request into steps you can read, approve or send back for another round."
+      },
+      "permissions": {
+        "title": "Permission by risk",
+        "description": "Read, Review, Edit and Autonomous. Every command is labelled by risk — read, command, destructive, secret or outside the workspace — before it runs."
+      },
+      "diffs": {
+        "title": "Read the diff, not the promise",
+        "description": "Changes open in a side panel per file or per turn. Revert one file, revert the whole turn, or commit what survived your review."
+      },
+      "skills": {
+        "title": "Skills and project context",
+        "description": "Reusable skills, a custom system prompt and per-tool switches keep the agent aligned with how your project actually works."
+      },
+      "modes": {
+        "title": "Chat, Code and Agents",
+        "description": "A conversation, a coding session or a team of personas — the same session can move between modes without losing its history."
+      }
+    }
+  },
+  "Workflow": {
+    "eyebrow": "How it works",
+    "title": "Three steps you can stop at any time",
+    "subtitle": "Each step leaves evidence. Nothing is hidden behind a spinner.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Plan",
+        "description": "Describe the task and turn on Plan mode. The agent reads the project and returns the steps it intends to take — no file is touched.",
+        "detail": "Approve, keep planning, or edit the plan. The composer stays locked until you decide."
+      },
+      {
+        "number": "02",
+        "title": "Execute",
+        "description": "Pick a permission mode. The agent reads, edits and runs commands inside the workspace, and asks before anything risky.",
+        "detail": "A running turn shows its steps, its token usage and a stop button that actually stops it."
+      },
+      {
+        "number": "03",
+        "title": "Verify",
+        "description": "Every edit arrives as a diff. Run the tests, read the changes, revert what you dislike and commit what is left.",
+        "detail": "The session keeps the model that produced each answer, so the history stays honest."
+      }
+    ]
+  },
+  "Positioning": {
+    "eyebrow": "Why Lumina",
+    "title": "Built for people who read the diff",
+    "subtitle": "Lumina is opinionated in one direction: you should be able to see what the agent is about to do, and stop it.",
+    "points": [
+      {
+        "title": "Nothing runs silently",
+        "description": "A command, an edit or a deletion is a request. Risk is shown, approval is explicit, and a denial is a normal answer — not an error."
+      },
+      {
+        "title": "One session, three views",
+        "description": "A chat that became a coding session is still the same conversation. Switch modes and keep the transcript, the model and the context."
+      },
+      {
+        "title": "Your machine, your rules",
+        "description": "There is no workspace in the cloud to sync. The app reads the folders you open and writes only where you allow it."
+      }
+    ],
+    "note": "Lumina does not claim to be faster than any other tool. It claims to show you what happened."
+  },
+  "Faq": {
+    "eyebrow": "Questions",
+    "title": "Frequently asked",
+    "items": [
+      {
+        "question": "Where does my data go?",
+        "answer": "Conversations, artifacts and settings are stored in a local folder on your computer. Only the messages you send reach the model provider you configured, and you can export or delete the whole data folder at any time."
+      },
+      {
+        "question": "Which models can I use?",
+        "answer": "OpenCode Go, OpenCode Zen, OpenAI through a ChatGPT account and Anthropic with an API key. In Code sessions you can switch model between turns; earlier answers keep the model that produced them."
+      },
+      {
+        "question": "What exactly is Plan mode?",
+        "answer": "A mode where edits are disabled. The agent reads the project, writes a plan and waits. You can approve it, keep planning, or go back to the session. A plan badge in the composer shows when the mode is on."
+      },
+      {
+        "question": "Can the agent run commands on its own?",
+        "answer": "Only as far as the permission mode allows. Read, Review, Edit and Autonomous define how much it may do without asking, and risky actions are still labelled and surfaced for approval."
+      },
+      {
+        "question": "Does it work offline?",
+        "answer": "The app and your data are local, so browsing conversations, artifacts and skills works without a connection. Generating answers requires the provider you selected to be reachable."
+      },
+      {
+        "question": "Which platforms are supported?",
+        "answer": "Windows, macOS and Linux, with native installers for each. The app is built with Tauri, so it uses the system webview instead of bundling a browser."
+      }
+    ]
+  },
+  "FinalCta": {
+    "title": "Bring your next task to Lumina",
+    "subtitle": "Download the app, open a folder, and plan the first change before anything is written.",
+    "ctaPrimary": "Download for desktop",
+    "ctaSecondary": "Read the repository"
+  },
+  "Footer": {
+    "tagline": "A desktop workspace for coding agents.",
+    "product": "Product",
+    "resources": "Resources",
+    "community": "Community",
+    "download": "Download",
+    "features": "Features",
+    "workflow": "How it works",
+    "faq": "FAQ",
+    "repository": "Repository",
+    "issues": "Issues",
+    "releases": "Releases",
+    "language": "Language",
+    "version": "Version",
+    "rights": "All rights reserved."
+  }
+}

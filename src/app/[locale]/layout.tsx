@@ -1,0 +1,96 @@
+import type { Metadata, Viewport } from 'next';
+import { Inter, JetBrains_Mono } from 'next/font/google';
+import { notFound } from 'next/navigation';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { routing } from '@/i18n/routing';
+import { theme } from '@/lib/theme';
+import { absoluteUrl, siteUrl } from '@/lib/url';
+import '../globals.css';
+
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono-jetbrains',
+});
+
+type Props = {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+};
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+export const viewport: Viewport = {
+  themeColor: theme.background,
+  colorScheme: theme.colorScheme,
+  width: 'device-width',
+  initialScale: 1,
+};
+
+export async function generateMetadata({ params }: Omit<Props, 'children'>): Promise<Metadata> {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) notFound();
+
+  const t = await getTranslations({ locale, namespace: 'Metadata' });
+  const path = locale === routing.defaultLocale ? '' : `/${locale}`;
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: t('title'),
+    description: t('description'),
+    applicationName: 'Lumina',
+    alternates: {
+      canonical: path || '/',
+      languages: {
+        en: '/',
+        'pt-BR': '/pt-BR',
+        'x-default': '/',
+      },
+    },
+    openGraph: {
+      type: 'website',
+      siteName: 'Lumina',
+      title: t('title'),
+      description: t('description'),
+      url: absoluteUrl(path || '/'),
+      locale: locale === 'en' ? 'en_US' : 'pt_BR',
+      alternateLocale: locale === 'en' ? ['pt_BR'] : ['en_US'],
+      images: [{ url: `${path || ''}/opengraph-image`, width: 1200, height: 630, alt: t('title') }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('title'),
+      description: t('description'),
+    },
+    icons: {
+      icon: [{ url: '/icon.svg', type: 'image/svg+xml' }],
+      apple: [{ url: '/brand/lumina-tile.svg' }],
+    },
+  };
+}
+
+export default async function LocaleLayout({ children, params }: Props) {
+  const { locale } = await params;
+  if (!hasLocale(routing.locales, locale)) notFound();
+
+  setRequestLocale(locale);
+
+  const htmlLang = locale === 'pt-BR' ? 'pt-BR' : 'en';
+
+  return (
+    <html lang={htmlLang} className={`${inter.variable} ${jetbrainsMono.variable} dark`}>
+      <body className="bg-background text-foreground antialiased">
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,254 @@
+{
+  "Metadata": {
+    "title": "Lumina — o workspace de agentes local-first",
+    "description": "Um workspace desktop para agentes de código. Planeje antes de escrever, aprove o que roda e revise cada diff — nos modos Chat, Code e Agentes."
+  },
+  "Nav": {
+    "features": "Recursos",
+    "workflow": "Como funciona",
+    "positioning": "Por que Lumina",
+    "faq": "FAQ",
+    "download": "Baixar",
+    "github": "GitHub",
+    "skipToContent": "Pular para o conteúdo",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "switchLanguage": "Mudar idioma",
+    "language": "Idioma"
+  },
+  "Hero": {
+    "eyebrow": "App desktop · local-first",
+    "title": "Seu código fica na sua máquina.",
+    "titleAccent": "Seu agente também.",
+    "subtitle": "Lumina é um workspace desktop para agentes de código. Planeje antes de escrever, aprove o que roda e revise cada diff — sem sair do seu computador.",
+    "ctaPrimary": "Baixar para desktop",
+    "ctaSecondary": "Ver no GitHub",
+    "note": "Windows, macOS e Linux",
+    "previewLabel": "Prévia do Lumina",
+    "prompt": "Adicione rate limiting ao endpoint de login",
+    "planLabel": "Plano",
+    "planSteps": [
+      "Ler o middleware de auth e seus testes",
+      "Adicionar um token bucket por IP",
+      "Cobrir o limite com um teste"
+    ],
+    "permissionLabel": "Modo de permissão",
+    "permissionValue": "Revisar",
+    "diffLabel": "Alterações",
+    "diffFile": "src/server/auth.ts",
+    "diffAdded": "+24",
+    "diffRemoved": "−3",
+    "approvedLabel": "Aprovado",
+    "appliedLabel": "3 arquivos alterados"
+  },
+  "Providers": {
+    "label": "Traga os modelos que você já usa",
+    "caption": "O app fala com quatro gateways e alcança dezessete famílias de modelos. Cada resposta guarda o modelo que a produziu.",
+    "routes": "Rotas de acesso",
+    "routeDetail": {
+      "go": "Assinatura Go",
+      "zen": "Créditos",
+      "openai": "Plano ChatGPT ou API key",
+      "anthropic": "API key"
+    }
+  },
+  "Download": {
+    "eyebrow": "Baixe o app",
+    "title": "Baixar o Lumina",
+    "subtitle": "Instaladores nativos, sem conta para abrir o app. Sua pasta de dados é criada no primeiro uso.",
+    "note": "Prefere compilar do código? O repositório tem o guia completo de instalação.",
+    "checksums": "Verificar SHA-256",
+    "choose": "Escolher formato",
+    "latest": "Versão mais recente: v{version}",
+    "platforms": "Windows, macOS e Linux",
+    "windows": {
+      "label": "Windows",
+      "detail": "Instalador .exe · x64"
+    },
+    "macos": {
+      "label": "macOS",
+      "detail": "DMG · Apple Silicon"
+    },
+    "linux": {
+      "label": "Linux",
+      "detail": "AppImage, .deb e .rpm · x64"
+    }
+  },
+  "DownloadPage": {
+    "eyebrow": "Baixe o app",
+    "title": "Baixar o Lumina",
+    "subtitle": "Um instalador por plataforma. Sem conta para abrir o app — sua pasta de dados é criada no primeiro uso.",
+    "guide": "Ler o guia de instalação",
+    "metaTitle": "Baixar o Lumina",
+    "metaDescription": "Baixe o Lumina para Windows, macOS e Linux. Escolha o formato, copie o comando ou confira o checksum SHA-256 antes de instalar.",
+    "versionLabel": "Versão atual",
+    "versionBadge": "Publicada",
+    "releaseNotes": "Notas da versão",
+    "allReleases": "Todas as versões",
+    "chooseTitle": "Escolha sua plataforma",
+    "platformsLabel": "Escolha sua plataforma",
+    "formatLabel": "Formato",
+    "download": "Baixar para {platform} · v{version}",
+    "arch": {
+      "x64": "x64",
+      "arm64": "Apple Silicon"
+    },
+    "notes": {
+      "windows": "Execute o .exe e siga o assistente. Se o Windows não reconhecer o publicador, continue em “Mais informações”.",
+      "macos": "Abra o .dmg e arraste o Lumina para Aplicativos. Se o macOS bloquear a primeira abertura, libere em Ajustes do Sistema › Privacidade e Segurança.",
+      "linux": "O AppImage roda sem instalar; o .deb é para Debian e Ubuntu, o .rpm para Fedora e openSUSE."
+    },
+    "allFormats": "Todos os formatos no GitHub",
+    "copyLink": "Copiar link do download",
+    "linkCopied": "Link copiado",
+    "commandLabel": "Ou baixe pelo terminal",
+    "commandHint": "Cole no terminal da plataforma selecionada. O arquivo vai para a pasta atual.",
+    "copyCommand": "Copiar comando",
+    "commandCopied": "Comando copiado",
+    "verify": "Verificar este download",
+    "verifyBody": "Compare o SHA-256 do arquivo baixado com os checksums publicados junto da versão.",
+    "checksums": "Abrir SHA256SUMS.txt",
+    "highlights": [
+      {
+        "title": "Sem conta para começar",
+        "description": "O app abre sem login. Credenciais só são necessárias para conectar um provedor de modelo, e você escolhe qual."
+      },
+      {
+        "title": "Seus dados ficam locais",
+        "description": "Conversas, artefatos e configurações vivem numa pasta na sua máquina. Exporte tudo ou apague em dois cliques."
+      },
+      {
+        "title": "Planeje antes de escrever",
+        "description": "O modo Plano desliga as edições. O agente lê o projeto, devolve as etapas e espera sua aprovação."
+      }
+    ]
+  },
+  "Features": {
+    "eyebrow": "O que tem dentro",
+    "title": "Um workspace, não uma caixa de chat",
+    "subtitle": "Três modos, um lugar. Tudo o que o agente faz fica visível antes, durante e depois.",
+    "items": {
+      "localFirst": {
+        "title": "Seus dados ficam locais",
+        "description": "Conversas, artefatos e configurações vivem numa pasta na sua máquina. Exporte tudo ou apague em dois cliques."
+      },
+      "planMode": {
+        "title": "Planeje antes de escrever",
+        "description": "O modo Plano desliga as edições e transforma seu pedido em etapas que você pode ler, aprovar ou devolver para outra rodada."
+      },
+      "permissions": {
+        "title": "Permissão por risco",
+        "description": "Leitura, Revisar, Editar e Autônomo. Cada comando recebe um rótulo de risco — leitura, comando, destrutivo, segredo ou fora do workspace — antes de rodar."
+      },
+      "diffs": {
+        "title": "Leia o diff, não a promessa",
+        "description": "As alterações abrem num painel lateral por arquivo ou por turno. Reverta um arquivo, reverta o turno inteiro ou faça commit do que sobreviveu à revisão."
+      },
+      "skills": {
+        "title": "Skills e contexto do projeto",
+        "description": "Skills reutilizáveis, prompt de sistema próprio e chaves por ferramenta mantêm o agente alinhado com o jeito real do seu projeto."
+      },
+      "modes": {
+        "title": "Chat, Code e Agentes",
+        "description": "Uma conversa, uma sessão de código ou um time de personas — a mesma sessão pode mudar de modo sem perder o histórico."
+      }
+    }
+  },
+  "Workflow": {
+    "eyebrow": "Como funciona",
+    "title": "Três passos que você pode parar a qualquer momento",
+    "subtitle": "Cada passo deixa evidência. Nada fica escondido atrás de um spinner.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Planejar",
+        "description": "Descreva a tarefa e ative o modo Plano. O agente lê o projeto e devolve as etapas que pretende seguir — nenhum arquivo é tocado.",
+        "detail": "Aprove, continue planejando ou edite o plano. O composer fica travado até você decidir."
+      },
+      {
+        "number": "02",
+        "title": "Executar",
+        "description": "Escolha um modo de permissão. O agente lê, edita e roda comandos dentro do workspace, e pede antes de qualquer coisa arriscada.",
+        "detail": "Um turno em execução mostra os passos, o uso de tokens e um botão de parar que realmente para."
+      },
+      {
+        "number": "03",
+        "title": "Verificar",
+        "description": "Cada edição chega como diff. Rode os testes, leia as mudanças, reverta o que não gostou e faça commit do que sobrou.",
+        "detail": "A sessão guarda o modelo que produziu cada resposta, então o histórico continua honesto."
+      }
+    ]
+  },
+  "Positioning": {
+    "eyebrow": "Por que Lumina",
+    "title": "Feito para quem lê o diff",
+    "subtitle": "Lumina é opinativo numa direção só: você precisa conseguir ver o que o agente está prestes a fazer, e conseguir parar.",
+    "points": [
+      {
+        "title": "Nada roda em silêncio",
+        "description": "Um comando, uma edição ou uma exclusão é um pedido. O risco aparece, a aprovação é explícita e negar é uma resposta normal — não um erro."
+      },
+      {
+        "title": "Uma sessão, três visões",
+        "description": "Um chat que virou sessão de código continua sendo a mesma conversa. Troque de modo e mantenha o transcript, o modelo e o contexto."
+      },
+      {
+        "title": "Sua máquina, suas regras",
+        "description": "Não existe workspace na nuvem para sincronizar. O app lê as pastas que você abre e escreve só onde você permite."
+      }
+    ],
+    "note": "Lumina não afirma ser mais rápido que qualquer outra ferramenta. Afirma mostrar o que aconteceu."
+  },
+  "Faq": {
+    "eyebrow": "Perguntas",
+    "title": "Perguntas frequentes",
+    "items": [
+      {
+        "question": "Para onde vão meus dados?",
+        "answer": "Conversas, artefatos e configurações ficam numa pasta local no seu computador. Só as mensagens que você envia chegam ao provedor de modelo que você configurou, e você pode exportar ou apagar a pasta de dados inteira a qualquer momento."
+      },
+      {
+        "question": "Quais modelos posso usar?",
+        "answer": "OpenCode Go, OpenCode Zen, OpenAI por conta ChatGPT e Anthropic com API key. Nas sessões de Code dá para trocar de modelo entre turnos; respostas anteriores mantêm o modelo que as produziu."
+      },
+      {
+        "question": "O que exatamente é o modo Plano?",
+        "answer": "Um modo em que as edições ficam desligadas. O agente lê o projeto, escreve um plano e espera. Você pode aprovar, continuar planejando ou voltar à sessão. Um selo de plano no composer mostra quando o modo está ativo."
+      },
+      {
+        "question": "O agente pode rodar comandos sozinho?",
+        "answer": "Só até onde o modo de permissão permite. Leitura, Revisar, Editar e Autônomo definem quanto ele pode fazer sem perguntar, e ações arriscadas continuam rotuladas e expostas para aprovação."
+      },
+      {
+        "question": "Funciona offline?",
+        "answer": "O app e seus dados são locais, então navegar por conversas, artefatos e skills funciona sem conexão. Gerar respostas exige que o provedor escolhido esteja acessível."
+      },
+      {
+        "question": "Quais plataformas são suportadas?",
+        "answer": "Windows, macOS e Linux, com instaladores nativos para cada um. O app é feito em Tauri, então usa o webview do sistema em vez de embarcar um navegador."
+      }
+    ]
+  },
+  "FinalCta": {
+    "title": "Traga sua próxima tarefa para o Lumina",
+    "subtitle": "Baixe o app, abra uma pasta e planeje a primeira mudança antes que qualquer coisa seja escrita.",
+    "ctaPrimary": "Baixar para desktop",
+    "ctaSecondary": "Ler o repositório"
+  },
+  "Footer": {
+    "tagline": "Um workspace desktop para agentes de código.",
+    "product": "Produto",
+    "resources": "Recursos",
+    "community": "Comunidade",
+    "download": "Baixar",
+    "features": "Recursos",
+    "workflow": "Como funciona",
+    "faq": "FAQ",
+    "repository": "Repositório",
+    "issues": "Issues",
+    "releases": "Versões",
+    "language": "Idioma",
+    "version": "Versão",
+    "rights": "Todos os direitos reservados."
+  }
+}

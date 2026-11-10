@@ -1,0 +1,44 @@
+{
+  "name": "lumina-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Landing page do Projeto Lumina — agente de código local-first para desktop.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "check:messages": "node scripts/check-messages.mjs",
+    "brand": "node scripts/build-brand.mjs",
+    "check": "npm run check:messages && npm run typecheck && npm run lint && npm run build",
+    "test:e2e": "playwright test",
+    "lighthouse": "lhci autorun"
+  },
+  "dependencies": {
+    "motion": "14.11.1",
+    "next": "15.5.29",
+    "next-intl": "4.14.9",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@eslint/eslintrc": "^3.3.1",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.56.1",
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "eslint": "^9.32.0",
+    "eslint-config-next": "15.5.29",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "4.3.5",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
