@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { legalPaths } from '@/lib/legal';
 import { siteUrl } from '@/lib/url';
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -22,6 +23,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
         languages: {
           en: `${siteUrl}/download`,
           'pt-BR': `${siteUrl}/pt-BR/download`,
+        },
+      },
+    },
+    {
+      url: `${siteUrl}${legalPaths.terms}`,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+      alternates: {
+        languages: {
+          en: `${siteUrl}${legalPaths.terms}`,
+          'pt-BR': `${siteUrl}/pt-BR${legalPaths.terms}`,
+        },
+      },
+    },
+    {
+      url: `${siteUrl}${legalPaths.privacy}`,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+      alternates: {
+        languages: {
+          en: `${siteUrl}${legalPaths.privacy}`,
+          'pt-BR': `${siteUrl}/pt-BR${legalPaths.privacy}`,
         },
       },
     },

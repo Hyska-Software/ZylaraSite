@@ -5,6 +5,7 @@ import { useEffect, useId, useState, type KeyboardEvent } from 'react';
 import { cn } from '@/lib/cn';
 import {
   downloadPlatforms,
+  isExperimentalPlatform,
   site,
   type DownloadPlatform,
   type LatestRelease,
@@ -23,6 +24,9 @@ import { PlatformIcon } from './PlatformIcon';
  *
  * A release chega resolvida pelo servidor (`getLatestRelease`): o client só
  * escolhe plataforma/formato e nunca fala com a API do GitHub.
+ *
+ * macOS e Linux ainda são builds experimentais (`experimentalPlatforms`): a aba
+ * ganha o selo "Beta" e o painel mostra o aviso antes do botão de download.
  */
 export function DownloadConsole({ release }: { release: LatestRelease }) {
   const t = useTranslations('DownloadPage');
@@ -130,6 +134,11 @@ export function DownloadConsole({ release }: { release: LatestRelease }) {
             >
               <PlatformIcon platform={id} size={16} />
               {tPlatform(`${id}.label`)}
+              {isExperimentalPlatform(id) ? (
+                <span className="rounded-full bg-warning-soft px-1.5 py-0.5 text-2xs text-warning">
+                  {tPlatform('experimentalBadge')}
+                </span>
+              ) : null}
             </button>
           );
         })}
@@ -172,6 +181,19 @@ export function DownloadConsole({ release }: { release: LatestRelease }) {
               </p>
             )}
           </fieldset>
+
+          {isExperimentalPlatform(platform) ? (
+            <div
+              role="note"
+              className="mt-5 rounded-xl border border-warning/30 bg-warning-soft/60 p-3"
+            >
+              <p className="flex items-center gap-1.5 text-xs font-medium text-warning">
+                <WarningIcon />
+                {t('experimentalTitle')}
+              </p>
+              <p className="mt-1.5 text-xs text-foreground-muted">{t('experimentalBody')}</p>
+            </div>
+          ) : null}
 
           <a
             href={url}
@@ -372,6 +394,21 @@ function PackageIcon() {
         strokeLinejoin="round"
       />
       <path d="M2.25 4.6 8 7.5l5.75-2.9M8 7.5v6.75" stroke="currentColor" strokeWidth="1.3" />
+    </svg>
+  );
+}
+
+function WarningIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true" className="shrink-0">
+      <path
+        d="M8 2.5 14.25 13.5H1.75L8 2.5Z"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinejoin="round"
+      />
+      <path d="M8 6.25v3.25" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <circle cx="8" cy="11.5" r="0.75" fill="currentColor" />
     </svg>
   );
 }

@@ -24,6 +24,19 @@ export const downloadPlatforms = ['windows', 'macos', 'linux'] as const;
 
 export type DownloadPlatform = (typeof downloadPlatforms)[number];
 
+/**
+ * Plataformas cujo build ainda é experimental/beta. O site precisa avisar isso
+ * antes do clique no download (página `/download` e cards da landing); quando um
+ * build sair do beta, basta removê-lo daqui.
+ */
+export const experimentalPlatforms = ['macos', 'linux'] as const;
+
+export type ExperimentalPlatform = (typeof experimentalPlatforms)[number];
+
+export function isExperimentalPlatform(platform: DownloadPlatform): platform is ExperimentalPlatform {
+  return (experimentalPlatforms as readonly string[]).includes(platform);
+}
+
 /** Arquitetura do build; `x64` cobre Intel/AMD 64-bit. */
 export type DownloadArch = 'x64' | 'arm64';
 

@@ -61,6 +61,8 @@
     "choose": "Escolher formato",
     "latest": "Versão mais recente: v{version}",
     "platforms": "Windows, macOS e Linux",
+    "experimentalBadge": "Beta",
+    "experimentalNote": "Os builds de macOS e Linux são experimentais: espere arestas e eventuais problemas. O Windows é a plataforma estável.",
     "windows": {
       "label": "Windows",
       "detail": "Instalador .exe · x64"
@@ -89,6 +91,9 @@
     "platformsLabel": "Escolha sua plataforma",
     "formatLabel": "Formato",
     "download": "Baixar para {platform} · v{version}",
+    "experimentalBadge": "Experimental",
+    "experimentalTitle": "Este build é experimental",
+    "experimentalBody": "macOS e Linux ainda estão em beta: os instaladores mudam entre versões e recursos podem faltar ou ficar instáveis. Use para testar e reportar problemas, e mantenha o Windows como build estável para o trabalho diário.",
     "arch": {
       "x64": "x64",
       "arm64": "Apple Silicon"
@@ -249,6 +254,435 @@
     "releases": "Versões",
     "language": "Idioma",
     "version": "Versão",
-    "rights": "Todos os direitos reservados."
+    "rights": "Todos os direitos reservados.",
+    "legal": "Legal",
+    "terms": "Termos de Serviço",
+    "privacy": "Política de Privacidade",
+    "contact": "Contato"
+  },
+  "Legal": {
+    "eyebrow": "Legal",
+    "terms": "Termos de Serviço",
+    "privacy": "Política de Privacidade",
+    "documents": "Documentos",
+    "updatedLabel": "Última atualização",
+    "contactLabel": "Contato",
+    "languageLabel": "Idioma",
+    "languageNote": "As duas versões de idioma são igualmente válidas. Quando a legislação consumerista local exigir a versão no seu idioma, ela prevalece para os consumidores daquela jurisdição.",
+    "regionsLabel": "Jurisdição",
+    "regionsHint": "O mesmo texto cobre as três jurisdições. Escolha uma para ir direto à seção dela — as seções anteriores valem em todas.",
+    "summaryTitle": "Em resumo"
+  },
+  "TermsPage": {
+    "metaTitle": "Termos de Serviço",
+    "metaDescription": "As regras para baixar e usar o Zylara: código sob licença MIT, dados local-first, modelos cobrados pelo provedor e nenhuma garantia sobre a saída do modelo.",
+    "title": "Termos de Serviço",
+    "subtitle": "As regras para baixar e usar o Zylara. Seus arquivos ficam na sua máquina, o código é aberto sob a licença MIT e nada que o agente produz dispensa a sua revisão.",
+    "summary": [
+      "O Zylara é gratuito para baixar e abre sem conta. O uso de modelos é cobrado pelo provedor que você conectar.",
+      "O app roda no seu computador. Não hospedamos suas conversas, artefatos ou arquivos.",
+      "A saída do modelo pode estar errada. Leia o plano e o diff antes de aceitar qualquer um dos dois."
+    ],
+    "sections": [
+      {
+        "title": "Quem somos e o que estes termos cobrem",
+        "body": [
+          "O Zylara é um aplicativo desktop publicado pela Hyska Software. O código-fonte está no repositório do projeto sob a licença MIT e, para o código em si, a licença prevalece sobre estes termos.",
+          "Estes termos cobrem o download e o uso das builds que publicamos e o uso deste site. Não cobrem os serviços que você conecta a partir do app, que têm termos próprios."
+        ]
+      },
+      {
+        "title": "O que fica na sua máquina",
+        "body": [
+          "O Zylara é local-first: conversas, artefatos, skills, configurações e as credenciais dos provedores que você conecta ficam numa pasta de dados no seu perfil de usuário. Não existe workspace na nuvem para sincronizar.",
+          "Remover o app e apagar essa pasta remove o conteúdo. Backup é responsabilidade sua — não conseguimos recuperar uma pasta que nunca tivemos."
+        ],
+        "items": [
+          "As pastas que você abre são lidas e escritas apenas dentro das permissões que você concede.",
+          "Os comandos rodam no seu próprio shell, com o seu próprio usuário."
+        ]
+      },
+      {
+        "title": "Conta e provedores de modelo",
+        "body": [
+          "O app abre sem conta. Entrar só é necessário para alcançar um modelo: OpenCode Go, OpenCode Zen, OpenAI via plano ChatGPT ou API key e Anthropic via API key.",
+          "Uso e cobrança são do provedor que você escolher. Ao conectar uma conta com as suas credenciais, esse provedor trata seus prompts sob os termos e a política de privacidade dele; nós atuamos apenas como cliente na sua máquina."
+        ]
+      },
+      {
+        "title": "Uso aceitável",
+        "body": ["Use o Zylara apenas para o trabalho que você pode fazer, em código e projetos que você pode alterar."],
+        "items": [
+          "Não use o app para violar a lei, infringir direitos autorais ou atacar sistemas que não são seus.",
+          "Não redistribua builds com nome, logo ou assinatura que sugira uma versão oficial.",
+          "Não tente obter credenciais ou dados de outra pessoa."
+        ]
+      },
+      {
+        "title": "A saída do modelo não é garantida",
+        "body": [
+          "Modelos de linguagem produzem texto plausível, não fatos verificados. Planos, edições, comandos e resumos podem estar incompletos ou errados.",
+          "O modo Plano, os modos de permissão e os diffs existem para você conferir o trabalho antes de ele valer. Revisar o que o agente escreveu antes de aceitar faz parte de usar o app."
+        ]
+      },
+      {
+        "title": "Downloads, atualizações e disponibilidade",
+        "body": [
+          "Os instaladores são publicados para Windows, macOS e Linux, e todo download pode ser conferido com os checksums SHA-256 publicados.",
+          "O app só é atualizado quando você instala uma versão nova; nada é instalado em silêncio. Recursos podem mudar entre versões, e podemos encerrar a publicação de uma plataforma — o código continua disponível sob a licença MIT."
+        ]
+      },
+      {
+        "title": "Alterações destes termos",
+        "body": [
+          "Quando o texto muda, a data de revisão no topo muda junto. Continuar usando o site ou o app depois de uma revisão significa aceitar a nova versão; se você não concorda, pare de usar o app e apague a pasta de dados.",
+          "Mudanças materiais também são anunciadas nas notas da versão em que passarem a valer."
+        ]
+      }
+    ],
+    "regions": {
+      "unitedStates": {
+        "short": "Estados Unidos",
+        "title": "Para usuários nos Estados Unidos",
+        "intro": "Esta seção vale para residentes nos Estados Unidos. Ela se soma às seções anteriores e não as substitui.",
+        "sections": [
+          {
+            "title": "Aceite e idade",
+            "body": [
+              "Ao instalar o Zylara ou usar este site, você aceita estes termos. Se você não concorda, não instale o app e pare de usar o site.",
+              "É preciso ter pelo menos 13 anos para usar o app. Entre 13 anos e a maioridade do seu local de residência, um responsável legal precisa concordar em seu nome."
+            ]
+          },
+          {
+            "title": "Licença e preço",
+            "body": [
+              "O código-fonte é licenciado sob a licença MIT, que concede os direitos descritos no seu texto e é a única licença que outorgamos sobre o código.",
+              "O app é gratuito no momento. Se um plano pago for criado, preço e condições de cobrança serão mostrados antes de qualquer compra, e nada aqui obriga a contratá-lo."
+            ]
+          },
+          {
+            "title": "Isenção de garantias",
+            "body": [
+              "O app, este site e qualquer saída de modelo são fornecidos “no estado em que se encontram” e “conforme disponíveis”, sem garantias de qualquer tipo, expressas ou implícitas, incluindo comerciabilidade, adequação a um fim específico e não violação.",
+              "Não garantimos que o app funcione sem erros, que um provedor esteja acessível ou que uma alteração gerada compile ou seja segura. Alguns estados não permitem excluir garantias implícitas, e parte desta seção pode não se aplicar a você."
+            ]
+          },
+          {
+            "title": "Limitação de responsabilidade",
+            "body": [
+              "Na máxima extensão permitida pela lei, não respondemos por danos indiretos, incidentais, especiais, consequenciais ou punitivos, nem por lucros cessantes, perda de dados ou interrupção do negócio, mesmo se avisados da possibilidade.",
+              "Nossa responsabilidade total por todas as reclamações relativas ao app fica limitada ao valor que você nos pagou por ele nos doze meses anteriores à reclamação."
+            ]
+          },
+          {
+            "title": "Lei aplicável e disputas",
+            "body": [
+              "Estes termos são regidos pela lei da jurisdição onde a entidade provedora está estabelecida, sem considerar as regras de conflito de leis.",
+              "Nada aqui abre mão de direitos que você tem como consumidor no seu estado de residência e que não podem ser renunciados por contrato. Fale com a gente antes de formalizar uma reclamação: a maioria das dúvidas termina aí."
+            ]
+          }
+        ]
+      },
+      "europe": {
+        "short": "Europa",
+        "title": "Para usuários na Europa",
+        "intro": "Esta seção vale para quem usa o Zylara no Espaço Econômico Europeu, no Reino Unido ou na Suíça. Direitos do consumidor previstos em lei imperativa prevalecem sobre qualquer coisa escrita aqui.",
+        "sections": [
+          {
+            "title": "Direitos do consumidor",
+            "body": [
+              "Se você é consumidor, mantém os direitos legais do país onde vive. Nenhuma cláusula aqui os reduz, e nada neste documento pode ser lido como renúncia a um direito irrenunciável.",
+              "O app é oferecido como download gratuito. Caso surja uma oferta paga, as informações pré-contratuais exigidas pelo direito do consumidor da UE serão apresentadas antes da compra."
+            ]
+          },
+          {
+            "title": "Direito de arrependimento",
+            "body": [
+              "Em contrato à distância pago, você tem 14 dias para desistir sem justificar, contados da conclusão do contrato ou da entrega do conteúdo digital.",
+              "Para conteúdo digital fornecido de imediato, esse direito cessa quando o download começa, desde que você tenha dado consentimento expresso e reconhecido a perda do direito. Hoje o app é gratuito, então ainda não há arrependimento aplicável."
+            ]
+          },
+          {
+            "title": "Responsabilidade",
+            "body": [
+              "Respondemos sem limite em caso de dolo e culpa grave, por dano à vida, ao corpo ou à saúde, e pelas regras de responsabilidade por produto que se apliquem a nós.",
+              "Em culpa leve, respondemos apenas pela violação de obrigação contratual essencial e até o dano previsível e típico deste tipo de contrato."
+            ]
+          },
+          {
+            "title": "Privacidade e GDPR",
+            "body": [
+              "Dados pessoais são tratados como descrito na Política de Privacidade, incluindo bases legais, prazos de conservação e os direitos que você pode exercer.",
+              "Você pode reclamar junto à autoridade de controle do país onde vive, trabalha ou onde ocorreu a suposta violação."
+            ]
+          },
+          {
+            "title": "Lei aplicável e reclamações",
+            "body": [
+              "Estes termos são regidos pela lei do país onde o provedor está estabelecido, mas o consumidor mantém a proteção das normas imperativas do país de residência habitual.",
+              "Fale com a gente antes de escalar: respondemos reclamações sobre o app ou sobre estes termos em até um mês."
+            ]
+          }
+        ]
+      },
+      "brazil": {
+        "short": "Brasil",
+        "title": "Para usuários no Brasil",
+        "intro": "Esta seção vale para quem usa o Zylara no Brasil. Ela se soma às anteriores; em caso de conflito, prevalece o que for mais favorável ao consumidor.",
+        "sections": [
+          {
+            "title": "Relação de consumo",
+            "body": [
+              "O Zylara é distribuído gratuitamente e pode ser usado sem conta. A relação com quem baixa e usa o app é regida pelo Código de Defesa do Consumidor (Lei 8.078/1990), pelo Marco Civil da Internet (Lei 12.965/2014) e pela LGPD (Lei 13.709/2018).",
+              "O código-fonte é licenciado sob a licença MIT, que prevalece sobre estes termos quanto ao uso do código."
+            ]
+          },
+          {
+            "title": "Direito de arrependimento",
+            "body": [
+              "Nas contratações fora do estabelecimento comercial, o consumidor tem 7 dias para desistir, contados do recebimento do produto ou do início do uso, nos termos do art. 49 do CDC.",
+              "Como o download é gratuito, não há valor a devolver hoje. Se um plano pago for criado, o prazo e a forma de reembolso serão informados antes da compra."
+            ]
+          },
+          {
+            "title": "Responsabilidade",
+            "body": [
+              "Respondemos pelos danos causados por defeitos do app, na forma dos arts. 12 e 14 do CDC, e não afastamos a responsabilidade que a lei não permite afastar.",
+              "Saídas de modelos de linguagem podem estar erradas. Revisar planos, diffs e comandos antes de aceitá-los é parte de usar o app — para isso existem o modo Plano e os modos de permissão."
+            ]
+          },
+          {
+            "title": "Privacidade e LGPD",
+            "body": [
+              "O tratamento de dados pessoais está descrito na Política de Privacidade, incluindo bases legais, prazos de conservação e os direitos do titular.",
+              "Você pode apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD)."
+            ]
+          },
+          {
+            "title": "Alterações e foro",
+            "body": [
+              "Alterações materiais são avisadas com antecedência razoável neste site e nas notas da versão em que passarem a valer.",
+              "Fica eleito o foro do domicílio do consumidor para dirimir controvérsias, nos termos do art. 101, I, do CDC."
+            ]
+          }
+        ]
+      }
+    },
+    "contact": {
+      "title": "Como falar com a gente",
+      "body": [
+        "Dúvidas sobre estes termos, pedidos sobre seus dados e relatos de vulnerabilidade vão para legal@hyska.com.br. Para bugs e sugestões, a issues pública do repositório é mais rápida."
+      ]
+    }
+  },
+  "PrivacyPage": {
+    "metaTitle": "Política de Privacidade",
+    "metaDescription": "O que o Zylara guarda no seu computador, o que chega até a Hyska Software e quais direitos você pode exercer pela LGPD, pelo GDPR e pelas leis estaduais dos EUA.",
+    "title": "Política de Privacidade",
+    "subtitle": "O que o Zylara guarda no seu computador, o que de fato chega até a gente e o que você pode pedir para fazer com isso — jurisdição por jurisdição.",
+    "summary": [
+      "Conversas, artefatos, arquivos e API keys ficam na pasta de dados na sua máquina.",
+      "Sem analytics, publicidade ou rastreadores de terceiros neste site. O único cookie guarda o seu idioma.",
+      "Prompts vão apenas para o provedor de modelo que você configurou, sob a política dele."
+    ],
+    "sections": [
+      {
+        "title": "Quem é responsável",
+        "body": [
+          "A Hyska Software é a controladora dos dados pessoais descritos aqui. Todo pedido vai para legal@hyska.com.br.",
+          "Esta política cobre este site e o aplicativo desktop Zylara. Serviços que você conecta a partir do app seguem as políticas próprias deles."
+        ]
+      },
+      {
+        "title": "O que fica na sua máquina",
+        "body": [
+          "Conversas, artefatos, skills, configurações, tokens salvos e o registro de uma sessão ficam na pasta de dados do app, no seu perfil de usuário. Eles não são enviados para nós e não conseguimos lê-los.",
+          "Apagar essa pasta elimina o conteúdo. Arquivos que você exporta vão para onde você salvou, fora do nosso alcance. Proteger a pasta é assunto do seu sistema operacional e, se precisar, de criptografia de disco."
+        ]
+      },
+      {
+        "title": "O que chega até nós",
+        "body": [
+          "Recebemos apenas o que você decide enviar: um e-mail para legal@hyska.com.br, ou uma issue ou pull request pública no repositório, que carrega seu nome de usuário do GitHub.",
+          "Os servidores que entregam este site mantêm registros técnicos de acesso — endereço IP, user agent, página pedida e horário — usados para manter o site no ar e detectar abuso. Eles não são cruzados com nenhuma outra informação sobre você."
+        ]
+      },
+      {
+        "title": "Provedores de modelo",
+        "body": [
+          "Gerar uma resposta significa enviar o prompt, o contexto que você anexou e a saída resultante ao provedor que você escolheu: OpenCode Go, OpenCode Zen, OpenAI (plano ChatGPT ou API key) ou Anthropic (API key).",
+          "Nessa troca, o provedor trata o conteúdo sob a política de privacidade dele e, quando você usa a sua própria conta, como controlador independente. Suas chaves e tokens ficam armazenados localmente e não são enviados para nós.",
+          "Conteúdo enviado a um provedor pode ser armazenado ou revisado por ele conforme a política e as configurações da sua conta. Leia antes de colar credenciais, dados pessoais ou código de terceiros."
+        ]
+      },
+      {
+        "title": "Cookies e armazenamento local",
+        "body": [
+          "Este site define um único cookie, NEXT_LOCALE, que guarda o idioma escolhido para a próxima visita abrir nele. Ele dura até um ano e pode ser removido ao limpar os dados do site no navegador.",
+          "Não há analytics, pixel de publicidade nem rastreador de terceiros. Se isso mudar, esta política é atualizada antes e o consentimento é pedido onde a lei exigir."
+        ]
+      },
+      {
+        "title": "Segurança",
+        "body": [
+          "Suas conversas nunca passam por um serviço de armazenamento nosso, o que elimina a causa mais comum de vazamento. O que resta é o seu dispositivo e o provedor que você escolheu.",
+          "Nenhum sistema é perfeito. Se você encontrar uma vulnerabilidade, relate de forma privada pelo canal de segurança do repositório em vez de abrir uma issue pública."
+        ]
+      },
+      {
+        "title": "Alterações desta política",
+        "body": [
+          "Quando esta política muda, a data de revisão no topo muda junto, e mudanças materiais são anunciadas nesta página antes de valerem.",
+          "Versões anteriores ficam no histórico do repositório, para você comparar o que mudou."
+        ]
+      }
+    ],
+    "regions": {
+      "unitedStates": {
+        "short": "Estados Unidos",
+        "title": "Para titulares nos Estados Unidos",
+        "intro": "Esta seção vale para residentes nos Estados Unidos, incluindo a Califórnia, e descreve as categorias de informações pessoais que tratamos pelas leis estaduais de privacidade.",
+        "sections": [
+          {
+            "title": "Escopo",
+            "body": [
+              "Esta seção cobre o tratamento descrito nesta política quando você é residente de um estado americano com lei abrangente de privacidade, como o CCPA alterado pelo CPRA."
+            ]
+          },
+          {
+            "title": "O que coletamos",
+            "body": [
+              "Identificadores: endereço IP e e-mail, quando você escreve para nós. Atividade na internet: páginas pedidas e horário do pedido, nos logs do servidor. Dados de conta: o nome de usuário do GitHub ligado a uma issue pública.",
+              "Não coletamos informações pessoais sensíveis, geolocalização precisa, dados biométricos nem informações comerciais como histórico de compras — hoje não há compra."
+            ]
+          },
+          {
+            "title": "Por que coletamos",
+            "body": [
+              "Para responder a sua mensagem, manter o site disponível e seguro, investigar abuso e cumprir obrigações legais. Não usamos esses dados para perfilamento nem para publicidade direcionada."
+            ]
+          },
+          {
+            "title": "Venda e compartilhamento",
+            "body": [
+              "Não vendemos informações pessoais e não as compartilhamos para publicidade comportamental entre contextos, nos termos do CPRA. Sinais de Global Privacy Control são respeitados como opt-out de venda e compartilhamento.",
+              "Provedores que hospedam o site tratam requisições sob nossa instrução e ficam obrigados a usá-las apenas para essa finalidade."
+            ]
+          },
+          {
+            "title": "Seus direitos",
+            "body": [
+              "Você pode saber o que guardamos sobre você, pedir uma cópia, pedir correção ou exclusão e saber as categorias compartilhadas. Exercer um direito nunca altera o serviço que você recebe.",
+              "Escreva para legal@hyska.com.br com o assunto “pedido de privacidade”, ou use um agente autorizado. Confirmamos o recebimento em até 10 dias úteis e respondemos em até 45 dias, prorrogáveis quando a lei permitir."
+            ]
+          },
+          {
+            "title": "Crianças",
+            "body": [
+              "O app não é direcionado a menores de 13 anos e não coletamos intencionalmente informações pessoais delas. Se você acredita que uma criança nos enviou dados, escreva para nós e nós os excluímos."
+            ]
+          }
+        ]
+      },
+      "europe": {
+        "short": "Europa",
+        "title": "Para titulares na Europa",
+        "intro": "Esta seção vale para titulares de dados no Espaço Econômico Europeu, no Reino Unido e na Suíça e descreve o tratamento conforme o GDPR.",
+        "sections": [
+          {
+            "title": "Escopo",
+            "body": [
+              "Esta seção cobre o tratamento descrito nesta política quando você está no EEE, no Reino Unido ou na Suíça. Onde a lei nacional acrescentar exigências, elas se aplicam em acréscimo."
+            ]
+          },
+          {
+            "title": "Bases legais",
+            "body": [
+              "Art. 6º(1)(b) do GDPR — atender a um pedido seu sobre o app ou um download. Art. 6º(1)(f) — legítimo interesse em manter o site disponível, seguro e livre de abuso, limitado a registros técnicos. Art. 6º(1)(c) — cumprimento de obrigação legal. Art. 6º(1)(a) — consentimento, quando o pedirmos de forma explícita."
+            ]
+          },
+          {
+            "title": "Conservação",
+            "body": [
+              "Os dados são mantidos apenas pelo tempo que a finalidade exige: logs do servidor pelo período curto necessário para detectar e investigar abuso, e correspondência pelo tempo necessário para responder mais o prazo de prescrição aplicável.",
+              "Encerrado esse período, os registros são excluídos ou anonimizados."
+            ]
+          },
+          {
+            "title": "Seus direitos",
+            "body": [
+              "Você tem os direitos de acesso, retificação, apagamento, limitação, portabilidade e oposição (arts. 15 a 21 do GDPR), e o direito de retirar o consentimento a qualquer momento, sem afetar o tratamento já realizado.",
+              "Respondemos sem demora indevida e em até um mês, prorrogável por dois meses em pedidos complexos, com aviso. Os pedidos são gratuitos, podem ser feitos por representante e a resposta pode ser pedida em formato legível por máquina."
+            ]
+          },
+          {
+            "title": "Transferências internacionais",
+            "body": [
+              "Alguns envolvidos podem tratar dados fora do EEE: o provedor de modelo que você conectar e a infraestrutura que entrega este site. As transferências se apoiam em decisão de adequação ou nas Cláusulas Contratuais Padrão de 2021/914, e você pode pedir detalhes.",
+              "Local-first é o padrão: o app não envia nada a lugar nenhum até você iniciar um turno."
+            ]
+          },
+          {
+            "title": "Reclamações e crianças",
+            "body": [
+              "Você pode reclamar junto à autoridade de controle do país onde vive, trabalha ou onde ocorreu a suposta violação, depois de nos dar a chance de responder primeiro.",
+              "A idade de proteção de dados é 16 anos na UE, salvo se o Estado-membro fixou idade menor, nunca abaixo de 13 (art. 8º do GDPR). Não use o app abaixo dessa idade."
+            ]
+          }
+        ]
+      },
+      "brazil": {
+        "short": "Brasil",
+        "title": "Para titulares no Brasil",
+        "intro": "Esta seção vale para titulares de dados no Brasil e descreve o tratamento realizado conforme a LGPD (Lei 13.709/2018).",
+        "sections": [
+          {
+            "title": "Escopo e papéis",
+            "body": [
+              "A Hyska Software atua como controladora dos dados descritos nesta política. Quando você conecta sua própria conta em um provedor de modelos, ele trata o conteúdo como controlador independente, sob a política dele.",
+              "A Autoridade Nacional de Proteção de Dados (ANPD) é a autoridade competente no Brasil."
+            ]
+          },
+          {
+            "title": "Bases legais",
+            "body": [
+              "Consentimento (art. 7º, I) para responder ao seu contato; legítimo interesse (art. 7º, IX) para manter o site disponível e seguro, limitado a registros técnicos; cumprimento de obrigação legal (art. 7º, II); e execução de contrato (art. 7º, V), quando houver."
+            ]
+          },
+          {
+            "title": "Direitos do titular",
+            "body": [
+              "Você pode pedir confirmação de tratamento, acesso, correção, anonimização, bloqueio ou eliminação de dados desnecessários, portabilidade, eliminação dos dados tratados com consentimento, informação sobre compartilhamento e revisão de decisões automatizadas (arts. 18 e 20 da LGPD).",
+              "O pedido é gratuito e pode ser feito por legal@hyska.com.br. Respondemos no prazo de 15 dias previsto no art. 19 da LGPD."
+            ]
+          },
+          {
+            "title": "Conservação e transferência internacional",
+            "body": [
+              "Os dados são mantidos pelo tempo necessário à finalidade e, depois, eliminados ou anonimizados.",
+              "Provedores de modelos e de infraestrutura podem tratar dados fora do Brasil. Nesses casos aplicamos o art. 33 da LGPD — cláusulas contratuais específicas, normas corporativas ou outra hipótese legal — e você pode pedir informação sobre a transferência."
+            ]
+          },
+          {
+            "title": "Encarregado",
+            "body": [
+              "O canal do encarregado pelo tratamento de dados pessoais é legal@hyska.com.br, para pedidos de titulares e comunicações com a ANPD."
+            ]
+          },
+          {
+            "title": "Crianças e adolescentes",
+            "body": [
+              "O app não é destinado a crianças. Dados de crianças menores de 12 anos só são tratados com consentimento específico de pai, mãe ou responsável legal, nos termos do art. 14 da LGPD, e sempre no melhor interesse delas."
+            ]
+          }
+        ]
+      }
+    },
+    "contact": {
+      "title": "Como exercer seus direitos",
+      "body": [
+        "Escreva para legal@hyska.com.br informando o direito que quer exercer e o endereço de e-mail envolvido. Respondemos no prazo definido para a sua região e nunca cobramos por isso."
+      ]
+    }
   }
 }

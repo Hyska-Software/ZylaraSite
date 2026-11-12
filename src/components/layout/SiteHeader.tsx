@@ -4,9 +4,10 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useId, useRef, useState } from 'react';
 import { Logo } from '@/components/brand/Logo';
+import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher';
 import { ButtonLink, ExternalButtonLink } from '@/components/ui/Button';
 import { Link, usePathname } from '@/i18n/navigation';
-import { localeLabels, locales, type Locale } from '@/i18n/routing';
+import type { Locale } from '@/i18n/routing';
 import { cn } from '@/lib/cn';
 import { navSections, site } from '@/lib/site';
 
@@ -189,44 +190,6 @@ export function SiteHeader() {
         ) : null}
       </AnimatePresence>
     </header>
-  );
-}
-
-function LocaleSwitcher({ className }: { className?: string }) {
-  const t = useTranslations('Nav');
-  const locale = useLocale() as Locale;
-  const pathname = usePathname();
-
-  return (
-    <div
-      className={cn(
-        'inline-flex items-center rounded-full border border-border bg-surface-raised p-0.5',
-        className,
-      )}
-      role="group"
-      aria-label={t('switchLanguage')}
-    >
-      {locales.map((value) => {
-        const active = value === locale;
-        return (
-          <Link
-            key={value}
-            href={pathname}
-            locale={value}
-            hrefLang={localeLabels[value].htmlLang}
-            aria-current={active ? 'true' : undefined}
-            className={cn(
-              'rounded-full px-2.5 py-1 text-2xs font-medium tracking-wide transition-colors duration-150',
-              active
-                ? 'bg-accent-soft text-accent'
-                : 'text-foreground-subtle hover:text-foreground',
-            )}
-          >
-            {localeLabels[value].short}
-          </Link>
-        );
-      })}
-    </div>
   );
 }
 

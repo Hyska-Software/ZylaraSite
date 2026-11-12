@@ -1,7 +1,9 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 import { DistortedWordmark } from '@/components/brand/DistortedWordmark';
 import { Logo } from '@/components/brand/Logo';
+import { Link } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
+import { legalContactEmail, legalPaths } from '@/lib/legal';
 import { getLatestRelease } from '@/lib/releases';
 import { site } from '@/lib/site';
 
@@ -63,10 +65,31 @@ export async function SiteFooter() {
       </div>
 
       <div className="border-t border-border">
-        <div className="container-page py-6 text-xs text-foreground-subtle">
+        <div className="container-page flex flex-col gap-3 py-6 text-xs text-foreground-subtle sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} Zylara. {t('rights')}
           </p>
+
+          <nav aria-label={t('legal')} className="flex flex-wrap items-center gap-x-5 gap-y-2">
+            <Link
+              href={legalPaths.terms}
+              className="text-foreground-muted transition-colors duration-150 hover:text-foreground"
+            >
+              {t('terms')}
+            </Link>
+            <Link
+              href={legalPaths.privacy}
+              className="text-foreground-muted transition-colors duration-150 hover:text-foreground"
+            >
+              {t('privacy')}
+            </Link>
+            <a
+              href={`mailto:${legalContactEmail}`}
+              className="text-foreground-muted transition-colors duration-150 hover:text-foreground"
+            >
+              {t('contact')}
+            </a>
+          </nav>
         </div>
       </div>
     </footer>
