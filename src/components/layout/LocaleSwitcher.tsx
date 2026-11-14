@@ -40,7 +40,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
               'rounded-full px-2.5 py-1 text-2xs font-medium tracking-wide transition-colors duration-150',
               active
                 ? 'bg-accent-soft text-accent'
-                : 'text-foreground-subtle hover:text-foreground',
+                : 'text-foreground-muted hover:text-foreground',
             )}
           >
             {localeLabels[value].short}

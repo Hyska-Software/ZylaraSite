@@ -14,16 +14,16 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "switchLanguage": "Switch language",
-    "language": "Language"
+    "language": "Language",
+    "guide": "Guide"
   },
   "Hero": {
-    "eyebrow": "Desktop app · local-first",
+    "eyebrow": "Coding agent for desktop",
     "title": "Your code stays on your machine.",
     "titleAccent": "So does your agent.",
     "subtitle": "Zylara is a desktop workspace for coding agents. Plan before it writes, approve what it runs, and review every diff — without leaving your computer.",
-    "ctaPrimary": "Download for desktop",
     "ctaSecondary": "View on GitHub",
-    "note": "Windows, macOS and Linux",
+    "note": "Windows is the stable build. macOS and Linux are in beta.",
     "previewLabel": "Zylara Preview",
     "prompt": "Add rate limiting to the login endpoint",
     "planLabel": "Plan",
@@ -32,25 +32,41 @@
       "Add a token bucket per IP",
       "Cover the limit with a test"
     ],
-    "permissionLabel": "Permission mode",
     "permissionValue": "Review",
-    "diffLabel": "Changes",
     "diffFile": "src/server/auth.ts",
     "diffAdded": "+24",
     "diffRemoved": "−3",
     "approvedLabel": "Approved",
-    "appliedLabel": "3 files changed"
+    "appliedLabel": "3 files changed",
+    "riskLabel": "command",
+    "denyLabel": "Deny",
+    "approveLabel": "Allow"
   },
   "Providers": {
     "label": "Bring the models you already use",
-    "caption": "The app talks to four gateways and reaches seventeen model families. Each answer keeps the model that produced it.",
+    "caption": "Four access routes reach sixteen model families: your subscription, credits, a ChatGPT plan or an API key. Every answer keeps the model that produced it.",
     "routes": "Access routes",
     "routeDetail": {
-      "go": "Go subscription",
+      "go": "OpenCode Go subscription",
       "zen": "Credits",
       "openai": "ChatGPT plan or API key",
       "anthropic": "API key"
-    }
+    },
+    "stats": [
+      {
+        "value": "16",
+        "label": "model families"
+      },
+      {
+        "value": "4",
+        "label": "access routes"
+      },
+      {
+        "value": "0",
+        "label": "keys kept by us"
+      }
+    ],
+    "modelsNote": "The route decides how you pay: the catalog reaches {count} model families today and grows between releases."
   },
   "Download": {
     "eyebrow": "Get the app",
@@ -58,7 +74,6 @@
     "subtitle": "Native installers, no account required to open the app. Your data folder is created on first launch.",
     "note": "Prefer to build from source? The repository has the full setup guide.",
     "checksums": "Verify SHA-256",
-    "choose": "Choose format",
     "latest": "Latest release: v{version}",
     "platforms": "Windows, macOS and Linux",
     "experimentalBadge": "Beta",
@@ -74,7 +89,12 @@
     "linux": {
       "label": "Linux",
       "detail": "AppImage, .deb and .rpm · x64"
-    }
+    },
+    "downloadFor": "Download for {platform}",
+    "downloadGeneric": "Download for desktop",
+    "downloadFormat": "Download {format}",
+    "otherFormats": "Other formats",
+    "guideLink": "Hyska-Software/ZylaraAi"
   },
   "DownloadPage": {
     "eyebrow": "Get the app",
@@ -161,7 +181,7 @@
   },
   "Workflow": {
     "eyebrow": "How it works",
-    "title": "Three steps you can stop at any time",
+    "title": "Plan, run, verify — and stop at any step",
     "subtitle": "Each step leaves evidence. Nothing is hidden behind a spinner.",
     "steps": [
       {
@@ -202,7 +222,26 @@
         "description": "There is no workspace in the cloud to sync. The app reads the folders you open and writes only where you allow it."
       }
     ],
-    "note": "Zylara does not claim to be faster than any other tool. It claims to show you what happened."
+    "limitsTitle": "What Zylara does not do",
+    "limitsSubtitle": "Limits stated up front, so you do not find them after installing.",
+    "limits": [
+      {
+        "title": "No cloud sync",
+        "description": "There is no hosted workspace. To use it on another machine you take the data folder with you."
+      },
+      {
+        "title": "It does not pick the model",
+        "description": "You connect a provider and pay usage directly to it. The app does not resell tokens."
+      },
+      {
+        "title": "No mobile or web app yet",
+        "description": "Chat, Code and Agents run on the desktop. Windows is the stable build; macOS and Linux are in beta."
+      },
+      {
+        "title": "It does not replace review",
+        "description": "The agent can be wrong. Plan, permissions and diffs exist so you check before accepting."
+      }
+    ]
   },
   "Faq": {
     "eyebrow": "Questions",
@@ -210,41 +249,60 @@
     "items": [
       {
         "question": "Where does my data go?",
-        "answer": "Conversations, artifacts and settings are stored in a local folder on your computer. Only the messages you send reach the model provider you configured, and you can export or delete the whole data folder at any time."
+        "answer": "Conversations, artifacts and settings live in a local folder on your computer. Only the messages you send reach the model provider you configured, and you can export or delete the whole data folder at any time."
+      },
+      {
+        "question": "How much does Zylara cost?",
+        "answer": "The app is free, open source under MIT, and opens without an account. What costs money is the model: you pay the provider directly — subscription, credits or API key. The app does not resell tokens."
       },
       {
         "question": "Which models can I use?",
-        "answer": "OpenCode Go, OpenCode Zen, OpenAI through a ChatGPT account and Anthropic with an API key. In Code sessions you can switch model between turns; earlier answers keep the model that produced them."
+        "answer": "OpenCode Go, OpenCode Zen, OpenAI through a ChatGPT plan and Anthropic with an API key. In Code and Agents you can switch models between turns; earlier answers keep the model that produced them."
       },
       {
         "question": "What exactly is Plan mode?",
-        "answer": "A mode where edits are disabled. The agent reads the project, writes a plan and waits. You can approve it, keep planning, or go back to the session. A plan badge in the composer shows when the mode is on."
+        "answer": "A mode where edits are off. The agent reads the project, writes a plan and waits. You can approve, keep planning or go back to the session. A plan badge in the composer shows when the mode is on."
       },
       {
         "question": "Can the agent run commands on its own?",
-        "answer": "Only as far as the permission mode allows. Read, Review, Edit and Autonomous define how much it may do without asking, and risky actions are still labelled and surfaced for approval."
+        "answer": "Only as far as the permission mode allows. Read, Review, Edit and Autopilot define how much it can do without asking, and risky actions stay labelled and exposed for approval."
+      },
+      {
+        "question": "Why are macOS and Linux beta?",
+        "answer": "Windows is the stable target: it gets the installers, the auto-update flow and the testing. macOS and Linux builds exist so you can try them and report problems — expect rough edges between versions."
+      },
+      {
+        "question": "How does Zylara compare to other coding agents?",
+        "answer": "We do not claim to be faster. The difference is where the work happens: a desktop app with local data, a plan before any edit, and permissions labelled by risk. If you want the agent inside your editor or fully in the cloud, there are good tools for that too."
       },
       {
         "question": "Does it work offline?",
-        "answer": "The app and your data are local, so browsing conversations, artifacts and skills works without a connection. Generating answers requires the provider you selected to be reachable."
+        "answer": "The app and its data are local, so browsing conversations, artifacts and skills works without a connection. Generating answers requires the provider you chose to be reachable."
       },
       {
-        "question": "Which platforms are supported?",
-        "answer": "Windows, macOS and Linux, with native installers for each. The app is built with Tauri, so it uses the system webview instead of bundling a browser."
+        "question": "What are the system requirements?",
+        "answer": "Windows 10/11 x64 is the stable build. macOS on Apple Silicon and Linux x64 (AppImage, .deb and .rpm) are experimental. The app is built with Tauri, so it uses the system webview instead of bundling a browser."
+      },
+      {
+        "question": "Is the source code open?",
+        "answer": "Yes: MIT, at Hyska-Software/ZylaraAi. You can read, build and redistribute it; builds cannot use the name or logo in a way that suggests an official release."
+      },
+      {
+        "question": "How do I delete my data?",
+        "answer": "Conversations, artifacts and settings live in a folder in your user profile. Delete that folder, or uninstall the app and remove it — we never had a copy to delete."
+      },
+      {
+        "question": "Can I run more than one chat at a time?",
+        "answer": "Yes: chats, code sessions and agent teams sit side by side in the sidebar, and each one keeps its own transcript, model and context."
       }
-    ]
-  },
-  "FinalCta": {
-    "title": "Bring your next task to Zylara",
-    "subtitle": "Download the app, open a folder, and plan the first change before anything is written.",
-    "ctaPrimary": "Download for desktop",
-    "ctaSecondary": "Read the repository"
+    ],
+    "issueTitle": "Not answered here?",
+    "issueBody": "Open an issue with your version and platform — the same place release notes live.",
+    "issueCta": "Open an issue"
   },
   "Footer": {
     "tagline": "A desktop workspace for coding agents.",
     "product": "Product",
-    "resources": "Resources",
-    "community": "Community",
     "download": "Download",
     "features": "Features",
     "workflow": "How it works",
@@ -252,13 +310,16 @@
     "repository": "Repository",
     "issues": "Issues",
     "releases": "Releases",
-    "language": "Language",
     "version": "Version",
     "rights": "All rights reserved.",
     "legal": "Legal",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
-    "contact": "Contact"
+    "contact": "Contact",
+    "developers": "Developers",
+    "guide": "Setup guide",
+    "cost": "Cost",
+    "license": "Open source · MIT"
   },
   "Legal": {
     "eyebrow": "Legal",
@@ -311,7 +372,9 @@
       },
       {
         "title": "Acceptable use",
-        "body": ["Use Zylara only for work you are allowed to do, in code and projects you are allowed to change."],
+        "body": [
+          "Use Zylara only for work you are allowed to do, in code and projects you are allowed to change."
+        ],
         "items": [
           "Do not use the app to break the law, to infringe copyright or to attack systems you do not own.",
           "Do not redistribute builds under a name, logo or signature that suggests an official release.",
@@ -684,5 +747,95 @@
         "Write to legal@hyska.com.br with the right you want to exercise and the e-mail address involved. We answer in the period set for your region and never charge for it."
       ]
     }
+  },
+  "Proof": {
+    "license": "MIT",
+    "noAccount": "No account to open",
+    "localData": "Data on your machine",
+    "starsLabel": "{count} GitHub stars"
+  },
+  "Tour": {
+    "eyebrow": "See it working",
+    "title": "The interface is the argument",
+    "subtitle": "Five screens from the real app: plan, permissions, diff, library and skills. No video, no mockup of a mockup.",
+    "tabsLabel": "Product screens",
+    "tabs": [
+      {
+        "id": "plan",
+        "label": "Plan",
+        "title": "The agent stops and waits",
+        "description": "Edits are off. The plan arrives as steps and the composer stays locked until you decide.",
+        "points": [
+          "Approve, keep planning or send it back",
+          "Nothing is written while the plan is open"
+        ]
+      },
+      {
+        "id": "permissions",
+        "label": "Permissions",
+        "title": "Risk shows up before the command",
+        "description": "Every tool call is labelled — read, command, destructive, secret or outside the workspace — and waits for an explicit answer.",
+        "points": [
+          "Read, Review, Edit and Autopilot modes",
+          "Denying is a normal answer, not an error"
+        ]
+      },
+      {
+        "id": "diff",
+        "label": "Diff",
+        "title": "Read the change, not the promise",
+        "description": "Edits land as diffs per file or per turn. Revert one file, revert the whole turn, or commit what survived review.",
+        "points": [
+          "Per-file and per-turn revert",
+          "Commit only what you reviewed"
+        ]
+      },
+      {
+        "id": "library",
+        "label": "Library",
+        "title": "Everything the agent produced, in one place",
+        "description": "Images, documents, code and archives live in a local library with previews — no cloud upload, no dead link.",
+        "points": [
+          "A preview per type, from PDF to hexdump",
+          "Rename, favorite, save or delete in place"
+        ]
+      },
+      {
+        "id": "skills",
+        "label": "Skills",
+        "title": "Your project's rules, not the average repo's",
+        "description": "Reusable skills, a custom system prompt and per-tool keys keep the agent aligned with how your project actually works.",
+        "points": [
+          "Skills versioned with the repo",
+          "Per-tool keys and prompts"
+        ]
+      }
+    ]
+  },
+  "Cost": {
+    "eyebrow": "Cost",
+    "title": "The app is free. The model is yours.",
+    "subtitle": "No token markup and no subscription to open the app. Connect an account you already pay for or your own API key.",
+    "rows": [
+      {
+        "title": "Application",
+        "description": "MIT license. Installers and updates at no cost.",
+        "value": "Free"
+      },
+      {
+        "title": "Model usage",
+        "description": "Charged by the provider you connect — subscription, credits or API key.",
+        "value": "From your provider"
+      },
+      {
+        "title": "Your data",
+        "description": "Conversations and artifacts stay in a folder on your machine.",
+        "value": "Local"
+      }
+    ],
+    "note": "There is no paid Zylara plan today. If that changes, it changes here and in the Terms.",
+    "ctaFaq": "Cost questions",
+    "ctaReleases": "All releases",
+    "ctaDownload": "Download"
   }
 }

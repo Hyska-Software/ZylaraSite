@@ -1,20 +1,34 @@
 ﻿import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/cn';
-import { featureMenu, type FeatureMenuKey } from '@/lib/site';
+import { featureAnchor, type FeatureMenuKey } from '@/lib/site';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import {
+  DiffFragment,
+  FolderFragment,
+  ModesFragment,
+  PermissionFragment,
+  PlanFragment,
+  SkillsFragment,
+} from '@/components/sections/fragments';
 
 type FeatureKey = FeatureMenuKey;
-type VisualKind = 'folder' | 'plan' | 'risk' | 'diff' | 'skill' | 'modes';
 
-const features: { key: FeatureKey; span: string; visual: VisualKind }[] = [
-  { key: 'localFirst', span: 'md:col-span-2', visual: 'folder' },
-  { key: 'planMode', span: '', visual: 'plan' },
-  { key: 'permissions', span: '', visual: 'risk' },
-  { key: 'diffs', span: 'md:col-span-2', visual: 'diff' },
-  { key: 'skills', span: '', visual: 'skill' },
-  { key: 'modes', span: 'md:col-span-2', visual: 'modes' },
+const features: { key: FeatureKey; span: string }[] = [
+  { key: 'localFirst', span: 'md:col-span-2' },
+  { key: 'planMode', span: '' },
+  { key: 'permissions', span: '' },
+  { key: 'diffs', span: 'md:col-span-2' },
+  { key: 'skills', span: '' },
+  { key: 'modes', span: 'md:col-span-2' },
 ];
 
+/**
+ * Bento de recursos.
+ *
+ * O `id` de cada card é o âncora que o menu "Recursos" do cabeçalho usa
+ * (`featureAnchor`); sem ele os itens do menu não levam a lugar nenhum.
+ * Os visuais são fragmentos reais da UI do app, não placeholders.
+ */
 export async function FeatureBento() {
   const t = await getTranslations('Features');
 
@@ -30,8 +44,12 @@ export async function FeatureBento() {
 
         <ul className="mt-12 grid gap-3 md:grid-cols-3">
           {features.map((feature) => (
-            <li key={feature.key} className={cn('min-w-0', feature.span)}>
-              <article className="flex h-full flex-col justify-between gap-8 rounded-2xl border border-border bg-surface-raised p-6 transition-colors duration-200 hover:border-border-strong">
+            <li
+              key={feature.key}
+              id={featureAnchor(feature.key)}
+              className={cn('min-w-0 scroll-mt-24', feature.span)}
+            >
+              <article className="flex h-full flex-col justify-between gap-6 rounded-2xl border border-border bg-surface-raised p-6 transition-colors duration-200 hover:border-border-strong">
                 <div>
                   <h3 className="text-lg font-medium text-foreground">
                     {t(`items.${feature.key}.title`)}
@@ -40,7 +58,7 @@ export async function FeatureBento() {
                     {t(`items.${feature.key}.description`)}
                   </p>
                 </div>
-                <FeatureVisual kind={feature.visual} />
+                <FeatureVisual feature={feature.key} />
               </article>
             </li>
           ))}
@@ -50,107 +68,12 @@ export async function FeatureBento() {
   );
 }
 
-/** Visuais decorativos por card — tudo em SVG/CSS, aria-hidden. */
-function FeatureVisual({ kind }: { kind: VisualKind }) {
-  if (kind === 'folder') {
-    return (
-      <div aria-hidden="true" className="rounded-xl border border-border bg-background p-3">
-        <p className="font-mono text-2xs text-foreground-subtle">~/.zylara</p>
-        <ul className="mt-2 grid grid-cols-2 gap-1.5 font-mono text-2xs text-foreground-subtle">
-          <li className="rounded bg-surface px-2 py-1">conversations/</li>
-          <li className="rounded bg-surface px-2 py-1">artifacts/</li>
-          <li className="rounded bg-surface px-2 py-1">skills/</li>
-          <li className="rounded bg-surface px-2 py-1">settings.json</li>
-        </ul>
-      </div>
-    );
-  }
-
-  if (kind === 'plan') {
-    return (
-      <div
-        aria-hidden="true"
-        className="flex flex-col gap-2 rounded-xl border border-border bg-background p-3"
-      >
-        {[0, 1, 2].map((index) => (
-          <div key={index} className="flex items-center gap-2">
-            <span className="size-3.5 shrink-0 rounded-full border border-accent/60" />
-            <span
-              className="h-1.5 rounded-full bg-surface-hover"
-              style={{ width: `${100 - index * 22}%` }}
-            />
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  if (kind === 'risk') {
-    return (
-      <div aria-hidden="true" className="flex flex-wrap gap-1.5">
-        <span className="rounded-full bg-surface px-2 py-0.5 font-mono text-2xs text-foreground-muted">
-          read
-        </span>
-        <span className="rounded-full bg-warning-soft px-2 py-0.5 font-mono text-2xs text-warning">
-          command
-        </span>
-        <span className="rounded-full bg-danger-soft px-2 py-0.5 font-mono text-2xs text-danger">
-          secret
-        </span>
-        <span className="rounded-full bg-danger-soft px-2 py-0.5 font-mono text-2xs text-danger">
-          outside
-        </span>
-      </div>
-    );
-  }
-
-  if (kind === 'diff') {
-    return (
-      <div
-        aria-hidden="true"
-        className="overflow-hidden rounded-xl border border-border bg-background font-mono text-[10px] leading-relaxed"
-      >
-        <div className="flex items-center justify-between border-b border-border px-2.5 py-1.5 text-foreground-subtle">
-          <span>src/server/auth.ts</span>
-          <span className="flex gap-1.5">
-            <span className="text-success">+24</span>
-            <span className="text-danger">−3</span>
-          </span>
-        </div>
-        <div className="px-2.5 py-1.5">
-          <span className="block text-foreground-subtle">@@ -12,4 +12,6 @@</span>
-          <span className="block text-foreground-muted"> const ip = request.ip</span>
-          <span className="block text-success">+const bucket = await limiter.take(ip)</span>
-          <span className="block text-success">+if (!bucket.ok) return tooMany()</span>
-        </div>
-      </div>
-    );
-  }
-
-  if (kind === 'skill') {
-    return (
-      <div aria-hidden="true" className="flex flex-col gap-1.5">
-        {['code-review', 'release-notes', 'incident'].map((name) => (
-          <span
-            key={name}
-            className="inline-flex w-fit items-center gap-1.5 rounded-lg border border-border bg-background px-2 py-1 font-mono text-2xs text-foreground-muted"
-          >
-            <span className="size-1 rounded-full bg-accent" />
-            {name}
-          </span>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div
-      aria-hidden="true"
-      className="inline-flex w-fit items-center gap-1 rounded-full border border-border bg-background p-1 text-2xs"
-    >
-      <span className="rounded-full bg-surface-hover px-2.5 py-1 text-foreground">Chat</span>
-      <span className="px-2.5 py-1 text-foreground-subtle">Code</span>
-      <span className="px-2.5 py-1 text-foreground-subtle">Agentes</span>
-    </div>
-  );
+/** Fragmento da UI correspondente ao recurso — decorativo para o leitor de tela. */
+function FeatureVisual({ feature }: { feature: FeatureKey }) {
+  if (feature === 'localFirst') return <FolderFragment decorative />;
+  if (feature === 'planMode') return <PlanFragment decorative />;
+  if (feature === 'permissions') return <PermissionFragment decorative />;
+  if (feature === 'diffs') return <DiffFragment decorative />;
+  if (feature === 'skills') return <SkillsFragment decorative />;
+  return <ModesFragment decorative />;
 }

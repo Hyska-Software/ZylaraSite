@@ -107,6 +107,14 @@ export function SiteHeader() {
               {t(section.labelKey)}
             </a>
           ))}
+          <a
+            href={site.docsUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="hidden rounded-full px-3.5 py-2 text-sm text-foreground-muted transition-colors duration-150 hover:bg-surface-hover hover:text-foreground lg:inline-flex"
+          >
+            {t('guide')}
+          </a>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -167,6 +175,15 @@ export function SiteHeader() {
                   {t(section.labelKey)}
                 </a>
               ))}
+              <a
+                href={site.docsUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                onClick={() => setOpen(false)}
+                className="rounded-xl px-3 py-3 text-base text-foreground-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+              >
+                {t('guide')}
+              </a>
               <div className="mt-3 flex items-center gap-2 border-t border-border pt-4">
                 <LocaleSwitcher />
                 <ExternalButtonLink

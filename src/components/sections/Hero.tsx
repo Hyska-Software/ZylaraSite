@@ -1,8 +1,9 @@
 import { getTranslations } from 'next-intl/server';
 import { AnimatedZylara } from '@/components/brand/AnimatedZylara';
 import { ExternalButtonLink } from '@/components/ui/Button';
+import { DownloadCta } from '@/components/ui/DownloadCta';
 import { AppPreview } from '@/components/sections/AppPreview';
-import { Link } from '@/i18n/navigation';
+import { ProofBar } from '@/components/sections/ProofBar';
 import { getLatestRelease } from '@/lib/releases';
 import { site } from '@/lib/site';
 
@@ -25,35 +26,25 @@ export async function Hero() {
             <h1 className="mt-6 text-4xl font-semibold tracking-tighter text-foreground md:text-5xl lg:text-6xl">
               {t('title')}
               <br />
-              <span className="text-foreground-muted">{t('titleAccent')}</span>
+              <span className="text-accent">{t('titleAccent')}</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg text-foreground-muted">{t('subtitle')}</p>
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link
-                href="/download"
-                className="inline-flex h-12 items-center justify-center rounded-full bg-foreground px-6 text-base font-medium text-background transition-colors duration-150 hover:bg-foreground/90"
-              >
-                {t('ctaPrimary')}
-              </Link>
+              <DownloadCta release={release} />
               <ExternalButtonLink href={site.repoUrl} size="lg" variant="secondary">
                 {t('ctaSecondary')}
               </ExternalButtonLink>
             </div>
 
-            <p className="mt-4 flex items-center gap-2 text-xs text-foreground-subtle">
-              <span className="font-mono">v{release.version}</span>
-              <span aria-hidden="true">·</span>
-              {t('note')}
-            </p>
+            <ProofBar release={release} />
+
+            <p className="mt-3 text-xs text-foreground-muted">{t('note')}</p>
           </div>
 
           <div className="relative">
-            <AnimatedZylara
-              size={140}
-              className="absolute -top-16 -right-2 z-10 hidden lg:block"
-            />
+            <AnimatedZylara size={112} className="absolute -top-12 -right-3 z-10 hidden lg:block" />
             <AppPreview />
           </div>
         </div>

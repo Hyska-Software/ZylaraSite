@@ -1,94 +1,86 @@
 import { getTranslations } from 'next-intl/server';
+import { PlatformIcon } from '@/components/download/PlatformIcon';
 import { Link } from '@/i18n/navigation';
-import { downloadPlatforms, isExperimentalPlatform } from '@/lib/site';
+import { downloadPlatforms, isExperimentalPlatform, type LatestRelease } from '@/lib/site';
 
 /**
  * Cards de plataforma da landing.
  *
- * Cada card não baixa o binário: leva à página de download já na plataforma
- * certa (`/download#macos`), onde o usuário escolhe formato, confere nome e
- * tamanho do arquivo e lê a verificação SHA-256.
+ * Cada card entrega o instalador principal direto da release (o mesmo href que
+ * a página `/download` monta) e deixa o caminho secundário para "outros
+ * formatos" no link `#<plataforma>` — o clique de download não passa mais por
+ * uma página intermediária.
  *
- * macOS e Linux ainda são builds experimentais: o card dessas plataformas ganha
- * o selo "Beta" e a legenda avisa antes do clique.
+ * macOS e Linux ainda são builds experimentais: o card ganha o selo "Beta" e
+ * o aviso fica numa linha única abaixo da grade, sem competir com o CTA.
  */
-export async function DownloadOptions() {
+export async function DownloadOptions({ release }: { release: LatestRelease }) {
   const t = await getTranslations('Download');
 
   return (
     <div>
       <ul className="grid gap-3 sm:grid-cols-3">
-        {downloadPlatforms.map((id) => (
-          <li key={id}>
-            <Link
-              href={`/download#${id}`}
-              className="group flex h-full flex-col gap-6 rounded-2xl border border-border bg-surface-raised p-5 transition-colors duration-150 hover:border-border-strong hover:bg-surface-hover"
+        {downloadPlatforms.map((platform) => {
+          const primary = release.downloads[platform].files[0];
+          if (!primary) return null;
+
+          return (
+            <li
+              key={platform}
+              className="group flex h-full flex-col gap-4 rounded-2xl border border-border bg-surface-raised p-5 transition-colors duration-150 hover:border-border-strong"
             >
-              <span className="flex flex-1 items-start justify-between gap-3">
-                <span className="flex flex-col gap-1">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 flex-col gap-1">
                   <span className="flex flex-wrap items-center gap-1.5">
                     <span className="text-sm font-medium text-foreground">
-                      {t(`${id}.label`)}
+                      {t(`${platform}.label`)}
                     </span>
-                    {isExperimentalPlatform(id) ? (
+                    {isExperimentalPlatform(platform) ? (
                       <span className="rounded-full bg-warning-soft px-1.5 py-0.5 text-2xs text-warning">
                         {t('experimentalBadge')}
                       </span>
                     ) : null}
                   </span>
-                  <span className="text-xs text-foreground-subtle">{t(`${id}.detail`)}</span>
-                </span>
-                <DownloadIcon />
-              </span>
-              <span className="inline-flex items-center gap-1.5 text-xs text-foreground-muted transition-colors duration-150 group-hover:text-foreground">
-                {t('choose')}
-                <ArrowIcon />
-              </span>
-            </Link>
-          </li>
-        ))}
+                  <span className="text-xs text-foreground-muted">{t(`${platform}.detail`)}</span>
+                </div>
+                <PlatformIcon
+                  platform={platform}
+                  size={18}
+                  className="shrink-0 text-foreground-muted"
+                />
+              </div>
+
+              <p className="break-all font-mono text-2xs text-foreground-muted">{primary.file}</p>
+
+              <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2">
+                <a
+                  href={primary.url}
+                  className="inline-flex h-9 items-center gap-1.5 rounded-full bg-foreground px-3.5 text-xs font-medium text-background transition-colors duration-150 hover:bg-foreground/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                >
+                  <DownloadIcon />
+                  {t('downloadFormat', { format: primary.format })}
+                </a>
+                <Link
+                  href={`/download#${platform}`}
+                  className="inline-flex items-center gap-1 text-xs text-foreground-muted transition-colors duration-150 hover:text-foreground"
+                >
+                  {t('otherFormats')}
+                  <ArrowIcon />
+                </Link>
+              </div>
+            </li>
+          );
+        })}
       </ul>
 
-      <p className="mt-3 flex items-start gap-1.5 text-xs text-foreground-subtle">
-        <WarningIcon />
-        <span>{t('experimentalNote')}</span>
-      </p>
+      <p className="mt-3 text-xs text-foreground-muted">{t('experimentalNote')}</p>
     </div>
-  );
-}
-
-function WarningIcon() {
-  return (
-    <svg
-      width="13"
-      height="13"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden="true"
-      className="mt-0.5 shrink-0 text-warning"
-    >
-      <path
-        d="M8 2.5 14.25 13.5H1.75L8 2.5Z"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinejoin="round"
-      />
-      <path d="M8 6.25v3.25" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <circle cx="8" cy="11.5" r="0.75" fill="currentColor" />
-    </svg>
   );
 }
 
 function DownloadIcon() {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden="true"
-      className="shrink-0 text-foreground-subtle transition-colors duration-150 group-hover:text-foreground"
-    >
+    <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
       <path
         d="M8 2.5v7m0 0 2.75-2.75M8 9.5 5.25 6.75M3 12.5h10"
         stroke="currentColor"
@@ -103,8 +95,8 @@ function DownloadIcon() {
 function ArrowIcon() {
   return (
     <svg
-      width="12"
-      height="12"
+      width="11"
+      height="11"
       viewBox="0 0 12 12"
       fill="none"
       aria-hidden="true"

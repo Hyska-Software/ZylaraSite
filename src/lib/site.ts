@@ -5,7 +5,6 @@
  * A versão publicada e as URLs dos instaladores **não** ficam neste arquivo:
  * elas vêm da release mais recente do GitHub (`@/lib/releases`), com o
  * fallback pinado abaixo apenas para quando a API estiver indisponível.
- * TODO(P4): substituir `community.x` pelo perfil real quando definido.
  */
 
 import type { Locale } from '@/i18n/routing';
@@ -128,9 +127,9 @@ export const site = {
   },
   repoUrl: REPO,
   releasesUrl: `${REPO}/releases`,
-  community: {
-    x: 'https://x.com/zylara',
-  },
+  /** Guia de instalação e compilação vive no README do repositório. */
+  docsUrl: `${REPO}#readme`,
+  issuesUrl: `${REPO}/issues`,
   license: 'MIT',
 } as const;
 

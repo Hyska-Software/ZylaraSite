@@ -22,7 +22,7 @@ export async function DownloadSection() {
           id="download-title"
         />
 
-        <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-foreground-subtle">
+        <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-foreground-muted">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-success-soft px-2 py-0.5 text-2xs text-success">
             <span className="size-1.5 rounded-full bg-success" aria-hidden="true" />
             {t('latest', { version: release.version })}
@@ -32,25 +32,25 @@ export async function DownloadSection() {
         </p>
 
         <div className="mt-10">
-          <DownloadOptions />
+          <DownloadOptions release={release} />
         </div>
 
-        <p className="mt-6 text-xs text-foreground-subtle">
+        <p className="mt-6 text-xs text-foreground-muted">
           {t('note')}{' '}
           <a
-            href={site.repoUrl}
+            href={site.docsUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="text-foreground-muted underline underline-offset-2 transition-colors hover:text-foreground"
+            className="underline underline-offset-2 transition-colors hover:text-foreground"
           >
-            {site.repoUrl.replace(/^https?:\/\//, '')}
+            {t('guideLink')}
           </a>{' '}
           <span aria-hidden="true">·</span>{' '}
           <a
             href={release.checksumsUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="text-foreground-muted underline underline-offset-2 transition-colors hover:text-foreground"
+            className="underline underline-offset-2 transition-colors hover:text-foreground"
           >
             {t('checksums')}
           </a>

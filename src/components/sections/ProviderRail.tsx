@@ -3,41 +3,38 @@ import { BrandIcon, ProviderGlyphSprite } from '@/components/brand/ProviderIcons
 import type { ProviderIconName } from '@/components/brand/provider-glyphs';
 
 /**
- * Estúdio de provedores.
+ * Modelos e rotas de acesso.
  *
  * Duas camadas, e cada uma responde a uma pergunta diferente:
- * 1. a nuvem de marcas mostra *quais modelos* você alcança (17 famílias que o
- *    catálogo do app já serve) — em movimento, para caber sem virar um bloco
- *    de logos apertados;
+ * 1. a faixa de marcas mostra *quais modelos* você alcança (17 famílias que o
+ *    catálogo do app já serve);
  * 2. as rotas mostram *como* você conecta (assinatura, créditos, plano ou
  *    chave) — estáticas, porque são informação, não decoração.
  *
- * As cores por marca seguem o mapa de `docs/MODEL_ICONS.md` do app, mas
- * aparecem só no hover: em repouso a faixa fica neutra, coerente com o tom
- * calmo do resto da página.
+ * As cores por marca ficam no hover da marca (`docs/MODEL_ICONS.md`), mas desde
+ * a revisão da landing o estado de repouso é neutro: tints de risco eram lidos
+ * como semântica de status, e aqui não existe status de marca.
  */
 
-type Brand = { key: ProviderIconName; name: string; tint: string };
+type Brand = { key: ProviderIconName; name: string };
 
-/** Tints do app (DESIGN.md §8), aplicados só quando o tile é tocado. */
 const brands: Brand[] = [
-  { key: 'deepseek', name: 'DeepSeek', tint: 'group-hover/tile:bg-accent-soft group-hover/tile:text-accent' },
-  { key: 'google', name: 'Gemini', tint: 'group-hover/tile:bg-accent-soft group-hover/tile:text-accent' },
-  { key: 'openai', name: 'GPT', tint: 'group-hover/tile:bg-success-soft group-hover/tile:text-success' },
-  { key: 'anthropic', name: 'Claude', tint: 'group-hover/tile:bg-warning-soft group-hover/tile:text-warning' },
-  { key: 'zai', name: 'GLM', tint: 'group-hover/tile:bg-accent-soft group-hover/tile:text-accent' },
-  { key: 'qwen', name: 'Qwen', tint: 'group-hover/tile:bg-accent-soft group-hover/tile:text-accent' },
-  { key: 'kimi', name: 'Kimi', tint: 'group-hover/tile:bg-accent-soft group-hover/tile:text-accent' },
-  { key: 'minimax', name: 'MiniMax', tint: 'group-hover/tile:bg-danger-soft group-hover/tile:text-danger' },
-  { key: 'grok', name: 'Grok', tint: 'group-hover/tile:bg-surface-hover group-hover/tile:text-foreground' },
-  { key: 'mistral', name: 'Mistral', tint: 'group-hover/tile:bg-warning-soft group-hover/tile:text-warning' },
-  { key: 'hunyuan', name: 'Hunyuan', tint: 'group-hover/tile:bg-accent-soft group-hover/tile:text-accent' },
-  { key: 'nvidia', name: 'Nemotron', tint: 'group-hover/tile:bg-success-soft group-hover/tile:text-success' },
-  { key: 'xiaomimimo', name: 'MiMo', tint: 'group-hover/tile:bg-danger-soft group-hover/tile:text-danger' },
-  { key: 'longcat', name: 'LongCat', tint: 'group-hover/tile:bg-success-soft group-hover/tile:text-success' },
-  { key: 'stepfun', name: 'StepFun', tint: 'group-hover/tile:bg-success-soft group-hover/tile:text-success' },
-  { key: 'meta', name: 'Muse', tint: 'group-hover/tile:bg-warning-soft group-hover/tile:text-warning' },
-  { key: 'opencode', name: 'OpenCode', tint: 'group-hover/tile:bg-surface-hover group-hover/tile:text-foreground' },
+  { key: 'deepseek', name: 'DeepSeek' },
+  { key: 'google', name: 'Gemini' },
+  { key: 'openai', name: 'GPT' },
+  { key: 'anthropic', name: 'Claude' },
+  { key: 'zai', name: 'GLM' },
+  { key: 'qwen', name: 'Qwen' },
+  { key: 'kimi', name: 'Kimi' },
+  { key: 'minimax', name: 'MiniMax' },
+  { key: 'grok', name: 'Grok' },
+  { key: 'mistral', name: 'Mistral' },
+  { key: 'hunyuan', name: 'Hunyuan' },
+  { key: 'nvidia', name: 'Nemotron' },
+  { key: 'xiaomimimo', name: 'MiMo' },
+  { key: 'longcat', name: 'LongCat' },
+  { key: 'stepfun', name: 'StepFun' },
+  { key: 'meta', name: 'Muse' },
 ];
 
 /** As quatro rotas reais de acesso (docs/MODELS.md). */
@@ -50,37 +47,50 @@ const routes: { key: ProviderIconName; name: string; detailKey: 'go' | 'zen' | '
 
 /**
  * Cada metade precisa ser mais larga que a viewport, senão a emenda do laço
- * mostra vazio. Uma pill ocupa ~150px com o respiro; 17 marcas por passagem dão
- * ~2.550px, então duas passagens por metade (~5.100px) cobrem qualquer tela
+ * mostra vazio. Uma pill ocupa ~150px com o respiro; 16 marcas por passagem dão
+ * ~2.400px, então duas passagens por metade (~4.800px) cobrem qualquer tela
  * comum sem esticar o espaçamento entre as pills.
  */
 const PASSES_PER_HALF = 2;
 
+/** Quantidade publicada em `Providers.caption` — mantenha as duas em sincronia. */
+const MODEL_FAMILIES = 16;
+
 export async function ProviderRail() {
   const t = await getTranslations('Providers');
+  const stats = t.raw('stats') as { value: string; label: string }[];
 
   return (
     <section
-      aria-labelledby="providers-label"
-      className="relative overflow-hidden border-y border-border bg-surface py-14 md:py-16"
+      id="providers"
+      aria-labelledby="providers-title"
+      className="scroll-mt-24 border-y border-border bg-surface py-16 md:py-20"
     >
       <ProviderGlyphSprite />
 
       <div className="container-page">
-        <div className="flex items-center gap-4 md:gap-6">
-          <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-r from-transparent to-border" />
-          <p
-            id="providers-label"
-            className="text-center text-2xs font-medium uppercase tracking-[0.14em] text-foreground-subtle"
-          >
-            {t('label')}
-          </p>
-          <span aria-hidden="true" className="h-px flex-1 bg-gradient-to-l from-transparent to-border" />
-        </div>
+        <div className="grid gap-x-10 gap-y-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+          <div className="max-w-2xl">
+            <h2
+              id="providers-title"
+              className="text-2xl font-semibold tracking-tight text-foreground md:text-3xl"
+            >
+              {t('label')}
+            </h2>
+            <p className="mt-3 text-base text-foreground-muted">{t('caption')}</p>
+          </div>
 
-        <p className="mx-auto mt-4 max-w-lg text-center text-sm text-foreground-muted">
-          {t('caption')}
-        </p>
+          <dl className="flex flex-wrap gap-x-8 gap-y-4">
+            {stats.map((stat) => (
+              <div key={stat.label} className="flex flex-col">
+                <dt className="order-2 text-2xs text-foreground-muted">{stat.label}</dt>
+                <dd className="order-1 font-mono text-xl tabular-nums text-foreground">
+                  {stat.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
       </div>
 
       <div className="mt-10">
@@ -88,12 +98,9 @@ export async function ProviderRail() {
       </div>
 
       <div className="container-page mt-12">
-        <div className="flex items-center gap-3">
-          <p className="font-mono text-2xs uppercase tracking-[0.12em] text-foreground-subtle">
-            {t('routes')}
-          </p>
-          <span aria-hidden="true" className="h-px flex-1 bg-border" />
-        </div>
+        <h3 className="font-mono text-2xs uppercase tracking-[0.12em] text-foreground-muted">
+          {t('routes')}
+        </h3>
 
         <ul className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {routes.map((route) => (
@@ -101,20 +108,22 @@ export async function ProviderRail() {
               key={route.name}
               className="group/tile flex items-center gap-3 rounded-xl border border-border bg-background p-3 transition-colors duration-200 hover:border-border-strong"
             >
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-foreground-subtle transition-colors duration-200 group-hover/tile:text-foreground">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-border bg-surface-raised text-foreground-muted transition-colors duration-200 group-hover/tile:text-foreground">
                 <BrandIcon name={route.key} size={17} />
               </span>
               <span className="min-w-0">
                 <span className="block truncate text-xs font-medium text-foreground">
                   {route.name}
                 </span>
-                <span className="block truncate font-mono text-2xs text-foreground-subtle">
+                <span className="block truncate font-mono text-2xs text-foreground-muted">
                   {t(`routeDetail.${route.detailKey}`)}
                 </span>
               </span>
             </li>
           ))}
         </ul>
+
+        <p className="mt-4 text-xs text-foreground-muted">{t('modelsNote', { count: MODEL_FAMILIES })}</p>
       </div>
     </section>
   );
@@ -133,7 +142,7 @@ function Marquee({ items }: { items: Brand[] }) {
 
   return (
     <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] motion-reduce:overflow-visible motion-reduce:[mask-image:none]">
-      <div className="flex w-max animate-[marquee-scroll_70s_linear_infinite] hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] motion-reduce:w-full motion-reduce:animate-none">
+      <div className="flex w-max animate-[marquee-scroll_40s_linear_infinite] hover:[animation-play-state:paused] focus-within:[animation-play-state:paused] motion-reduce:w-full motion-reduce:animate-none">
         {[half, half].map((group, index) => (
           <ul
             key={index}
@@ -143,11 +152,9 @@ function Marquee({ items }: { items: Brand[] }) {
             {group.map((brand, position) => (
               <li
                 key={`${brand.key}-${position}`}
-                className="group/tile mr-3 flex shrink-0 items-center gap-2.5 rounded-full border border-border bg-background py-1.5 pl-1.5 pr-4 transition-colors duration-200 hover:border-border-strong motion-reduce:mr-0"
+                className="group/tile mr-2.5 flex shrink-0 items-center gap-2.5 rounded-full border border-border bg-background py-1.5 pl-1.5 pr-4 transition-colors duration-200 hover:border-border-strong motion-reduce:mr-0"
               >
-                <span
-                  className={`flex size-7 items-center justify-center rounded-full bg-surface-hover text-foreground-subtle transition-colors duration-200 ${brand.tint}`}
-                >
+                <span className="flex size-7 items-center justify-center rounded-full bg-surface-hover text-foreground-muted transition-colors duration-200 group-hover/tile:text-foreground">
                   <BrandIcon name={brand.key} size={15} />
                 </span>
                 <span className="whitespace-nowrap text-xs font-medium text-foreground-muted transition-colors duration-200 group-hover/tile:text-foreground">

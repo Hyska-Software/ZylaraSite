@@ -1,7 +1,6 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 import { DistortedWordmark } from '@/components/brand/DistortedWordmark';
 import { Logo } from '@/components/brand/Logo';
-import { Link } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
 import { legalContactEmail, legalPaths } from '@/lib/legal';
 import { getLatestRelease } from '@/lib/releases';
@@ -21,7 +20,7 @@ export async function SiteFooter() {
           <div className="flex flex-col gap-3">
             <Logo />
             <p className="max-w-xs text-sm text-foreground-muted">{t('tagline')}</p>
-            <p className="mt-1 flex items-center gap-2 font-mono text-2xs text-foreground-subtle">
+            <p className="mt-1 flex items-center gap-2 font-mono text-2xs text-foreground-muted">
               <span className="size-1.5 rounded-full bg-success" aria-hidden="true" />
               {t('version')} {release.version}
             </p>
@@ -33,24 +32,27 @@ export async function SiteFooter() {
               { label: t('download'), href: `${home}/download` },
               { label: t('features'), href: `${home}#features` },
               { label: t('workflow'), href: `${home}#workflow` },
+              { label: t('cost'), href: `${home}#cost` },
               { label: t('faq'), href: `${home}#faq` },
             ]}
           />
 
           <FooterColumn
-            title={t('resources')}
+            title={t('developers')}
             links={[
               { label: t('repository'), href: site.repoUrl, external: true },
-              { label: t('issues'), href: `${site.repoUrl}/issues`, external: true },
+              { label: t('issues'), href: site.issuesUrl, external: true },
               { label: t('releases'), href: site.releasesUrl, external: true },
+              { label: t('guide'), href: site.docsUrl, external: true },
             ]}
           />
 
           <FooterColumn
-            title={t('community')}
+            title={t('legal')}
             links={[
-              { label: 'GitHub', href: site.repoUrl, external: true },
-              { label: 'X', href: site.community.x, external: true },
+              { label: t('terms'), href: legalPaths.terms },
+              { label: t('privacy'), href: legalPaths.privacy },
+              { label: t('contact'), href: `mailto:${legalContactEmail}`, external: true },
             ]}
           />
         </div>
@@ -65,31 +67,11 @@ export async function SiteFooter() {
       </div>
 
       <div className="border-t border-border">
-        <div className="container-page flex flex-col gap-3 py-6 text-xs text-foreground-subtle sm:flex-row sm:items-center sm:justify-between">
+        <div className="container-page flex flex-col gap-2 py-6 text-xs text-foreground-muted sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} Zylara. {t('rights')}
           </p>
-
-          <nav aria-label={t('legal')} className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <Link
-              href={legalPaths.terms}
-              className="text-foreground-muted transition-colors duration-150 hover:text-foreground"
-            >
-              {t('terms')}
-            </Link>
-            <Link
-              href={legalPaths.privacy}
-              className="text-foreground-muted transition-colors duration-150 hover:text-foreground"
-            >
-              {t('privacy')}
-            </Link>
-            <a
-              href={`mailto:${legalContactEmail}`}
-              className="text-foreground-muted transition-colors duration-150 hover:text-foreground"
-            >
-              {t('contact')}
-            </a>
-          </nav>
+          <p className="font-mono text-2xs">{t('license')}</p>
         </div>
       </div>
     </footer>
@@ -101,7 +83,7 @@ type FooterLink = { label: string; href: string; external?: boolean };
 function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) {
   return (
     <div className="flex flex-col gap-3">
-      <h2 className="text-2xs font-medium uppercase tracking-[0.12em] text-foreground-subtle">
+      <h2 className="text-2xs font-medium uppercase tracking-[0.12em] text-foreground-muted">
         {title}
       </h2>
       <ul className="flex flex-col gap-2">
@@ -130,7 +112,7 @@ function ExternalIcon() {
       viewBox="0 0 12 12"
       fill="none"
       aria-hidden="true"
-      className="shrink-0 text-foreground-subtle transition-colors duration-150 group-hover:text-foreground-muted"
+      className="shrink-0 text-foreground-muted transition-colors duration-150 group-hover:text-foreground-muted"
     >
       <path
         d="M4.5 2.5h5v5M9.5 2.5 3 9"

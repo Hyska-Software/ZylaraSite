@@ -27,7 +27,7 @@ for (const viewport of VIEWPORTS) {
   await page.goto(url, { waitUntil: 'networkidle' });
 
   const report = await page.evaluate(() => {
-    const section = document.querySelector('section[aria-labelledby="providers-label"]');
+    const section = document.querySelector('section[aria-labelledby="providers-title"]');
     if (!section) return { error: 'seção de provedores não encontrada' };
 
     const lists = [...section.querySelectorAll('ul')].filter(
