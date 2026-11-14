@@ -4,16 +4,16 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useId, useRef, useState } from 'react';
 import { Logo } from '@/components/brand/Logo';
+import { FeaturesMenu } from '@/components/layout/FeaturesMenu';
 import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher';
 import { ButtonLink, ExternalButtonLink } from '@/components/ui/Button';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
 import { cn } from '@/lib/cn';
-import { navSections, site } from '@/lib/site';
+import { navSections, sectionHref, site } from '@/lib/site';
 
-function hrefFor(locale: Locale, sectionId: string) {
-  return locale === 'en' ? `/#${sectionId}` : `/${locale}/#${sectionId}`;
-}
+/** "Features" sai da lista e vira o menu suspenso do cabeçalho. */
+const headerLinks = navSections.filter((section) => section.id !== 'features');
 
 export function SiteHeader() {
   const t = useTranslations('Nav');
@@ -97,10 +97,11 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
-          {navSections.map((section) => (
+          <FeaturesMenu />
+          {headerLinks.map((section) => (
             <a
               key={section.id}
-              href={hrefFor(locale, section.id)}
+              href={sectionHref(locale, section.id)}
               className="rounded-full px-3.5 py-2 text-sm text-foreground-muted transition-colors duration-150 hover:bg-surface-hover hover:text-foreground"
             >
               {t(section.labelKey)}
@@ -159,7 +160,7 @@ export function SiteHeader() {
               {navSections.map((section) => (
                 <a
                   key={section.id}
-                  href={hrefFor(locale, section.id)}
+                  href={sectionHref(locale, section.id)}
                   onClick={() => setOpen(false)}
                   className="rounded-xl px-3 py-3 text-base text-foreground-muted transition-colors hover:bg-surface-hover hover:text-foreground"
                 >

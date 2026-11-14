@@ -8,6 +8,8 @@
  * TODO(P4): substituir `community.x` pelo perfil real quando definido.
  */
 
+import type { Locale } from '@/i18n/routing';
+
 const REPO = 'https://github.com/Hyska-Software/ZylaraAi';
 
 /**
@@ -140,3 +142,29 @@ export const navSections = [
 ] as const;
 
 export type NavSectionId = (typeof navSections)[number]['id'];
+
+/**
+ * Itens do menu suspenso "Features" do cabeçalho. A ordem aqui é a ordem dos
+ * cards em `FeatureBento` e cada `id` é o âncora do card correspondente —
+ * mexer em um lado exige mexer no outro (`src/components/sections/FeatureBento.tsx`).
+ */
+export const featureMenu = [
+  { key: 'localFirst', id: 'features-local-first' },
+  { key: 'planMode', id: 'features-plan-mode' },
+  { key: 'permissions', id: 'features-permissions' },
+  { key: 'diffs', id: 'features-diffs' },
+  { key: 'skills', id: 'features-skills' },
+  { key: 'modes', id: 'features-modes' },
+] as const;
+
+export type FeatureMenuKey = (typeof featureMenu)[number]['key'];
+
+/** Âncora (`#id`) do card correspondente em `FeatureBento`. */
+export function featureAnchor(key: FeatureMenuKey) {
+  return featureMenu.find((item) => item.key === key)?.id ?? 'features';
+}
+
+/** URL de um âncora da landing, respeitando o prefixo de idioma do next-intl. */
+export function sectionHref(locale: Locale, anchor: string) {
+  return locale === 'en' ? `/#${anchor}` : `/${locale}/#${anchor}`;
+}

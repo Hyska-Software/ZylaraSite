@@ -1,8 +1,9 @@
 ﻿import { getTranslations } from 'next-intl/server';
 import { cn } from '@/lib/cn';
+import { featureMenu, type FeatureMenuKey } from '@/lib/site';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 
-type FeatureKey = 'localFirst' | 'planMode' | 'permissions' | 'diffs' | 'skills' | 'modes';
+type FeatureKey = FeatureMenuKey;
 type VisualKind = 'folder' | 'plan' | 'risk' | 'diff' | 'skill' | 'modes';
 
 const features: { key: FeatureKey; span: string; visual: VisualKind }[] = [
