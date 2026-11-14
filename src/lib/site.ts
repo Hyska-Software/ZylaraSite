@@ -7,8 +7,6 @@
  * fallback pinado abaixo apenas para quando a API estiver indisponível.
  */
 
-import type { Locale } from '@/i18n/routing';
-
 const REPO = 'https://github.com/Hyska-Software/ZylaraAi';
 
 /**
@@ -133,19 +131,13 @@ export const site = {
   license: 'MIT',
 } as const;
 
-export const navSections = [
-  { id: 'features', labelKey: 'features' },
-  { id: 'workflow', labelKey: 'workflow' },
-  { id: 'positioning', labelKey: 'positioning' },
-  { id: 'faq', labelKey: 'faq' },
-] as const;
-
-export type NavSectionId = (typeof navSections)[number]['id'];
-
 /**
  * Itens do menu suspenso "Features" do cabeçalho. A ordem aqui é a ordem dos
  * cards em `FeatureBento` e cada `id` é o âncora do card correspondente —
  * mexer em um lado exige mexer no outro (`src/components/sections/FeatureBento.tsx`).
+ *
+ * O mesmo `id` é o âncora da seção detalhada em `/features`, então o menu leva
+ * direto ao conteúdo expandido de cada recurso.
  */
 export const featureMenu = [
   { key: 'localFirst', id: 'features-local-first' },
@@ -158,12 +150,7 @@ export const featureMenu = [
 
 export type FeatureMenuKey = (typeof featureMenu)[number]['key'];
 
-/** Âncora (`#id`) do card correspondente em `FeatureBento`. */
+/** Âncora (`#id`) do card correspondente em `FeatureBento` e da seção em `/features`. */
 export function featureAnchor(key: FeatureMenuKey) {
   return featureMenu.find((item) => item.key === key)?.id ?? 'features';
-}
-
-/** URL de um âncora da landing, respeitando o prefixo de idioma do next-intl. */
-export function sectionHref(locale: Locale, anchor: string) {
-  return locale === 'en' ? `/#${anchor}` : `/${locale}/#${anchor}`;
 }

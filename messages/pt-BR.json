@@ -15,7 +15,8 @@
     "closeMenu": "Fechar menu",
     "switchLanguage": "Mudar idioma",
     "language": "Idioma",
-    "guide": "Guia"
+    "guide": "Guia",
+    "overview": "Ver a página completa"
   },
   "Hero": {
     "eyebrow": "Agente de código para desktop",
@@ -319,6 +320,7 @@
     "developers": "Desenvolvedores",
     "guide": "Guia de instalação",
     "cost": "Custo",
+    "positioning": "Por que Zylara",
     "license": "Código aberto · MIT"
   },
   "Legal": {
@@ -837,5 +839,484 @@
     "ctaFaq": "Dúvidas sobre custo",
     "ctaReleases": "Todas as versões",
     "ctaDownload": "Baixar"
+  },
+  "Pages": {
+    "breadcrumbHome": "Início",
+    "breadcrumbLabel": "Trilha de navegação",
+    "onThisPage": "Nesta página",
+    "pageNavLabel": "Continua em",
+    "previousLabel": "Anterior",
+    "nextLabel": "Próxima",
+    "ctaEyebrow": "Baixar o app",
+    "ctaTitle": "Comece pelo build estável",
+    "ctaBody": "O app abre sem conta e cria a pasta de dados no primeiro uso. O código é MIT; o modelo você paga direto ao provedor que conectar.",
+    "ctaSecondary": "Todos os formatos",
+    "note": "Cada instalador tem um checksum SHA-256 publicado junto da versão."
+  },
+  "FeaturesPage": {
+    "metaTitle": "Recursos do Zylara",
+    "metaDescription": "Plano antes de editar, permissões rotuladas por risco, diffs revisáveis, skills do projeto e três modos na mesma sessão. O que cada recurso muda no dia a dia.",
+    "eyebrow": "Recursos",
+    "title": "Cada recurso, por dentro",
+    "subtitle": "Seis escolhas do Zylara e o que cada uma muda no seu dia. As imagens são fragmentos reais da interface, não mockups.",
+    "quickNavLabel": "Ir para um recurso",
+    "details": {
+      "localFirst": {
+        "body": [
+          "Conversas, artefatos, skills, configurações e as credenciais dos provedores ficam numa pasta no seu perfil de usuário. Nada disso passa por um servidor nosso: não existe cópia para vazar, porque não existe cópia.",
+          "Apagar a pasta apaga o conteúdo; mudar de máquina significa levar a pasta. O custo dessa escolha é backup e proteção de disco ficarem com você — e é melhor conhecê-lo antes de instalar do que depois."
+        ],
+        "points": [
+          "Exportar ou apagar a pasta de dados a qualquer momento",
+          "Nenhum workspace hospedado para sincronizar",
+          "Arquivos fora do workspace só com permissão explícita"
+        ]
+      },
+      "planMode": {
+        "body": [
+          "No modo Plano as edições ficam desligadas. O agente lê o projeto, devolve as etapas que pretende seguir e para. O composer continua travado até você decidir.",
+          "Aprovar, continuar planejando ou editar o plano são três respostas válidas. O plano é texto revisável, não uma promessa de execução."
+        ],
+        "points": [
+          "Nenhum arquivo é escrito com o plano aberto",
+          "Plano por turno, com o que será lido, editado e rodado",
+          "Voltar ao plano no meio da execução quando o caminho mudar"
+        ]
+      },
+      "permissions": {
+        "body": [
+          "Cada chamada de ferramenta recebe um rótulo antes de rodar: leitura, comando, destrutivo, segredo ou fora do workspace. O rótulo existe para você decidir rápido, não para decorar a interface.",
+          "Quatro modos — Leitura, Revisar, Editar e Autônomo — definem o que roda sem perguntar. Em qualquer modo, o que é arriscado continua exposto para aprovação."
+        ],
+        "points": [
+          "Negar é uma resposta normal, não um erro",
+          "Permissão por ferramenta, não uma vez para sempre",
+          "Fora do workspace sempre pede aprovação"
+        ]
+      },
+      "diffs": {
+        "body": [
+          "Toda edição chega como diff, por arquivo ou por turno: linhas alteradas, arquivos tocados e o contexto ao redor — o mesmo material que você usaria para revisar um pull request.",
+          "Reverter um arquivo, reverter o turno inteiro ou fazer commit só do que sobreviveu à revisão. O agente pode propor; quem aceita é você."
+        ],
+        "points": [
+          "Diff por arquivo e por turno, com contagem de linhas",
+          "Reverter sem desfazer o resto da sessão",
+          "Commit sem sair do app"
+        ]
+      },
+      "skills": {
+        "body": [
+          "Skills são instruções reutilizáveis que vivem junto do projeto: revisar um diff, escrever notas de versão, seguir um runbook. O agente carrega o que você escolheu, não o que ele acha que sabe do seu código.",
+          "Prompt de sistema próprio e chaves por ferramenta completam o contexto. O resultado é um agente que segue as regras do repositório em que está trabalhando."
+        ],
+        "points": [
+          "Skills versionadas junto do repositório",
+          "Prompt de sistema próprio por sessão",
+          "Chaves e configuração por ferramenta"
+        ]
+      },
+      "modes": {
+        "body": [
+          "Chat, Code e Agentes compartilham a mesma sessão. Um chat que virou sessão de código continua sendo a mesma conversa, com transcript, modelo e contexto no lugar.",
+          "Agentes são personas com instruções próprias, úteis quando o trabalho pede mais de um ponto de vista. Trocar de modo não recomeça a conversa."
+        ],
+        "points": [
+          "Trocar de modo sem perder o histórico",
+          "Modelo trocável entre turnos nos modos Code e Agentes",
+          "Cada resposta guarda o modelo que a produziu"
+        ]
+      }
+    },
+    "workspace": {
+      "eyebrow": "Workspace",
+      "title": "O que existe em volta da conversa",
+      "subtitle": "Biblioteca, artefatos e fontes ficam no mesmo lugar do chat — sem aba extra, sem upload e sem link que expira.",
+      "items": [
+        {
+          "title": "Biblioteca",
+          "description": "Imagens, documentos, código e arquivos que o agente produziu ficam numa biblioteca local, com prévia por tipo — de PDF a hexdump. Favoritar, renomear, salvar e excluir acontecem ali mesmo."
+        },
+        {
+          "title": "Painel de artefatos",
+          "description": "O painel lateral lista os artefatos da conversa e abre a prévia sem sair do chat. Dá para alternar entre lista e prévia, navegar entre arquivos e abrir no sistema."
+        },
+        {
+          "title": "Fontes citadas",
+          "description": "Quando uma resposta cita a web, o botão de fontes abre a lista do que foi usado. Cada item mostra o domínio, o título e abre no navegador padrão."
+        }
+      ]
+    }
+  },
+  "HowItWorksPage": {
+    "metaTitle": "Como o Zylara funciona",
+    "metaDescription": "Do pedido ao commit: plano antes da edição, aprovação explícita, permissões rotuladas por risco e diff para revisar — com um botão de parar que funciona.",
+    "eyebrow": "Como funciona",
+    "title": "Do pedido ao commit, sem caixa-preta",
+    "subtitle": "Quatro etapas, cada uma com evidência no transcript. O agente pode propor o caminho; a decisão de seguir continua sendo sua.",
+    "quickNavLabel": "Etapas desta página",
+    "loop": {
+      "eyebrow": "O ciclo",
+      "title": "Planejar, aprovar, executar, verificar",
+      "subtitle": "O mesmo ciclo vale para uma edição de três linhas e para uma sessão que atravessa o repositório inteiro.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Descrever e planejar",
+          "description": "Escreva a tarefa com o modo Plano ativo. O agente lê os arquivos relevantes, formula as etapas e para antes da primeira edição.",
+          "detail": "O plano lista o que será lido, o que será alterado e o que será rodado.",
+          "checkpoints": ["Nenhum arquivo é tocado", "O plano chega como texto revisável"]
+        },
+        {
+          "number": "02",
+          "title": "Aprovar",
+          "description": "Você lê o plano e decide: aprovar libera a execução, continuar planejando refina as etapas e voltar à sessão encerra o turno.",
+          "detail": "O composer só destrava depois da sua decisão.",
+          "checkpoints": ["Aprovar, continuar ou voltar", "Nada roda enquanto o plano está aberto"]
+        },
+        {
+          "number": "03",
+          "title": "Executar com permissões",
+          "description": "O agente lê, edita e roda comandos dentro do workspace. Cada chamada de ferramenta aparece com o rótulo de risco e, quando precisa, espera aprovação.",
+          "detail": "Um turno em andamento mostra os passos e o uso de tokens, com um botão de parar que interrompe de verdade.",
+          "checkpoints": ["Leitura, Revisar, Editar ou Autônomo", "Parar encerra o turno, não a sessão"]
+        },
+        {
+          "number": "04",
+          "title": "Verificar e fechar",
+          "description": "As edições chegam como diff. Rode os testes, leia o que mudou, reverta o que não gostou e faça commit do que sobrou.",
+          "detail": "O que você não revisou não vira commit por acidente.",
+          "checkpoints": ["Diff por arquivo e por turno", "Commit só do que foi revisado"]
+        }
+      ]
+    },
+    "turn": {
+      "eyebrow": "Um turno",
+      "title": "O que aparece, na ordem",
+      "subtitle": "Cada turno deixa um rastro legível — sem resumo que esconde o comando que rodou.",
+      "items": [
+        {
+          "title": "O pedido",
+          "description": "Sua mensagem, com modo e modelo visíveis no topo do turno."
+        },
+        {
+          "title": "O plano",
+          "description": "As etapas que o agente pretende seguir, antes de qualquer escrita."
+        },
+        {
+          "title": "A chamada de ferramenta",
+          "description": "O comando ou a edição, com o rótulo de risco e o resultado."
+        },
+        {
+          "title": "O resultado",
+          "description": "O diff aplicado ou o erro, com o modelo que produziu a resposta."
+        }
+      ]
+    },
+    "permissions": {
+      "eyebrow": "Permissões",
+      "title": "O risco decide o que pede aprovação",
+      "subtitle": "O modo define o padrão; o rótulo de risco define o que ainda para para perguntar.",
+      "columns": ["Modo", "Ler", "Editar", "Comandos", "Fora do workspace"],
+      "rows": [
+        { "label": "Leitura", "cells": ["Sim", "Não", "Não", "Não"] },
+        { "label": "Revisar", "cells": ["Sim", "Pede", "Pede", "Pede"] },
+        { "label": "Editar", "cells": ["Sim", "Sim", "Pede", "Pede"] },
+        { "label": "Autônomo", "cells": ["Sim", "Sim", "Sim", "Pede"] }
+      ],
+      "levelsTitle": "Rótulos de risco",
+      "levels": [
+        { "label": "Leitura", "description": "Consultar arquivos do workspace" },
+        { "label": "Comando", "description": "Executar algo no seu shell" },
+        { "label": "Destrutivo", "description": "Apagar, mover ou sobrescrever" },
+        { "label": "Segredo", "description": "Ler credenciais ou variáveis sensíveis" },
+        { "label": "Fora do workspace", "description": "Tocar caminhos que você não abriu" }
+      ],
+      "note": "Nenhum modo transforma um caminho externo em execução silenciosa. Segredos e caminhos fora do workspace continuam pedindo aprovação."
+    },
+    "control": {
+      "eyebrow": "Controle",
+      "title": "Parar, reverter, continuar",
+      "subtitle": "Interromper não é recomeçar. A sessão guarda o que aconteceu e o que sobrou.",
+      "items": [
+        {
+          "title": "Parar",
+          "description": "O botão de parar encerra o turno em andamento, não a sessão. O transcript guarda o que já aconteceu."
+        },
+        {
+          "title": "Reverter",
+          "description": "Um arquivo ou o turno inteiro. O que não foi revertido continua lá, e o histórico registra o que foi desfeito."
+        },
+        {
+          "title": "Continuar",
+          "description": "A sessão guarda contexto, modelo e artefatos. Retomar é mandar a próxima mensagem, sem reescrever o briefing."
+        }
+      ]
+    },
+    "modes": {
+      "eyebrow": "Modos",
+      "title": "Três modos, uma sessão",
+      "subtitle": "Trocar de modo muda o que está no centro da tela, não o histórico.",
+      "items": [
+        {
+          "name": "Chat",
+          "title": "Conversa com o projeto no contexto",
+          "description": "O ponto de partida: perguntar, planejar e revisar sem abrir mão do histórico.",
+          "points": ["Modo Plano disponível", "Artefatos e fontes no painel lateral"]
+        },
+        {
+          "name": "Code",
+          "title": "Sessão de código com arquivos abertos",
+          "description": "Edições, comandos e diffs no centro, com a conversa ao lado.",
+          "points": ["Permissões por ferramenta", "Modelo trocável entre turnos"]
+        },
+        {
+          "name": "Agentes",
+          "title": "Personas com instruções próprias",
+          "description": "Um time pequeno para tarefas que pedem mais de um ponto de vista.",
+          "points": ["Instruções por persona", "Mesmo transcript da sessão"]
+        }
+      ]
+    }
+  },
+  "WhyZylaraPage": {
+    "metaTitle": "Por que Zylara",
+    "metaDescription": "Local-first, plano antes da edição, permissões por risco e diff revisável. As escolhas do Zylara, os limites ditos de frente e para quem o app é — e não é.",
+    "eyebrow": "Por que Zylara",
+    "title": "Feito para quem lê o diff",
+    "subtitle": "Zylara é opinativo numa direção só: você precisa conseguir ver o que o agente está prestes a fazer, e conseguir parar. O resto é consequência.",
+    "quickNavLabel": "Nesta página",
+    "principles": {
+      "eyebrow": "Princípios",
+      "title": "Quatro escolhas que explicam o resto",
+      "subtitle": "Nenhuma delas é um recurso isolado; todas aparecem no mesmo turno.",
+      "items": [
+        {
+          "title": "Nada roda em silêncio",
+          "description": "Um comando, uma edição ou uma exclusão é um pedido. O risco aparece, a aprovação é explícita e negar é uma resposta normal."
+        },
+        {
+          "title": "Evidência antes da promessa",
+          "description": "Plano, diff e resultado ficam no transcript. A sessão não pede confiança: mostra o que fez, em que ordem e com qual modelo."
+        },
+        {
+          "title": "Reversível por padrão",
+          "description": "Reverter um arquivo ou um turno inteiro é ação de primeira classe, não um undo escondido no menu."
+        },
+        {
+          "title": "Dados onde o trabalho acontece",
+          "description": "A pasta de dados vive na sua máquina. Não há workspace hospedado para sincronizar nem cópia nossa para vazar."
+        }
+      ]
+    },
+    "compare": {
+      "eyebrow": "Comparação",
+      "title": "Onde o trabalho acontece",
+      "subtitle": "Três categorias de ferramenta, não três produtos. Compare pelo que você consegue conferir, não pelo que a demo mostra.",
+      "columns": ["Critério", "Zylara", "Agente na nuvem", "Extensão de editor"],
+      "rows": [
+        {
+          "label": "Onde ficam os dados",
+          "cells": ["Pasta local no seu computador", "Servidor do fornecedor", "Pasta aberta no editor"]
+        },
+        {
+          "label": "Plano antes da edição",
+          "cells": ["Modo Plano com composer travado", "Varia por produto", "Raramente explícito"]
+        },
+        {
+          "label": "Permissões",
+          "cells": ["Rótulo de risco antes de rodar", "Sandbox do fornecedor", "Aprovação por comando"]
+        },
+        {
+          "label": "Revisão do diff",
+          "cells": ["Painel por arquivo e por turno", "Diff no navegador", "Diff no editor"]
+        },
+        {
+          "label": "Reverter",
+          "cells": ["Arquivo, turno ou nada", "Depende do fornecedor", "Desfazer do editor"]
+        },
+        {
+          "label": "Escolha de modelo",
+          "cells": ["Quatro rotas, troca por turno", "Catálogo fechado", "Normalmente um fornecedor"]
+        },
+        {
+          "label": "Custo",
+          "cells": ["App MIT; modelo pago ao provedor", "Assinatura", "Assinatura ou chave"]
+        }
+      ],
+      "note": "Categorias mudam rápido e cada fornecedor tem a própria documentação. A coluna do Zylara descreve esta versão do app; confira as notas da versão para o que mudou."
+    },
+    "localFirst": {
+      "eyebrow": "Local-first",
+      "title": "O que ficar local custa",
+      "subtitle": "Local-first não é um selo de segurança. É uma troca — e ela vem com obrigações do seu lado.",
+      "items": [
+        {
+          "title": "Sem sincronização",
+          "description": "Não existe workspace hospedado. Usar em outra máquina significa copiar a pasta de dados — e manter as duas em dia é com você."
+        },
+        {
+          "title": "Backup é seu",
+          "description": "Não temos cópia das suas conversas para restaurar. Um backup do disco resolve; nós não conseguimos resolver por você."
+        },
+        {
+          "title": "Precisa de provedor",
+          "description": "O app funciona offline para navegar no que já existe. Gerar resposta exige que o provedor que você conectou esteja acessível."
+        },
+        {
+          "title": "Uma máquina por vez",
+          "description": "Não há presença multi-dispositivo, edição concorrente nem histórico compartilhado entre pessoas."
+        }
+      ]
+    },
+    "limits": {
+      "eyebrow": "Limites",
+      "title": "O que o Zylara não faz",
+      "subtitle": "Dito de frente, para você não descobrir depois de instalar.",
+      "items": [
+        {
+          "title": "Não é um IDE",
+          "description": "Não substitui editor, LSP ou debugger. O Zylara abre a pasta e trabalha nela; o editor continua sendo o editor."
+        },
+        {
+          "title": "Não hospeda modelo",
+          "description": "Nenhum modelo roda dentro do app. Sem um provedor conectado, não há resposta."
+        },
+        {
+          "title": "Não sincroniza nem colabora",
+          "description": "Não há workspace compartilhado, comentários de time ou sessão ao vivo para outra pessoa entrar."
+        },
+        {
+          "title": "Não dispensa revisão",
+          "description": "Plano, permissões e diff reduzem o risco; não garantem que a mudança compila, passa nos testes ou está correta."
+        },
+        {
+          "title": "Não tem app web nem móvel",
+          "description": "Chat, Code e Agentes rodam no desktop. Windows é o build estável; macOS e Linux estão em beta."
+        },
+        {
+          "title": "Não instala nada em silêncio",
+          "description": "Atualizações só entram quando você instala uma versão nova. O aviso existe; o clique é seu."
+        }
+      ]
+    },
+    "audience": {
+      "eyebrow": "Público",
+      "title": "Para quem é — e para quem não é",
+      "subtitle": "O app não tenta servir todo mundo. Reconhecer-se nas duas listas é parte de escolher bem.",
+      "forTitle": "Provavelmente é para você se…",
+      "forItems": [
+        "Já usa agente de código e quer ver o que ele roda",
+        "Trabalha em repositório privado e prefere os dados na máquina",
+        "Precisa de um plano revisável antes de qualquer edição",
+        "Troca de modelo conforme a tarefa e o custo"
+      ],
+      "notForTitle": "Provavelmente não é para você se…",
+      "notForItems": [
+        "Quer o agente dentro do editor, sem outra janela",
+        "Quer rodar um modelo local sem conectar provedor",
+        "Precisa de colaboração em tempo real num workspace",
+        "Quer autonomia total sem revisar plano nem diff"
+      ]
+    }
+  },
+  "FaqPage": {
+    "metaTitle": "Perguntas frequentes",
+    "metaDescription": "Dados, custo, modelos, permissões, plataformas e licença: as respostas completas sobre o Zylara, agrupadas por assunto.",
+    "eyebrow": "Perguntas",
+    "title": "Perguntas frequentes",
+    "subtitle": "As respostas que bloqueiam o download e as que aparecem depois — por assunto, sem rodeio.",
+    "quickNavLabel": "Ir para um grupo",
+    "generalTitle": "Perguntas gerais",
+    "groups": [
+      {
+        "id": "models",
+        "label": "Modelos e custo",
+        "items": [
+          {
+            "question": "Como conecto minha própria chave de API?",
+            "answer": "Em Configurações › Provedores. A chave é gravada na pasta de dados local e usada nas chamadas que saem da sua máquina. O Zylara suporta OpenCode Go, OpenCode Zen, OpenAI por plano ChatGPT ou API key e Anthropic por API key."
+          },
+          {
+            "question": "Existe limite de tokens por turno?",
+            "answer": "O app mostra o uso de tokens do turno, mas não impõe um teto próprio: o limite é o do provedor e do plano que você conectou. Quando ele recusa, o turno termina com o erro do provedor no transcript."
+          },
+          {
+            "question": "O Zylara revende tokens ou cobra markup?",
+            "answer": "Não. O app é MIT e não intermedeia cobrança. O provedor cobra direto na sua conta, com o preço que ele publica."
+          },
+          {
+            "question": "O que acontece se eu ficar sem créditos?",
+            "answer": "O turno falha com a mensagem do provedor. O transcript, os artefatos e a configuração continuam locais; você troca de rota, ajusta o plano e continua a mesma conversa."
+          }
+        ]
+      },
+      {
+        "id": "permissions",
+        "label": "Permissões e segurança",
+        "items": [
+          {
+            "question": "O que o rótulo de risco muda na prática?",
+            "answer": "Ele decide se a chamada roda direto ou espera aprovação. Leitura, comando, destrutivo, segredo e fora do workspace são avaliados antes da execução, e cada um aparece no transcript com o resultado."
+          },
+          {
+            "question": "O que conta como caminho fora do workspace?",
+            "answer": "Qualquer caminho que não esteja nas pastas que você abriu. Mesmo em Autônomo, tocar esses caminhos pede aprovação."
+          },
+          {
+            "question": "Negar uma permissão quebra a tarefa?",
+            "answer": "Não. A negação é uma resposta normal: o agente recebe o resultado, ajusta o caminho e propõe outra abordagem, ou devolve o plano para você revisar."
+          },
+          {
+            "question": "Minhas credenciais aparecem no transcript?",
+            "answer": "As chaves ficam na pasta de dados e não são escritas no transcript. Ainda assim, o que você cola no chat vai ao provedor: evite segredos no prompt."
+          }
+        ]
+      },
+      {
+        "id": "platforms",
+        "label": "Plataformas e instalação",
+        "items": [
+          {
+            "question": "Como sei se o download foi íntegro?",
+            "answer": "Compare o SHA-256 do arquivo com o SHA256SUMS.txt publicado junto da versão. Os checksums ficam na página de download e nas notas de cada versão."
+          },
+          {
+            "question": "Como atualizo o app?",
+            "answer": "O app avisa quando há uma release estável mais nova. A instalação nunca é silenciosa: no Windows abre o instalador, no macOS abre o DMG e no Linux abre o pacote ou o AppImage."
+          },
+          {
+            "question": "Funciona em Windows ARM ou macOS Intel?",
+            "answer": "Os builds publicados hoje são Windows x64, macOS Apple Silicon e Linux x64. Outras arquiteturas exigem compilar do código-fonte, sem garantia de que tudo funcione."
+          },
+          {
+            "question": "Preciso de Node.js ou Rust para usar o app?",
+            "answer": "Não. Os instaladores são autocontidos e usam o webview do sistema. Node.js, Rust e as ferramentas de build só entram se você for compilar do repositório."
+          }
+        ]
+      },
+      {
+        "id": "code",
+        "label": "Código e licença",
+        "items": [
+          {
+            "question": "Posso usar o Zylara no trabalho?",
+            "answer": "Sim. A licença MIT permite uso comercial, modificação e redistribuição. Os dados continuam na pasta local da máquina onde o app roda."
+          },
+          {
+            "question": "Posso publicar um fork?",
+            "answer": "Pode, sob a licença MIT. A única restrição prática está no uso do nome e do logo: um fork não deve sugerir que é uma versão oficial."
+          },
+          {
+            "question": "Onde reporto um bug ou uma vulnerabilidade?",
+            "answer": "Bugs e sugestões vão para a issues pública do repositório. Vulnerabilidades seguem o canal privado de segurança do repositório, sem detalhes em issue aberta."
+          },
+          {
+            "question": "O site usa analytics?",
+            "answer": "Não há analytics, pixel de publicidade nem rastreador de terceiros. O único cookie guarda o idioma escolhido, e os detalhes estão na Política de Privacidade."
+          }
+        ]
+      }
+    ]
   }
 }

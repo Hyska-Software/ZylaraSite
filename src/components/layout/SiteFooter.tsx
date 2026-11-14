@@ -1,8 +1,10 @@
 import { getLocale, getTranslations } from 'next-intl/server';
+import { Fragment, type CSSProperties } from 'react';
 import { DistortedWordmark } from '@/components/brand/DistortedWordmark';
 import { Logo } from '@/components/brand/Logo';
 import type { Locale } from '@/i18n/routing';
 import { legalContactEmail, legalPaths } from '@/lib/legal';
+import { pageHref } from '@/lib/pages';
 import { getLatestRelease } from '@/lib/releases';
 import { site } from '@/lib/site';
 
@@ -29,11 +31,12 @@ export async function SiteFooter() {
           <FooterColumn
             title={t('product')}
             links={[
-              { label: t('download'), href: `${home}/download` },
-              { label: t('features'), href: `${home}#features` },
-              { label: t('workflow'), href: `${home}#workflow` },
+              { label: t('features'), href: pageHref(locale, 'features') },
+              { label: t('workflow'), href: pageHref(locale, 'howItWorks') },
+              { label: t('positioning'), href: pageHref(locale, 'whyZylara') },
+              { label: t('faq'), href: pageHref(locale, 'faq') },
               { label: t('cost'), href: `${home}#cost` },
-              { label: t('faq'), href: `${home}#faq` },
+              { label: t('download'), href: `${home}/download` },
             ]}
           />
 
@@ -92,15 +95,48 @@ function FooterColumn({ title, links }: { title: string; links: FooterLink[] }) 
             <a
               href={link.href}
               {...(link.external ? { target: '_blank', rel: 'noreferrer noopener' } : {})}
-              className="inline-flex items-center gap-1.5 text-sm text-foreground-muted transition-colors duration-150 hover:text-foreground"
+              className="footer-link group inline-flex items-center gap-1.5 text-sm text-foreground-muted"
             >
-              {link.label}
+              <FooterLinkLabel label={link.label} />
               {link.external ? <ExternalIcon /> : null}
             </a>
           </li>
         ))}
       </ul>
     </div>
+  );
+}
+
+/**
+ * Rótulo em palavras: cada uma é uma janela que rola para cima no hover
+ * (efeito em `globals.css`, `.footer-link__*`). A segunda cópia é só visual —
+ * fica fora da árvore de acessibilidade e da seleção de texto.
+ */
+function FooterLinkLabel({ label }: { label: string }) {
+  const words = label.split(/\s+/).filter(Boolean);
+
+  return (
+    <span>
+      {words.map((word, index) => (
+        <Fragment key={`${word}-${index}`}>
+          {index > 0 ? ' ' : null}
+          <span
+            className="footer-link__word"
+            style={{ '--roll-step': index } as CSSProperties}
+          >
+            <span className="footer-link__track">
+              <span className="footer-link__copy">{word}</span>
+              <span
+                aria-hidden="true"
+                className="footer-link__copy footer-link__copy--ghost text-foreground"
+              >
+                {word}
+              </span>
+            </span>
+          </span>
+        </Fragment>
+      ))}
+    </span>
   );
 }
 
@@ -112,7 +148,7 @@ function ExternalIcon() {
       viewBox="0 0 12 12"
       fill="none"
       aria-hidden="true"
-      className="shrink-0 text-foreground-muted transition-colors duration-150 group-hover:text-foreground-muted"
+      className="shrink-0 transition duration-200 ease-out-soft group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground"
     >
       <path
         d="M4.5 2.5h5v5M9.5 2.5 3 9"

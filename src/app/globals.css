@@ -211,6 +211,60 @@
 }
 
 /* ---------------------------------------------------------------------------
+ * Footer: as palavras dos links rolam para cima no hover.
+ *
+ * Cada palavra é uma janela de uma linha (`height: 1lh`, então nenhum
+ * descendente é cortado) com duas cópias empilhadas: a de descanso (muted) sai
+ * por cima e a cópia em `foreground` entra por baixo. O trilho tem duas linhas,
+ * então subir metade da própria altura troca exatamente uma cópia e o atraso por
+ * palavra (`--roll-step`, definido no componente) forma a onda. 200ms + até 3
+ * palavras (14ms cada) = 228ms, dentro da faixa de 150–260ms do DESIGN.md §1.
+ * Ao sair, o atraso volta a zero e as palavras retornam juntas — nada de estado
+ * preso no meio do caminho.
+ * ------------------------------------------------------------------------- */
+
+.footer-link__word {
+  display: inline-block;
+  height: 1lh;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.footer-link__track {
+  display: block;
+  transition: transform 200ms var(--ease-out-soft);
+}
+
+.footer-link__copy {
+  display: block;
+}
+
+/* Cópia que entra no hover: não é selecionada duas vezes nem muda a área clicável. */
+.footer-link__copy--ghost {
+  pointer-events: none;
+  user-select: none;
+}
+
+.footer-link:hover .footer-link__track,
+.footer-link:focus-visible .footer-link__track {
+  transform: translateY(-50%);
+  transition-delay: calc(var(--roll-step, 0) * 14ms);
+}
+
+/* Com menos movimento a rolagem sai de cena e sobra a troca de cor do texto. */
+@media (prefers-reduced-motion: reduce) {
+  .footer-link__track {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .footer-link:hover .footer-link__copy,
+  .footer-link:focus-visible .footer-link__copy {
+    color: var(--foreground);
+  }
+}
+
+/* ---------------------------------------------------------------------------
  * Acordeão do FAQ: abertura animada dos <details>
  *
  * `::details-content` anima altura, opacidade e um leve deslocamento sem

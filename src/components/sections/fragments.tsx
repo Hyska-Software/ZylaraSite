@@ -217,6 +217,193 @@ export function FolderFragment({ decorative, className }: FragmentProps) {
   );
 }
 
+/**
+ * Matriz de permissões: o que cada modo libera sem perguntar.
+ *
+ * As três colunas são ler, editar e comandos — o eixo que muda entre os modos.
+ * Caminhos fora do workspace ficam de fora da matriz de propósito: em qualquer
+ * modo eles continuam pedindo aprovação, e o rodapé diz isso.
+ */
+export function PermissionMatrixFragment({ decorative, className }: FragmentProps) {
+  const rows = [
+    { mode: 'Leitura', states: ['on', 'off', 'off'] },
+    { mode: 'Revisar', states: ['on', 'ask', 'ask'] },
+    { mode: 'Editar', states: ['on', 'on', 'ask'] },
+    { mode: 'Autônomo', states: ['on', 'on', 'on'] },
+  ] as const;
+
+  return (
+    <div className={cn(frame, className)} aria-hidden={decorative || undefined}>
+      <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
+        <span className="text-2xs font-medium text-foreground">Permissões</span>
+        <span className="truncate font-mono text-[9px] text-foreground-muted">
+          ler · editar · comando
+        </span>
+      </div>
+
+      <ul className="flex flex-col gap-1.5 px-3 py-3">
+        {rows.map((row) => (
+          <li key={row.mode} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
+            <span className="truncate text-2xs text-foreground-muted">{row.mode}</span>
+            <span className="flex shrink-0 gap-1.5">
+              {row.states.map((state, index) => (
+                <span
+                  key={`${row.mode}-${index}`}
+                  className={cn(
+                    'inline-flex size-4 items-center justify-center rounded-full border text-[8px]',
+                    state === 'on' && 'border-accent bg-accent-soft text-accent',
+                    state === 'ask' && 'border-warning bg-warning-soft text-warning',
+                    state === 'off' && 'border-border text-foreground-subtle',
+                  )}
+                >
+                  {state === 'on' ? '✓' : state === 'ask' ? '?' : '–'}
+                </span>
+              ))}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <p className="border-t border-border px-3 py-2 text-2xs text-foreground-muted">
+        Fora do workspace sempre pede
+      </p>
+    </div>
+  );
+}
+
+/** Um turno de Code com o rastro que a página `/how-it-works` descreve. */
+export function TranscriptFragment({ decorative, className }: FragmentProps) {
+  return (
+    <div
+      className={cn(frame, 'text-2xs', className)}
+      aria-hidden={decorative || undefined}
+    >
+      <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
+        <span className="inline-flex items-center gap-1.5 font-medium text-foreground">
+          <PlanIcon />
+          Turno · Code
+        </span>
+        <span className="font-mono text-[9px] text-foreground-muted">claude-sonnet</span>
+      </div>
+
+      <ul className="flex flex-col gap-2 px-3 py-3">
+        <li className="ml-8 rounded-lg rounded-br-sm bg-user-bubble px-2.5 py-1.5 text-foreground">
+          adicione rate limiting ao login
+        </li>
+        <li className="flex items-center gap-2 rounded-lg border border-border bg-surface-raised px-2.5 py-1.5">
+          <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[9px] text-accent">
+            plano aprovado
+          </span>
+          <span className="min-w-0 truncate text-foreground-muted">3 etapas · 2 arquivos</span>
+        </li>
+        <li className="flex items-start gap-1.5 px-1 font-mono text-foreground-muted">
+          <span aria-hidden="true" className="text-foreground-subtle">
+            $
+          </span>
+          <span className="min-w-0 break-all">pnpm test --filter auth</span>
+          <span className="ml-auto shrink-0 rounded-full bg-warning-soft px-1.5 py-0.5 text-[9px] text-warning">
+            comando
+          </span>
+        </li>
+        <li className="flex items-center gap-2 rounded-lg border border-border bg-surface-raised px-2.5 py-1.5 font-mono">
+          <span className="min-w-0 truncate text-foreground">src/server/auth.ts</span>
+          <span className="ml-auto shrink-0 text-success">+24</span>
+          <span className="shrink-0 text-danger">−3</span>
+        </li>
+      </ul>
+
+      <div className="flex items-center justify-between gap-2 border-t border-border px-3 py-2 text-foreground-muted">
+        <span className="font-mono text-[9px]">2.418 tokens</span>
+        <span className="inline-flex items-center gap-1.5">
+          <span className="rounded-md border border-border px-2 py-0.5">Parar</span>
+          <span className="rounded-md bg-foreground px-2 py-0.5 text-background">Commit</span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/** Painel de fontes citadas por uma resposta. */
+export function SourcesFragment({ decorative, className }: FragmentProps) {
+  const sources = [
+    { domain: 'nodejs.org', title: 'Rate limiting strategies' },
+    { domain: 'owasp.org', title: 'Authentication cheat sheet' },
+    { domain: 'github.com', title: 'bucket.ts · pull request 412' },
+  ];
+
+  return (
+    <div className={cn(frame, className)} aria-hidden={decorative || undefined}>
+      <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
+        <span className="text-2xs font-medium text-foreground">Fontes · 3</span>
+        <span className="font-mono text-[9px] text-foreground-muted">citadas no turno</span>
+      </div>
+
+      <ul className="flex flex-col gap-1.5 px-3 py-3">
+        {sources.map((source) => (
+          <li
+            key={source.domain}
+            className="flex items-center gap-2 rounded-lg border border-border bg-surface-raised px-2.5 py-1.5"
+          >
+            <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-surface-hover font-mono text-[9px] text-foreground-muted">
+              {source.domain.charAt(0).toUpperCase()}
+            </span>
+            <span className="min-w-0">
+              <span className="block truncate font-mono text-[9px] text-foreground-muted">
+                {source.domain}
+              </span>
+              <span className="block truncate text-2xs text-foreground">{source.title}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <p className="border-t border-border px-3 py-2 font-mono text-[9px] text-foreground-muted">
+        abrir no navegador padrão
+      </p>
+    </div>
+  );
+}
+
+/** Lista do painel de artefatos: tipo, nome e tamanho. */
+export function ArtifactsFragment({ decorative, className }: FragmentProps) {
+  const artifacts = [
+    { kind: 'PNG', name: 'diff-auth.png', size: '148 KB' },
+    { kind: 'MD', name: 'plano-auth.md', size: '4 KB' },
+    { kind: 'JSON', name: 'coverage.json', size: '32 KB' },
+    { kind: 'ZIP', name: 'testes.zip', size: '1,2 MB' },
+  ];
+
+  return (
+    <div className={cn(frame, className)} aria-hidden={decorative || undefined}>
+      <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
+        <span className="text-2xs font-medium text-foreground">Artefatos · 4</span>
+        <span className="rounded-full border border-border px-2 py-0.5 font-mono text-[9px] text-foreground-muted">
+          prévia
+        </span>
+      </div>
+
+      <ul className="flex flex-col gap-1.5 px-3 py-3">
+        {artifacts.map((artifact) => (
+          <li
+            key={artifact.name}
+            className="flex items-center gap-2 rounded-lg border border-border bg-surface-raised px-2.5 py-1.5"
+          >
+            <span className="inline-flex w-9 shrink-0 justify-center rounded bg-surface-hover px-1 py-0.5 font-mono text-[9px] text-foreground-muted">
+              {artifact.kind}
+            </span>
+            <span className="min-w-0 flex-1 truncate font-mono text-2xs text-foreground">
+              {artifact.name}
+            </span>
+            <span className="shrink-0 font-mono text-[9px] text-foreground-muted">
+              {artifact.size}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /** Chrome de janela para o tour: title bar + área de conteúdo. */
 export function WindowFrame({ children }: { children: React.ReactNode }) {
   return (

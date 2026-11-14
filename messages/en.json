@@ -15,7 +15,8 @@
     "closeMenu": "Close menu",
     "switchLanguage": "Switch language",
     "language": "Language",
-    "guide": "Guide"
+    "guide": "Guide",
+    "overview": "Open the full page"
   },
   "Hero": {
     "eyebrow": "Coding agent for desktop",
@@ -319,6 +320,7 @@
     "developers": "Developers",
     "guide": "Setup guide",
     "cost": "Cost",
+    "positioning": "Why Zylara",
     "license": "Open source · MIT"
   },
   "Legal": {
@@ -837,5 +839,484 @@
     "ctaFaq": "Cost questions",
     "ctaReleases": "All releases",
     "ctaDownload": "Download"
+  },
+  "Pages": {
+    "breadcrumbHome": "Home",
+    "breadcrumbLabel": "Breadcrumb",
+    "onThisPage": "On this page",
+    "pageNavLabel": "Continue to",
+    "previousLabel": "Previous",
+    "nextLabel": "Next",
+    "ctaEyebrow": "Download the app",
+    "ctaTitle": "Start with the stable build",
+    "ctaBody": "The app opens without an account and creates its data folder on first use. The code is MIT; the model is billed by the provider you connect.",
+    "ctaSecondary": "All formats",
+    "note": "Every installer ships a SHA-256 checksum alongside the release."
+  },
+  "FeaturesPage": {
+    "metaTitle": "Zylara features",
+    "metaDescription": "Plan before editing, risk-labelled permissions, reviewable diffs, project skills and three modes in one session. What each feature changes in practice.",
+    "eyebrow": "Features",
+    "title": "Every feature, up close",
+    "subtitle": "Six Zylara choices and what each one changes in your day. The visuals are real interface fragments, not mockups.",
+    "quickNavLabel": "Go to a feature",
+    "details": {
+      "localFirst": {
+        "body": [
+          "Conversations, artifacts, skills, settings and provider credentials live in a folder under your user profile. None of it goes through a server of ours: there is no copy to leak, because there is no copy.",
+          "Deleting the folder deletes the content; moving machines means carrying the folder. The cost of that choice is that backup and disk protection are yours — better to know it before installing than after."
+        ],
+        "points": [
+          "Export or delete the data folder at any time",
+          "No hosted workspace to sync",
+          "Files outside the workspace only with explicit permission"
+        ]
+      },
+      "planMode": {
+        "body": [
+          "In Plan mode edits are off. The agent reads the project, returns the steps it intends to follow and stops. The composer stays locked until you decide.",
+          "Approving, keeping planning or editing the plan are all valid answers. The plan is reviewable text, not a promise of execution."
+        ],
+        "points": [
+          "No file is written while the plan is open",
+          "A plan per turn: what will be read, edited and run",
+          "Return to the plan mid-run when the path changes"
+        ]
+      },
+      "permissions": {
+        "body": [
+          "Every tool call gets a label before it runs: read, command, destructive, secret or outside the workspace. The label exists so you can decide quickly, not to decorate the interface.",
+          "Four modes — Read, Review, Edit and Autopilot — define what runs without asking. In any mode, anything risky stays exposed for approval."
+        ],
+        "points": [
+          "Denying is a normal answer, not an error",
+          "Permission per tool call, not once and for all",
+          "Outside the workspace always asks"
+        ]
+      },
+      "diffs": {
+        "body": [
+          "Every edit arrives as a diff, per file or per turn: changed lines, touched files and the surrounding context — the same material you would use to review a pull request.",
+          "Revert one file, revert the whole turn or commit only what survived review. The agent can propose; you are the one who accepts."
+        ],
+        "points": [
+          "Per-file and per-turn diffs with line counts",
+          "Revert without undoing the rest of the session",
+          "Commit without leaving the app"
+        ]
+      },
+      "skills": {
+        "body": [
+          "Skills are reusable instructions that live next to the project: review a diff, write release notes, follow a runbook. The agent loads what you chose, not what it assumes about your code.",
+          "A custom system prompt and per-tool keys complete the context. The result is an agent that follows the rules of the repository it is working in."
+        ],
+        "points": [
+          "Skills versioned with the repository",
+          "A custom system prompt per session",
+          "Keys and settings per tool"
+        ]
+      },
+      "modes": {
+        "body": [
+          "Chat, Code and Agents share the same session. A chat that became a coding session is still the same conversation, with its transcript, model and context in place.",
+          "Agents are personas with their own instructions, useful when the work calls for more than one point of view. Switching modes does not restart the conversation."
+        ],
+        "points": [
+          "Switch modes without losing history",
+          "Model switchable between turns in Code and Agents",
+          "Every reply keeps the model that produced it"
+        ]
+      }
+    },
+    "workspace": {
+      "eyebrow": "Workspace",
+      "title": "What sits around the conversation",
+      "subtitle": "Library, artifacts and sources live next to the chat — no extra tab, no upload, no expiring link.",
+      "items": [
+        {
+          "title": "Library",
+          "description": "Images, documents, code and archives the agent produced live in a local library with a preview per type — from PDF to hexdump. Favorite, rename, save and delete happen right there."
+        },
+        {
+          "title": "Artifacts panel",
+          "description": "The side panel lists the conversation artifacts and opens the preview without leaving the chat. Switch between list and preview, move between files and open them in the system."
+        },
+        {
+          "title": "Cited sources",
+          "description": "When a reply cites the web, the sources button opens the list of what was used. Each item shows the domain and title and opens in your default browser."
+        }
+      ]
+    }
+  },
+  "HowItWorksPage": {
+    "metaTitle": "How Zylara works",
+    "metaDescription": "From request to commit: a plan before the edit, explicit approval, risk-labelled permissions and a diff to review — with a stop button that actually stops.",
+    "eyebrow": "How it works",
+    "title": "From request to commit, with no black box",
+    "subtitle": "Four steps, each with evidence in the transcript. The agent can propose the path; the decision to follow it stays yours.",
+    "quickNavLabel": "Sections on this page",
+    "loop": {
+      "eyebrow": "The loop",
+      "title": "Plan, approve, execute, verify",
+      "subtitle": "The same loop applies to a three-line edit and to a session that crosses the whole repository.",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Describe and plan",
+          "description": "Write the task with Plan mode on. The agent reads the relevant files, drafts the steps and stops before the first edit.",
+          "detail": "The plan lists what will be read, what will change and what will run.",
+          "checkpoints": ["No file is touched", "The plan arrives as reviewable text"]
+        },
+        {
+          "number": "02",
+          "title": "Approve",
+          "description": "You read the plan and decide: approving releases execution, keeping planning refines the steps and returning to the session ends the turn.",
+          "detail": "The composer only unlocks after your decision.",
+          "checkpoints": ["Approve, keep planning or return", "Nothing runs while the plan is open"]
+        },
+        {
+          "number": "03",
+          "title": "Execute with permissions",
+          "description": "The agent reads, edits and runs commands inside the workspace. Every tool call shows its risk label and, when needed, waits for approval.",
+          "detail": "A running turn shows its steps and token usage, with a stop button that interrupts it for real.",
+          "checkpoints": ["Read, Review, Edit or Autopilot", "Stop ends the turn, not the session"]
+        },
+        {
+          "number": "04",
+          "title": "Verify and close",
+          "description": "Edits arrive as diffs. Run the tests, read what changed, revert what you did not like and commit what is left.",
+          "detail": "What you did not review does not become a commit by accident.",
+          "checkpoints": ["Per-file and per-turn diffs", "Commit only what you reviewed"]
+        }
+      ]
+    },
+    "turn": {
+      "eyebrow": "One turn",
+      "title": "What shows up, in order",
+      "subtitle": "Every turn leaves a readable trail — no summary hiding the command that ran.",
+      "items": [
+        {
+          "title": "The request",
+          "description": "Your message, with mode and model visible at the top of the turn."
+        },
+        {
+          "title": "The plan",
+          "description": "The steps the agent intends to follow, before any write."
+        },
+        {
+          "title": "The tool call",
+          "description": "The command or the edit, with its risk label and the result."
+        },
+        {
+          "title": "The result",
+          "description": "The applied diff or the error, with the model that produced the reply."
+        }
+      ]
+    },
+    "permissions": {
+      "eyebrow": "Permissions",
+      "title": "Risk decides what asks for approval",
+      "subtitle": "The mode sets the default; the risk label sets what still stops to ask.",
+      "columns": ["Mode", "Read", "Edit", "Commands", "Outside the workspace"],
+      "rows": [
+        { "label": "Read", "cells": ["Yes", "No", "No", "No"] },
+        { "label": "Review", "cells": ["Yes", "Asks", "Asks", "Asks"] },
+        { "label": "Edit", "cells": ["Yes", "Yes", "Asks", "Asks"] },
+        { "label": "Autopilot", "cells": ["Yes", "Yes", "Yes", "Asks"] }
+      ],
+      "levelsTitle": "Risk labels",
+      "levels": [
+        { "label": "Read", "description": "Inspect workspace files" },
+        { "label": "Command", "description": "Run something in your shell" },
+        { "label": "Destructive", "description": "Delete, move or overwrite" },
+        { "label": "Secret", "description": "Read credentials or sensitive variables" },
+        { "label": "Outside the workspace", "description": "Touch paths you did not open" }
+      ],
+      "note": "No mode turns an external path into a silent run. Secrets and paths outside the workspace keep asking for approval."
+    },
+    "control": {
+      "eyebrow": "Control",
+      "title": "Stop, revert, continue",
+      "subtitle": "Interrupting is not restarting. The session keeps what happened and what is left.",
+      "items": [
+        {
+          "title": "Stop",
+          "description": "The stop button ends the running turn, not the session. The transcript keeps what already happened."
+        },
+        {
+          "title": "Revert",
+          "description": "One file or the whole turn. What was not reverted stays, and the history records what was undone."
+        },
+        {
+          "title": "Continue",
+          "description": "The session keeps context, model and artifacts. Picking up means sending the next message, not rewriting the brief."
+        }
+      ]
+    },
+    "modes": {
+      "eyebrow": "Modes",
+      "title": "Three modes, one session",
+      "subtitle": "Switching modes changes what is at the center of the screen, not the history.",
+      "items": [
+        {
+          "name": "Chat",
+          "title": "Conversation with the project in context",
+          "description": "The starting point: ask, plan and review without giving up the history.",
+          "points": ["Plan mode available", "Artifacts and sources in the side panel"]
+        },
+        {
+          "name": "Code",
+          "title": "Coding session with open files",
+          "description": "Edits, commands and diffs at the center, with the conversation beside them.",
+          "points": ["Permissions per tool call", "Model switchable between turns"]
+        },
+        {
+          "name": "Agents",
+          "title": "Personas with their own instructions",
+          "description": "A small team for tasks that call for more than one point of view.",
+          "points": ["Instructions per persona", "The same session transcript"]
+        }
+      ]
+    }
+  },
+  "WhyZylaraPage": {
+    "metaTitle": "Why Zylara",
+    "metaDescription": "Local-first, a plan before the edit, risk-based permissions and a reviewable diff. Zylara's choices, its limits stated plainly and who the app is — and is not — for.",
+    "eyebrow": "Why Zylara",
+    "title": "Built for people who read the diff",
+    "subtitle": "Zylara is opinionated in one direction: you need to see what the agent is about to do, and be able to stop it. The rest follows.",
+    "quickNavLabel": "On this page",
+    "principles": {
+      "eyebrow": "Principles",
+      "title": "Four choices that explain the rest",
+      "subtitle": "None of them is an isolated feature; all of them show up in the same turn.",
+      "items": [
+        {
+          "title": "Nothing runs silently",
+          "description": "A command, an edit or a deletion is a request. Risk shows up, approval is explicit and denying is a normal answer."
+        },
+        {
+          "title": "Evidence before the promise",
+          "description": "Plan, diff and result stay in the transcript. The session does not ask for trust: it shows what it did, in what order and with which model."
+        },
+        {
+          "title": "Reversible by default",
+          "description": "Reverting a file or a whole turn is a first-class action, not an undo hidden in a menu."
+        },
+        {
+          "title": "Data where the work happens",
+          "description": "The data folder lives on your machine. There is no hosted workspace to sync and no copy of ours to leak."
+        }
+      ]
+    },
+    "compare": {
+      "eyebrow": "Comparison",
+      "title": "Where the work happens",
+      "subtitle": "Three categories of tool, not three products. Compare by what you can check, not by what the demo shows.",
+      "columns": ["Criterion", "Zylara", "Cloud agent", "Editor extension"],
+      "rows": [
+        {
+          "label": "Where the data lives",
+          "cells": ["A local folder on your computer", "The vendor's server", "The folder open in the editor"]
+        },
+        {
+          "label": "Plan before the edit",
+          "cells": ["Plan mode with a locked composer", "Varies per product", "Rarely explicit"]
+        },
+        {
+          "label": "Permissions",
+          "cells": ["Risk label before it runs", "Vendor sandbox", "Approval per command"]
+        },
+        {
+          "label": "Diff review",
+          "cells": ["Panel per file and per turn", "Diff in the browser", "Diff in the editor"]
+        },
+        {
+          "label": "Revert",
+          "cells": ["File, turn or nothing", "Depends on the vendor", "The editor's undo"]
+        },
+        {
+          "label": "Model choice",
+          "cells": ["Four routes, switch per turn", "A closed catalog", "Usually one vendor"]
+        },
+        {
+          "label": "Cost",
+          "cells": ["MIT app; model paid to the provider", "Subscription", "Subscription or key"]
+        }
+      ],
+      "note": "Categories change fast and every vendor has its own documentation. The Zylara column describes this version of the app; check the release notes for what changed."
+    },
+    "localFirst": {
+      "eyebrow": "Local-first",
+      "title": "What staying local costs",
+      "subtitle": "Local-first is not a security badge. It is a trade — and it comes with duties on your side.",
+      "items": [
+        {
+          "title": "No sync",
+          "description": "There is no hosted workspace. Using another machine means copying the data folder — and keeping both in sync is on you."
+        },
+        {
+          "title": "Backup is yours",
+          "description": "We have no copy of your conversations to restore. A disk backup solves it; we cannot solve it for you."
+        },
+        {
+          "title": "Requires a provider",
+          "description": "The app works offline to browse what already exists. Generating a reply requires the provider you connected to be reachable."
+        },
+        {
+          "title": "One machine at a time",
+          "description": "There is no multi-device presence, concurrent editing or shared history between people."
+        }
+      ]
+    },
+    "limits": {
+      "eyebrow": "Limits",
+      "title": "What Zylara does not do",
+      "subtitle": "Said plainly, so you do not find out after installing.",
+      "items": [
+        {
+          "title": "It is not an IDE",
+          "description": "It does not replace your editor, LSP or debugger. Zylara opens the folder and works in it; the editor stays the editor."
+        },
+        {
+          "title": "It does not host a model",
+          "description": "No model runs inside the app. Without a connected provider, there is no reply."
+        },
+        {
+          "title": "It does not sync or collaborate",
+          "description": "There is no shared workspace, team comments or live session for someone else to join."
+        },
+        {
+          "title": "It does not replace review",
+          "description": "Plan, permissions and diff reduce risk; they do not guarantee the change compiles, passes tests or is correct."
+        },
+        {
+          "title": "It has no web or mobile app",
+          "description": "Chat, Code and Agents run on desktop. Windows is the stable build; macOS and Linux are in beta."
+        },
+        {
+          "title": "It installs nothing silently",
+          "description": "Updates only land when you install a new version. The notice exists; the click is yours."
+        }
+      ]
+    },
+    "audience": {
+      "eyebrow": "Audience",
+      "title": "Who it is for — and who it is not",
+      "subtitle": "The app does not try to serve everyone. Recognizing yourself in both lists is part of choosing well.",
+      "forTitle": "Probably for you if…",
+      "forItems": [
+        "You already use a coding agent and want to see what it runs",
+        "You work in a private repository and prefer the data on your machine",
+        "You need a reviewable plan before any edit",
+        "You switch models by task and cost"
+      ],
+      "notForTitle": "Probably not for you if…",
+      "notForItems": [
+        "You want the agent inside the editor, with no other window",
+        "You want to run a local model without connecting a provider",
+        "You need real-time collaboration in a workspace",
+        "You want full autonomy without reviewing plan or diff"
+      ]
+    }
+  },
+  "FaqPage": {
+    "metaTitle": "Frequently asked questions",
+    "metaDescription": "Data, cost, models, permissions, platforms and license: the complete answers about Zylara, grouped by subject.",
+    "eyebrow": "Questions",
+    "title": "Frequently asked questions",
+    "subtitle": "The answers that block a download and the ones that show up later — by subject, without detours.",
+    "quickNavLabel": "Go to a group",
+    "generalTitle": "General questions",
+    "groups": [
+      {
+        "id": "models",
+        "label": "Models and cost",
+        "items": [
+          {
+            "question": "How do I connect my own API key?",
+            "answer": "In Settings › Providers. The key is written to the local data folder and used in the calls that leave your machine. Zylara supports OpenCode Go, OpenCode Zen, OpenAI through a ChatGPT plan or API key, and Anthropic through an API key."
+          },
+          {
+            "question": "Is there a token limit per turn?",
+            "answer": "The app shows the turn's token usage but imposes no limit of its own: the limit belongs to the provider and plan you connected. When it refuses, the turn ends with the provider error in the transcript."
+          },
+          {
+            "question": "Does Zylara resell tokens or charge a markup?",
+            "answer": "No. The app is MIT and does not intermediate billing. The provider charges your account directly, at the price it publishes."
+          },
+          {
+            "question": "What happens if I run out of credits?",
+            "answer": "The turn fails with the provider message. The transcript, artifacts and settings stay local; you switch routes, adjust the plan and continue the same conversation."
+          }
+        ]
+      },
+      {
+        "id": "permissions",
+        "label": "Permissions and security",
+        "items": [
+          {
+            "question": "What does the risk label change in practice?",
+            "answer": "It decides whether the call runs directly or waits for approval. Read, command, destructive, secret and outside the workspace are evaluated before execution, and each one shows up in the transcript with its result."
+          },
+          {
+            "question": "What counts as a path outside the workspace?",
+            "answer": "Any path that is not inside the folders you opened. Even in Autopilot, touching those paths asks for approval."
+          },
+          {
+            "question": "Does denying a permission break the task?",
+            "answer": "No. Denying is a normal answer: the agent receives the result, adjusts the path and proposes another approach, or hands the plan back for you to review."
+          },
+          {
+            "question": "Do my credentials show up in the transcript?",
+            "answer": "Keys stay in the data folder and are not written to the transcript. Still, whatever you paste into the chat goes to the provider: avoid secrets in the prompt."
+          }
+        ]
+      },
+      {
+        "id": "platforms",
+        "label": "Platforms and installation",
+        "items": [
+          {
+            "question": "How do I know the download is intact?",
+            "answer": "Compare the file's SHA-256 with the SHA256SUMS.txt published alongside the release. The checksums are on the download page and in every release's notes."
+          },
+          {
+            "question": "How do I update the app?",
+            "answer": "The app notifies you when a newer stable release exists. Installation is never silent: on Windows it opens the installer, on macOS the DMG and on Linux the package or AppImage."
+          },
+          {
+            "question": "Does it run on Windows ARM or Intel macOS?",
+            "answer": "The published builds are Windows x64, macOS Apple Silicon and Linux x64. Other architectures require building from source, with no guarantee that everything works."
+          },
+          {
+            "question": "Do I need Node.js or Rust to use the app?",
+            "answer": "No. The installers are self-contained and use the system webview. Node.js, Rust and the build tooling only come in if you build from the repository."
+          }
+        ]
+      },
+      {
+        "id": "code",
+        "label": "Code and license",
+        "items": [
+          {
+            "question": "Can I use Zylara at work?",
+            "answer": "Yes. The MIT license allows commercial use, modification and redistribution. The data stays in the local folder of the machine where the app runs."
+          },
+          {
+            "question": "Can I publish a fork?",
+            "answer": "You can, under the MIT license. The only practical restriction is the name and logo: a fork should not suggest it is an official build."
+          },
+          {
+            "question": "Where do I report a bug or a vulnerability?",
+            "answer": "Bugs and suggestions go to the repository's public issues. Vulnerabilities follow the repository's private security channel, with no details in a public issue."
+          },
+          {
+            "question": "Does the site use analytics?",
+            "answer": "There is no analytics, advertising pixel or third-party tracker. The only cookie stores the chosen language, and the details are in the Privacy Policy."
+          }
+        ]
+      }
+    ]
   }
 }

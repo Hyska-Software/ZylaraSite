@@ -1,28 +1,45 @@
 'use client';
 
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
-import { useLocale, useTranslations } from 'next-intl';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import type { KeyboardEvent } from 'react';
-import type { Locale } from '@/i18n/routing';
+import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
-import { featureMenu, sectionHref } from '@/lib/site';
 
 /** Atraso para atravessar o respiro entre o gatilho e o painel sem fechar. */
 const CLOSE_DELAY = 140;
 
+export type NavSubItem = {
+  href: string;
+  label: string;
+  description?: string;
+};
+
+type Props = {
+  /** Rótulo do gatilho (o mesmo nome da página no menu). */
+  label: string;
+  /** Página que o submenu detalha. */
+  path: string;
+  active: boolean;
+  /** Texto do link que leva à página inteira. */
+  overviewLabel: string;
+  items: NavSubItem[];
+};
+
 /**
- * Item "Features" do cabeçalho com um menu suspenso que abre no hover.
+ * Item do menu principal com submenu de seções da página.
  *
- * Acessibilidade: também abre por clique e por teclado (Enter, Espaço,
- * ArrowDown), fecha com Esc devolvendo o foco ao gatilho, ArrowUp/Down percorrem
- * os itens e sair da área com foco fecha o menu. O atraso no fechamento evita
- * que o painel pisque ao mover o mouse na diagonal entre o gatilho e os itens.
+ * Um único componente serve os quatro itens: Recursos (seis recursos),
+ * Como funciona, Por que Zylara e FAQ (grupos de perguntas). Cada entrada leva
+ * ao âncora da seção na página correspondente; o pé do painel leva à página
+ * inteira, e é esse link que carrega `aria-current` quando a rota está ativa.
+ *
+ * Acessibilidade: abre no hover, no clique e por teclado (Enter, Espaço,
+ * ArrowDown), fecha com Esc devolvendo o foco ao gatilho, ArrowUp/Down/Home/End
+ * percorrem os itens e sair da área com foco fecha o menu. O atraso no
+ * fechamento evita que o painel pisque ao mover o mouse na diagonal.
  */
-export function FeaturesMenu() {
-  const t = useTranslations('Nav');
-  const tItem = useTranslations('Features.items');
-  const locale = useLocale() as Locale;
+export function NavMenu({ label, path, active, overviewLabel, items }: Props) {
   const reduced = useReducedMotion();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -49,7 +66,7 @@ export function FeaturesMenu() {
     setOpen(true);
   }, [cancelClose]);
 
-  const items = useCallback(
+  const links = useCallback(
     () => Array.from(panelRef.current?.querySelectorAll<HTMLAnchorElement>('a[href]') ?? []),
     [],
   );
@@ -58,8 +75,8 @@ export function FeaturesMenu() {
   useEffect(() => {
     if (!open || !focusFirstOnOpen.current) return;
     focusFirstOnOpen.current = false;
-    items()[0]?.focus();
-  }, [open, items]);
+    links()[0]?.focus();
+  }, [open, links]);
 
   // Esc fecha de qualquer lugar do menu e devolve o foco ao gatilho.
   useEffect(() => {
@@ -84,23 +101,23 @@ export function FeaturesMenu() {
   }
 
   function onPanelKeyDown(event: KeyboardEvent<HTMLDivElement>) {
-    const links = items();
-    if (links.length === 0) return;
-    const current = links.findIndex((link) => link === document.activeElement);
+    const anchors = links();
+    if (anchors.length === 0) return;
+    const current = anchors.findIndex((link) => link === document.activeElement);
 
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      links[(current + 1) % links.length]?.focus();
+      anchors[(current + 1) % anchors.length]?.focus();
       return;
     }
     if (event.key === 'ArrowUp') {
       event.preventDefault();
-      links[(current - 1 + links.length) % links.length]?.focus();
+      anchors[(current - 1 + anchors.length) % anchors.length]?.focus();
       return;
     }
     if (event.key === 'Home' || event.key === 'End') {
       event.preventDefault();
-      links[event.key === 'Home' ? 0 : links.length - 1]?.focus();
+      anchors[event.key === 'Home' ? 0 : anchors.length - 1]?.focus();
     }
   }
 
@@ -121,16 +138,16 @@ export function FeaturesMenu() {
         type="button"
         aria-expanded={open}
         aria-controls={menuId}
-        aria-label={t('features')}
+        aria-current={active ? 'page' : undefined}
         onClick={() => (open ? setOpen(false) : openMenu())}
         onKeyDown={onTriggerKeyDown}
         className={cn(
           'inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm transition-colors duration-150 hover:bg-surface-hover hover:text-foreground',
-          open ? 'bg-surface-hover text-foreground' : 'text-foreground-muted',
+          open || active ? 'bg-surface-hover text-foreground' : 'text-foreground-muted',
         )}
       >
-        {t('features')}
-        <ChevronIcon className={open ? 'rotate-180' : undefined} />
+        {label}
+        <NavChevron className={open ? 'rotate-180' : undefined} />
       </button>
 
       <AnimatePresence initial={false}>
@@ -147,23 +164,36 @@ export function FeaturesMenu() {
               className="rounded-2xl border border-border bg-surface-raised p-1.5 shadow-float"
             >
               <ul>
-                {featureMenu.map((item) => (
-                  <li key={item.id}>
-                    <a
-                      href={sectionHref(locale, item.id)}
+                {items.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
                       onClick={() => setOpen(false)}
                       className="block rounded-xl px-3 py-2 transition-colors duration-150 hover:bg-surface-hover"
                     >
                       <span className="block text-sm font-medium text-foreground">
-                        {tItem(`${item.key}.title`)}
+                        {item.label}
                       </span>
-                      <span className="mt-0.5 block text-2xs leading-relaxed text-foreground-muted">
-                        {tItem(`${item.key}.description`)}
-                      </span>
-                    </a>
+                      {item.description ? (
+                        <span className="mt-0.5 block text-2xs leading-relaxed text-foreground-muted">
+                          {item.description}
+                        </span>
+                      ) : null}
+                    </Link>
                   </li>
                 ))}
               </ul>
+
+              <div className="mt-1 border-t border-border pt-1">
+                <Link
+                  href={path}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm text-foreground-muted transition-colors duration-150 hover:bg-surface-hover hover:text-foreground"
+                >
+                  {overviewLabel}
+                  <NavChevron className="-rotate-90" />
+                </Link>
+              </div>
             </motion.div>
           </div>
         ) : null}
@@ -172,7 +202,8 @@ export function FeaturesMenu() {
   );
 }
 
-function ChevronIcon({ className }: { className?: string }) {
+/** Seta do gatilho e das entradas; o mesmo desenho em desktop e mobile. */
+export function NavChevron({ className }: { className?: string }) {
   return (
     <svg
       width="12"
@@ -180,7 +211,7 @@ function ChevronIcon({ className }: { className?: string }) {
       viewBox="0 0 12 12"
       fill="none"
       aria-hidden="true"
-      className={cn('transition-transform duration-150', className)}
+      className={cn('shrink-0 transition-transform duration-150', className)}
     >
       <path
         d="M3 4.75 6 7.75l3-3"

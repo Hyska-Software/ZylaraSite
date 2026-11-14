@@ -4,19 +4,36 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useEffect, useId, useRef, useState } from 'react';
 import { Logo } from '@/components/brand/Logo';
-import { FeaturesMenu } from '@/components/layout/FeaturesMenu';
 import { LocaleSwitcher } from '@/components/layout/LocaleSwitcher';
+import { NavChevron, NavMenu, type NavSubItem } from '@/components/layout/NavMenu';
 import { ButtonLink, ExternalButtonLink } from '@/components/ui/Button';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
 import { cn } from '@/lib/cn';
-import { navSections, sectionHref, site } from '@/lib/site';
+import {
+  faqGeneralSectionId,
+  featurePageHref,
+  pageLabelKeys,
+  pagePaths,
+  pageSectionHref,
+  pageSections,
+  type PageId,
+} from '@/lib/pages';
+import { featureMenu, site } from '@/lib/site';
 
-/** "Features" sai da lista e vira o menu suspenso do cabeçalho. */
-const headerLinks = navSections.filter((section) => section.id !== 'features');
+type HeaderNavItem = {
+  id: PageId;
+  path: string;
+  label: string;
+  items: NavSubItem[];
+};
 
 export function SiteHeader() {
   const t = useTranslations('Nav');
+  const tFeature = useTranslations('Features.items');
+  const tHowItWorks = useTranslations('HowItWorksPage');
+  const tWhyZylara = useTranslations('WhyZylaraPage');
+  const tFaq = useTranslations('FaqPage');
   const locale = useLocale() as Locale;
   const pathname = usePathname();
   const reduced = useReducedMotion();
@@ -25,6 +42,59 @@ export function SiteHeader() {
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelId = useId();
+
+  /**
+   * Menu principal: cada página é um item e cada seção da página é um submenu.
+   * Os rótulos vêm das mesmas mensagens que as próprias páginas usam, então
+   * renomear uma seção atualiza a navbar junto.
+   */
+  const faqGroups = tFaq.raw('groups') as { id: string; label: string }[];
+
+  const navItems: HeaderNavItem[] = [
+    {
+      id: 'features',
+      path: pagePaths.features,
+      label: t(pageLabelKeys.features),
+      items: featureMenu.map((item) => ({
+        href: featurePageHref(item.id),
+        label: tFeature(`${item.key}.title`),
+        description: tFeature(`${item.key}.description`),
+      })),
+    },
+    {
+      id: 'howItWorks',
+      path: pagePaths.howItWorks,
+      label: t(pageLabelKeys.howItWorks),
+      items: pageSections.howItWorks.map((section) => ({
+        href: pageSectionHref(pagePaths.howItWorks, section.id),
+        label: tHowItWorks(`${section.key}.title`),
+      })),
+    },
+    {
+      id: 'whyZylara',
+      path: pagePaths.whyZylara,
+      label: t(pageLabelKeys.whyZylara),
+      items: pageSections.whyZylara.map((section) => ({
+        href: pageSectionHref(pagePaths.whyZylara, section.id),
+        label: tWhyZylara(`${section.key}.title`),
+      })),
+    },
+    {
+      id: 'faq',
+      path: pagePaths.faq,
+      label: t(pageLabelKeys.faq),
+      items: [
+        {
+          href: pageSectionHref(pagePaths.faq, faqGeneralSectionId),
+          label: tFaq('generalTitle'),
+        },
+        ...faqGroups.map((group) => ({
+          href: pageSectionHref(pagePaths.faq, group.id),
+          label: group.label,
+        })),
+      ],
+    },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -40,7 +110,7 @@ export function SiteHeader() {
     const focusables = () =>
       Array.from(
         panel?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? [],
-      ).filter((el) => el.offsetParent !== null);
+      ).filter((el) => el.offsetParent !== null && !el.closest('details:not([open])'));
 
     focusables()[0]?.focus();
 
@@ -96,16 +166,16 @@ export function SiteHeader() {
           <Logo />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-1 md:flex">
-          <FeaturesMenu />
-          {headerLinks.map((section) => (
-            <a
-              key={section.id}
-              href={sectionHref(locale, section.id)}
-              className="rounded-full px-3.5 py-2 text-sm text-foreground-muted transition-colors duration-150 hover:bg-surface-hover hover:text-foreground"
-            >
-              {t(section.labelKey)}
-            </a>
+        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+          {navItems.map((item) => (
+            <NavMenu
+              key={item.id}
+              label={item.label}
+              path={item.path}
+              active={pathname === item.path}
+              overviewLabel={t('overview')}
+              items={item.items}
+            />
           ))}
           <a
             href={site.docsUrl}
@@ -146,7 +216,7 @@ export function SiteHeader() {
             aria-controls={panelId}
             aria-label={open ? t('closeMenu') : t('openMenu')}
             onClick={() => setOpen((value) => !value)}
-            className="inline-flex size-10 items-center justify-center rounded-full text-foreground-muted transition-colors hover:bg-surface-hover hover:text-foreground md:hidden"
+            className="inline-flex size-10 items-center justify-center rounded-full text-foreground-muted transition-colors hover:bg-surface-hover hover:text-foreground lg:hidden"
           >
             {open ? <CloseIcon /> : <MenuIcon />}
           </button>
@@ -162,19 +232,51 @@ export function SiteHeader() {
             animate={{ opacity: 1, y: 0 }}
             exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: 0.18, ease: [0.22, 0.61, 0.36, 1] }}
-            className="border-t border-border bg-background md:hidden"
+            className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background lg:hidden"
           >
             <nav aria-label="Mobile" className="container-page flex flex-col gap-1 py-4">
-              {navSections.map((section) => (
-                <a
-                  key={section.id}
-                  href={sectionHref(locale, section.id)}
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl px-3 py-3 text-base text-foreground-muted transition-colors hover:bg-surface-hover hover:text-foreground"
-                >
-                  {t(section.labelKey)}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const active = pathname === item.path;
+
+                return (
+                  <details key={item.id} className="group rounded-xl">
+                    <summary
+                      className={cn(
+                        'flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-3 py-3 text-base transition-colors hover:bg-surface-hover hover:text-foreground [&::-webkit-details-marker]:hidden',
+                        active ? 'text-foreground' : 'text-foreground-muted',
+                      )}
+                    >
+                      {item.label}
+                      <NavChevron className="group-open:rotate-180" />
+                    </summary>
+
+                    <ul className="mb-1 ml-3 flex flex-col border-l border-border pl-2">
+                      <li>
+                        <Link
+                          href={item.path}
+                          onClick={() => setOpen(false)}
+                          aria-current={active ? 'page' : undefined}
+                          className="block rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-surface-hover"
+                        >
+                          {t('overview')}
+                        </Link>
+                      </li>
+                      {item.items.map((leaf) => (
+                        <li key={leaf.href}>
+                          <Link
+                            href={leaf.href}
+                            onClick={() => setOpen(false)}
+                            className="block rounded-lg px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+                          >
+                            {leaf.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                );
+              })}
+
               <a
                 href={site.docsUrl}
                 target="_blank"
@@ -184,6 +286,7 @@ export function SiteHeader() {
               >
                 {t('guide')}
               </a>
+
               <div className="mt-3 flex items-center gap-2 border-t border-border pt-4">
                 <LocaleSwitcher />
                 <ExternalButtonLink
