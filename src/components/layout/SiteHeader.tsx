@@ -166,7 +166,7 @@ export function SiteHeader() {
           <Logo />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+        <nav aria-label={t('mainNav')} className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <NavMenu
               key={item.id}
@@ -234,7 +234,7 @@ export function SiteHeader() {
             transition={{ duration: 0.18, ease: [0.22, 0.61, 0.36, 1] }}
             className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background lg:hidden"
           >
-            <nav aria-label="Mobile" className="container-page flex flex-col gap-1 py-4">
+            <nav aria-label={t('mobileNav')} className="container-page flex flex-col gap-1 py-4">
               {navItems.map((item) => {
                 const active = pathname === item.path;
 

@@ -16,7 +16,9 @@
     "switchLanguage": "Mudar idioma",
     "language": "Idioma",
     "guide": "Guia",
-    "overview": "Ver a página completa"
+    "overview": "Ver a página completa",
+    "mainNav": "Navegação principal",
+    "mobileNav": "Navegação móvel"
   },
   "Hero": {
     "eyebrow": "Agente de código para desktop",
@@ -755,6 +757,67 @@
     "noAccount": "Sem conta para abrir",
     "localData": "Dados na sua máquina",
     "starsLabel": "{count} estrelas no GitHub"
+  },
+  "Preview": {
+    "modeChat": "Chat",
+    "modeCode": "Code",
+    "modeAgents": "Agentes",
+    "planTitle": "Plano · 3 etapas",
+    "planBadge": "Revisar",
+    "planSteps": ["ler auth/middleware.ts", "bucket por IP", "teste do limite"],
+    "planLocked": "Composer travado",
+    "planApprove": "Aprovar plano",
+    "riskRead": "leitura",
+    "riskCommand": "comando",
+    "riskSecret": "segredo",
+    "riskOutside": "externo",
+    "deny": "Negar",
+    "allow": "Permitir",
+    "review": "Revisar",
+    "skills": [
+      { "name": "code-review", "hint": "diff + testes antes do commit" },
+      { "name": "release-notes", "hint": "changelog a partir dos commits" },
+      { "name": "incident", "hint": "runbook e postmortem" }
+    ],
+    "libraryFilters": ["Tudo", "Favoritos", "Imagens", "Código", "Mídia"],
+    "libraryFiles": [
+      { "name": "plano-auth.md", "kind": "MD" },
+      { "name": "diff-auth.png", "kind": "PNG" },
+      { "name": "coverage.zip", "kind": "ZIP" },
+      { "name": "schema.json", "kind": "JSON" }
+    ],
+    "matrixTitle": "Permissões",
+    "matrixAxis": "ler · editar · comando",
+    "matrixRead": "Leitura",
+    "matrixReview": "Revisar",
+    "matrixEdit": "Editar",
+    "matrixAutopilot": "Autônomo",
+    "matrixFooter": "Fora do workspace sempre pede",
+    "transcriptTitle": "Turno · Code",
+    "transcriptPrompt": "adicione rate limiting ao login",
+    "transcriptPlanApproved": "plano aprovado",
+    "transcriptPlanSummary": "3 etapas · 2 arquivos",
+    "transcriptCommand": "comando",
+    "transcriptTokens": "2.418 tokens",
+    "transcriptStop": "Parar",
+    "transcriptCommit": "Commit",
+    "sourcesTitle": "Fontes · 3",
+    "sourcesCaption": "citadas no turno",
+    "sourcesFooter": "abrir no navegador padrão",
+    "artifactsTitle": "Artefatos · 4",
+    "artifactsBadge": "prévia",
+    "artifacts": [
+      { "kind": "PNG", "name": "diff-auth.png", "size": "148 KB" },
+      { "kind": "MD", "name": "plano-auth.md", "size": "4 KB" },
+      { "kind": "JSON", "name": "coverage.json", "size": "32 KB" },
+      { "kind": "ZIP", "name": "testes.zip", "size": "1,2 MB" }
+    ],
+    "appNewChat": "+ Novo chat",
+    "appLibrary": "Biblioteca",
+    "appSkills": "Skills",
+    "appToday": "Hoje",
+    "appThreadRateLimit": "Rate limit no login",
+    "appThreadInstaller": "Ícones do installer"
   },
   "Tour": {
     "eyebrow": "Veja funcionando",

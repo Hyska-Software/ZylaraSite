@@ -11,6 +11,7 @@ import { getTranslations } from 'next-intl/server';
  */
 export async function AppPreview() {
   const t = await getTranslations('Hero');
+  const tp = await getTranslations('Preview');
   const steps = t.raw('planSteps') as string[];
 
   return (
@@ -27,9 +28,11 @@ export async function AppPreview() {
           <span className="size-2.5 rounded-full bg-border-strong" />
         </div>
         <div className="mx-auto flex items-center gap-1 rounded-full bg-surface-hover p-0.5 text-2xs">
-          <span className="rounded-full bg-surface-raised px-2.5 py-1 text-foreground">Chat</span>
-          <span className="px-2.5 py-1 text-foreground-muted">Code</span>
-          <span className="px-2.5 py-1 text-foreground-muted">Agentes</span>
+          <span className="rounded-full bg-surface-raised px-2.5 py-1 text-foreground">
+            {tp('modeChat')}
+          </span>
+          <span className="px-2.5 py-1 text-foreground-muted">{tp('modeCode')}</span>
+          <span className="px-2.5 py-1 text-foreground-muted">{tp('modeAgents')}</span>
         </div>
         <span className="w-12" aria-hidden="true" />
       </div>
@@ -38,14 +41,14 @@ export async function AppPreview() {
         {/* sidebar */}
         <aside className="hidden border-r border-border bg-surface p-3 md:block">
           <div className="rounded-lg border border-border px-2.5 py-1.5 text-2xs text-foreground-muted">
-            + Novo chat
+            {tp('appNewChat')}
           </div>
           <ul className="mt-4 flex flex-col gap-2.5 text-2xs text-foreground-muted">
-            <li className="text-foreground">Biblioteca</li>
-            <li>Skills</li>
-            <li className="pt-2 text-foreground-muted">Hoje</li>
-            <li className="truncate">Rate limit no login</li>
-            <li className="truncate">Ícones do installer</li>
+            <li className="text-foreground">{tp('appLibrary')}</li>
+            <li>{tp('appSkills')}</li>
+            <li className="pt-2 text-foreground-muted">{tp('appToday')}</li>
+            <li className="truncate">{tp('appThreadRateLimit')}</li>
+            <li className="truncate">{tp('appThreadInstaller')}</li>
           </ul>
         </aside>
 

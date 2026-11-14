@@ -16,7 +16,9 @@
     "switchLanguage": "Switch language",
     "language": "Language",
     "guide": "Guide",
-    "overview": "Open the full page"
+    "overview": "Open the full page",
+    "mainNav": "Main navigation",
+    "mobileNav": "Mobile navigation"
   },
   "Hero": {
     "eyebrow": "Coding agent for desktop",
@@ -697,47 +699,47 @@
         ]
       },
       "brazil": {
-        "short": "Brasil",
-        "title": "Para titulares no Brasil",
-        "intro": "Esta seção vale para titulares de dados no Brasil e descreve o tratamento realizado conforme a LGPD (Lei 13.709/2018).",
+        "short": "Brazil",
+        "title": "For data subjects in Brazil",
+        "intro": "This section applies to data subjects in Brazil and describes the processing carried out under the LGPD (Law 13.709/2018).",
         "sections": [
           {
-            "title": "Escopo e papéis",
+            "title": "Scope and roles",
             "body": [
-              "A Hyska Software atua como controladora dos dados descritos nesta política. Quando você conecta sua própria conta em um provedor de modelos, ele trata o conteúdo como controlador independente, sob a política dele.",
-              "A Autoridade Nacional de Proteção de Dados (ANPD) é a autoridade competente no Brasil."
+              "Hyska Software is the controller of the data described in this policy. When you connect your own account at a model provider, that provider processes the content as an independent controller under its own policy.",
+              "The Brazilian Data Protection Authority (ANPD) is the competent authority in Brazil."
             ]
           },
           {
-            "title": "Bases legais",
+            "title": "Legal bases",
             "body": [
-              "Consentimento (art. 7º, I) para responder ao seu contato; legítimo interesse (art. 7º, IX) para manter o site disponível e seguro, limitado a registros técnicos; cumprimento de obrigação legal (art. 7º, II); e execução de contrato (art. 7º, V), quando houver."
+              "Consent (art. 7, I) to answer your message; legitimate interest (art. 7, IX) in keeping the site available and secure, limited to technical logs; compliance with a legal obligation (art. 7, II); and performance of a contract (art. 7, V), where one exists."
             ]
           },
           {
-            "title": "Direitos do titular",
+            "title": "Rights of the data subject",
             "body": [
-              "Você pode pedir confirmação de tratamento, acesso, correção, anonimização, bloqueio ou eliminação de dados desnecessários, portabilidade, eliminação dos dados tratados com consentimento, informação sobre compartilhamento e revisão de decisões automatizadas (arts. 18 e 20 da LGPD).",
-              "O pedido é gratuito e pode ser feito por legal@hyska.com.br. Respondemos no prazo de 15 dias previsto no art. 19 da LGPD."
+              "You can ask for confirmation that we process your data, and for access, correction, anonymisation, blocking or deletion of unnecessary data, portability, deletion of data processed with consent, information about sharing and review of automated decisions (arts. 18 and 20 of the LGPD).",
+              "Requests are free of charge and can be made at legal@hyska.com.br. We answer within the 15 days set by art. 19 of the LGPD."
             ]
           },
           {
-            "title": "Conservação e transferência internacional",
+            "title": "Retention and international transfers",
             "body": [
-              "Os dados são mantidos pelo tempo necessário à finalidade e, depois, eliminados ou anonimizados.",
-              "Provedores de modelos e de infraestrutura podem tratar dados fora do Brasil. Nesses casos aplicamos o art. 33 da LGPD — cláusulas contratuais específicas, normas corporativas ou outra hipótese legal — e você pode pedir informação sobre a transferência."
+              "Data is kept for as long as the purpose requires and is then deleted or anonymised.",
+              "Model and infrastructure providers may process data outside Brazil. In those cases we apply art. 33 of the LGPD — specific contractual clauses, binding corporate rules or another legal basis — and you can ask for information about the transfer."
             ]
           },
           {
-            "title": "Encarregado",
+            "title": "Data protection officer",
             "body": [
-              "O canal do encarregado pelo tratamento de dados pessoais é legal@hyska.com.br, para pedidos de titulares e comunicações com a ANPD."
+              "The channel of the data protection officer (encarregado) is legal@hyska.com.br, for requests from data subjects and communications with the ANPD."
             ]
           },
           {
-            "title": "Crianças e adolescentes",
+            "title": "Children and adolescents",
             "body": [
-              "O app não é destinado a crianças. Dados de crianças menores de 12 anos só são tratados com consentimento específico de pai, mãe ou responsável legal, nos termos do art. 14 da LGPD, e sempre no melhor interesse delas."
+              "The app is not directed to children. Data of children under 12 is processed only with the specific consent of a parent or legal guardian, under art. 14 of the LGPD, and always in their best interest."
             ]
           }
         ]
@@ -755,6 +757,67 @@
     "noAccount": "No account to open",
     "localData": "Data on your machine",
     "starsLabel": "{count} GitHub stars"
+  },
+  "Preview": {
+    "modeChat": "Chat",
+    "modeCode": "Code",
+    "modeAgents": "Agents",
+    "planTitle": "Plan · 3 steps",
+    "planBadge": "Review",
+    "planSteps": ["read auth/middleware.ts", "bucket per IP", "limit test"],
+    "planLocked": "Composer locked",
+    "planApprove": "Approve plan",
+    "riskRead": "read",
+    "riskCommand": "command",
+    "riskSecret": "secret",
+    "riskOutside": "outside",
+    "deny": "Deny",
+    "allow": "Allow",
+    "review": "Review",
+    "skills": [
+      { "name": "code-review", "hint": "diff + tests before the commit" },
+      { "name": "release-notes", "hint": "changelog from the commits" },
+      { "name": "incident", "hint": "runbook and postmortem" }
+    ],
+    "libraryFilters": ["All", "Favorites", "Images", "Code", "Media"],
+    "libraryFiles": [
+      { "name": "auth-plan.md", "kind": "MD" },
+      { "name": "auth-diff.png", "kind": "PNG" },
+      { "name": "coverage.zip", "kind": "ZIP" },
+      { "name": "schema.json", "kind": "JSON" }
+    ],
+    "matrixTitle": "Permissions",
+    "matrixAxis": "read · edit · command",
+    "matrixRead": "Read",
+    "matrixReview": "Review",
+    "matrixEdit": "Edit",
+    "matrixAutopilot": "Autopilot",
+    "matrixFooter": "Outside the workspace always asks",
+    "transcriptTitle": "Turn · Code",
+    "transcriptPrompt": "add rate limiting to the login",
+    "transcriptPlanApproved": "plan approved",
+    "transcriptPlanSummary": "3 steps · 2 files",
+    "transcriptCommand": "command",
+    "transcriptTokens": "2,418 tokens",
+    "transcriptStop": "Stop",
+    "transcriptCommit": "Commit",
+    "sourcesTitle": "Sources · 3",
+    "sourcesCaption": "cited in the turn",
+    "sourcesFooter": "opens in the default browser",
+    "artifactsTitle": "Artifacts · 4",
+    "artifactsBadge": "preview",
+    "artifacts": [
+      { "kind": "PNG", "name": "auth-diff.png", "size": "148 KB" },
+      { "kind": "MD", "name": "auth-plan.md", "size": "4 KB" },
+      { "kind": "JSON", "name": "coverage.json", "size": "32 KB" },
+      { "kind": "ZIP", "name": "tests.zip", "size": "1.2 MB" }
+    ],
+    "appNewChat": "+ New chat",
+    "appLibrary": "Library",
+    "appSkills": "Skills",
+    "appToday": "Today",
+    "appThreadRateLimit": "Rate limit on login",
+    "appThreadInstaller": "Installer icons"
   },
   "Tour": {
     "eyebrow": "See it working",

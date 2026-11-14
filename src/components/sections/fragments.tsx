@@ -1,3 +1,6 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/cn';
 
 /**
@@ -8,6 +11,10 @@ import { cn } from '@/lib/cn';
  * escala 2xs. `PlanFragment`, `DiffFragment` e `PermissionFragment` aparecem no
  * bento de recursos, na timeline do workflow e no tour do produto; por isso
  * vivem aqui, e não duplicados em três arquivos.
+ *
+ * Todo texto visível vem do namespace `Preview` do catálogo do idioma ativo,
+ * inclusive nomes de arquivo e rótulos de modo: a prévia precisa falar o mesmo
+ * idioma da página que a apresenta.
  *
  * `decorative` marca o fragmento como `aria-hidden`: os textos são curtos e
  * repetem o que o card já diz em voz alta.
@@ -21,17 +28,22 @@ type FragmentProps = {
 const frame = 'overflow-hidden rounded-xl border border-border bg-background';
 
 export function PlanFragment({ decorative, className }: FragmentProps) {
+  const t = useTranslations('Preview');
+  const steps = t.raw('planSteps') as string[];
+
   return (
     <div className={cn(frame, className)} aria-hidden={decorative || undefined}>
       <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
         <span className="inline-flex items-center gap-1.5 text-2xs font-medium text-foreground">
           <PlanIcon />
-          Plano · 3 etapas
+          {t('planTitle')}
         </span>
-        <span className="rounded-full bg-accent-soft px-2 py-0.5 text-2xs text-accent">Revisar</span>
+        <span className="rounded-full bg-accent-soft px-2 py-0.5 text-2xs text-accent">
+          {t('planBadge')}
+        </span>
       </div>
       <ol className="flex flex-col gap-1.5 px-3 py-2.5">
-        {['ler auth/middleware.ts', 'bucket por IP', 'teste do limite'].map((step, index) => (
+        {steps.map((step, index) => (
           <li key={step} className="flex items-start gap-2 text-2xs text-foreground-muted">
             <span className="mt-px inline-flex size-4 shrink-0 items-center justify-center rounded-full bg-accent-soft font-mono text-[9px] text-accent">
               {index + 1}
@@ -41,9 +53,9 @@ export function PlanFragment({ decorative, className }: FragmentProps) {
         ))}
       </ol>
       <div className="flex items-center justify-between gap-2 border-t border-border px-3 py-2 text-2xs">
-        <span className="truncate text-foreground-muted">Composer travado</span>
+        <span className="truncate text-foreground-muted">{t('planLocked')}</span>
         <span className="shrink-0 rounded-md bg-foreground px-2 py-1 text-background">
-          Aprovar plano
+          {t('planApprove')}
         </span>
       </div>
     </div>
@@ -74,14 +86,15 @@ export function DiffFragment({ decorative, className }: FragmentProps) {
   );
 }
 
-const risks = [
-  { label: 'read', tone: 'bg-surface text-foreground-muted' },
-  { label: 'command', tone: 'bg-warning-soft text-warning' },
-  { label: 'secret', tone: 'bg-danger-soft text-danger' },
-  { label: 'outside', tone: 'bg-danger-soft text-danger' },
-] as const;
-
 export function PermissionFragment({ decorative, className }: FragmentProps) {
+  const t = useTranslations('Preview');
+  const risks = [
+    { label: t('riskRead'), tone: 'bg-surface text-foreground-muted' },
+    { label: t('riskCommand'), tone: 'bg-warning-soft text-warning' },
+    { label: t('riskSecret'), tone: 'bg-danger-soft text-danger' },
+    { label: t('riskOutside'), tone: 'bg-danger-soft text-danger' },
+  ];
+
   return (
     <div className={cn(frame, className)} aria-hidden={decorative || undefined}>
       <div className="flex flex-col gap-2 px-3 py-3">
@@ -104,21 +117,18 @@ export function PermissionFragment({ decorative, className }: FragmentProps) {
       </div>
       <div className="flex items-center gap-2 border-t border-border px-3 py-2 text-2xs">
         <span className="rounded-md border border-border px-2 py-1 text-foreground-muted">
-          Negar
+          {t('deny')}
         </span>
-        <span className="rounded-md bg-foreground px-2 py-1 text-background">Permitir</span>
-        <span className="ml-auto text-foreground-muted">Revisar</span>
+        <span className="rounded-md bg-foreground px-2 py-1 text-background">{t('allow')}</span>
+        <span className="ml-auto text-foreground-muted">{t('review')}</span>
       </div>
     </div>
   );
 }
 
 export function SkillsFragment({ decorative, className }: FragmentProps) {
-  const skills = [
-    { name: 'code-review', hint: 'diff + testes antes do commit' },
-    { name: 'release-notes', hint: 'changelog a partir dos commits' },
-    { name: 'incident', hint: 'runbook e postmortem' },
-  ];
+  const t = useTranslations('Preview');
+  const skills = t.raw('skills') as { name: string; hint: string }[];
 
   return (
     <div
@@ -140,13 +150,9 @@ export function SkillsFragment({ decorative, className }: FragmentProps) {
 }
 
 export function LibraryFragment({ decorative, className }: FragmentProps) {
-  const filters = ['Tudo', 'Favoritos', 'Imagens', 'Código', 'Mídia'];
-  const files = [
-    { name: 'plano-auth.md', kind: 'MD' },
-    { name: 'diff-auth.png', kind: 'PNG' },
-    { name: 'coverage.zip', kind: 'ZIP' },
-    { name: 'schema.json', kind: 'JSON' },
-  ];
+  const t = useTranslations('Preview');
+  const filters = t.raw('libraryFilters') as string[];
+  const files = t.raw('libraryFiles') as { name: string; kind: string }[];
 
   return (
     <div className={cn(frame, className)} aria-hidden={decorative || undefined}>
@@ -183,6 +189,8 @@ export function LibraryFragment({ decorative, className }: FragmentProps) {
 }
 
 export function ModesFragment({ decorative, className }: FragmentProps) {
+  const t = useTranslations('Preview');
+
   return (
     <div
       className={cn(
@@ -191,9 +199,11 @@ export function ModesFragment({ decorative, className }: FragmentProps) {
       )}
       aria-hidden={decorative || undefined}
     >
-      <span className="rounded-full bg-surface-hover px-2.5 py-1 text-foreground">Chat</span>
-      <span className="px-2.5 py-1 text-foreground-muted">Code</span>
-      <span className="px-2.5 py-1 text-foreground-muted">Agentes</span>
+      <span className="rounded-full bg-surface-hover px-2.5 py-1 text-foreground">
+        {t('modeChat')}
+      </span>
+      <span className="px-2.5 py-1 text-foreground-muted">{t('modeCode')}</span>
+      <span className="px-2.5 py-1 text-foreground-muted">{t('modeAgents')}</span>
     </div>
   );
 }
@@ -225,19 +235,20 @@ export function FolderFragment({ decorative, className }: FragmentProps) {
  * modo eles continuam pedindo aprovação, e o rodapé diz isso.
  */
 export function PermissionMatrixFragment({ decorative, className }: FragmentProps) {
-  const rows = [
-    { mode: 'Leitura', states: ['on', 'off', 'off'] },
-    { mode: 'Revisar', states: ['on', 'ask', 'ask'] },
-    { mode: 'Editar', states: ['on', 'on', 'ask'] },
-    { mode: 'Autônomo', states: ['on', 'on', 'on'] },
-  ] as const;
+  const t = useTranslations('Preview');
+  const rows: { mode: string; states: ('on' | 'ask' | 'off')[] }[] = [
+    { mode: t('matrixRead'), states: ['on', 'off', 'off'] },
+    { mode: t('matrixReview'), states: ['on', 'ask', 'ask'] },
+    { mode: t('matrixEdit'), states: ['on', 'on', 'ask'] },
+    { mode: t('matrixAutopilot'), states: ['on', 'on', 'on'] },
+  ];
 
   return (
     <div className={cn(frame, className)} aria-hidden={decorative || undefined}>
       <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
-        <span className="text-2xs font-medium text-foreground">Permissões</span>
+        <span className="text-2xs font-medium text-foreground">{t('matrixTitle')}</span>
         <span className="truncate font-mono text-[9px] text-foreground-muted">
-          ler · editar · comando
+          {t('matrixAxis')}
         </span>
       </div>
 
@@ -265,7 +276,7 @@ export function PermissionMatrixFragment({ decorative, className }: FragmentProp
       </ul>
 
       <p className="border-t border-border px-3 py-2 text-2xs text-foreground-muted">
-        Fora do workspace sempre pede
+        {t('matrixFooter')}
       </p>
     </div>
   );
@@ -273,6 +284,8 @@ export function PermissionMatrixFragment({ decorative, className }: FragmentProp
 
 /** Um turno de Code com o rastro que a página `/how-it-works` descreve. */
 export function TranscriptFragment({ decorative, className }: FragmentProps) {
+  const t = useTranslations('Preview');
+
   return (
     <div
       className={cn(frame, 'text-2xs', className)}
@@ -281,20 +294,22 @@ export function TranscriptFragment({ decorative, className }: FragmentProps) {
       <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
         <span className="inline-flex items-center gap-1.5 font-medium text-foreground">
           <PlanIcon />
-          Turno · Code
+          {t('transcriptTitle')}
         </span>
         <span className="font-mono text-[9px] text-foreground-muted">claude-sonnet</span>
       </div>
 
       <ul className="flex flex-col gap-2 px-3 py-3">
         <li className="ml-8 rounded-lg rounded-br-sm bg-user-bubble px-2.5 py-1.5 text-foreground">
-          adicione rate limiting ao login
+          {t('transcriptPrompt')}
         </li>
         <li className="flex items-center gap-2 rounded-lg border border-border bg-surface-raised px-2.5 py-1.5">
           <span className="rounded-full bg-accent-soft px-2 py-0.5 font-mono text-[9px] text-accent">
-            plano aprovado
+            {t('transcriptPlanApproved')}
           </span>
-          <span className="min-w-0 truncate text-foreground-muted">3 etapas · 2 arquivos</span>
+          <span className="min-w-0 truncate text-foreground-muted">
+            {t('transcriptPlanSummary')}
+          </span>
         </li>
         <li className="flex items-start gap-1.5 px-1 font-mono text-foreground-muted">
           <span aria-hidden="true" className="text-foreground-subtle">
@@ -302,7 +317,7 @@ export function TranscriptFragment({ decorative, className }: FragmentProps) {
           </span>
           <span className="min-w-0 break-all">pnpm test --filter auth</span>
           <span className="ml-auto shrink-0 rounded-full bg-warning-soft px-1.5 py-0.5 text-[9px] text-warning">
-            comando
+            {t('transcriptCommand')}
           </span>
         </li>
         <li className="flex items-center gap-2 rounded-lg border border-border bg-surface-raised px-2.5 py-1.5 font-mono">
@@ -313,10 +328,12 @@ export function TranscriptFragment({ decorative, className }: FragmentProps) {
       </ul>
 
       <div className="flex items-center justify-between gap-2 border-t border-border px-3 py-2 text-foreground-muted">
-        <span className="font-mono text-[9px]">2.418 tokens</span>
+        <span className="font-mono text-[9px]">{t('transcriptTokens')}</span>
         <span className="inline-flex items-center gap-1.5">
-          <span className="rounded-md border border-border px-2 py-0.5">Parar</span>
-          <span className="rounded-md bg-foreground px-2 py-0.5 text-background">Commit</span>
+          <span className="rounded-md border border-border px-2 py-0.5">{t('transcriptStop')}</span>
+          <span className="rounded-md bg-foreground px-2 py-0.5 text-background">
+            {t('transcriptCommit')}
+          </span>
         </span>
       </div>
     </div>
@@ -325,6 +342,7 @@ export function TranscriptFragment({ decorative, className }: FragmentProps) {
 
 /** Painel de fontes citadas por uma resposta. */
 export function SourcesFragment({ decorative, className }: FragmentProps) {
+  const t = useTranslations('Preview');
   const sources = [
     { domain: 'nodejs.org', title: 'Rate limiting strategies' },
     { domain: 'owasp.org', title: 'Authentication cheat sheet' },
@@ -334,8 +352,8 @@ export function SourcesFragment({ decorative, className }: FragmentProps) {
   return (
     <div className={cn(frame, className)} aria-hidden={decorative || undefined}>
       <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
-        <span className="text-2xs font-medium text-foreground">Fontes · 3</span>
-        <span className="font-mono text-[9px] text-foreground-muted">citadas no turno</span>
+        <span className="text-2xs font-medium text-foreground">{t('sourcesTitle')}</span>
+        <span className="font-mono text-[9px] text-foreground-muted">{t('sourcesCaption')}</span>
       </div>
 
       <ul className="flex flex-col gap-1.5 px-3 py-3">
@@ -358,7 +376,7 @@ export function SourcesFragment({ decorative, className }: FragmentProps) {
       </ul>
 
       <p className="border-t border-border px-3 py-2 font-mono text-[9px] text-foreground-muted">
-        abrir no navegador padrão
+        {t('sourcesFooter')}
       </p>
     </div>
   );
@@ -366,19 +384,15 @@ export function SourcesFragment({ decorative, className }: FragmentProps) {
 
 /** Lista do painel de artefatos: tipo, nome e tamanho. */
 export function ArtifactsFragment({ decorative, className }: FragmentProps) {
-  const artifacts = [
-    { kind: 'PNG', name: 'diff-auth.png', size: '148 KB' },
-    { kind: 'MD', name: 'plano-auth.md', size: '4 KB' },
-    { kind: 'JSON', name: 'coverage.json', size: '32 KB' },
-    { kind: 'ZIP', name: 'testes.zip', size: '1,2 MB' },
-  ];
+  const t = useTranslations('Preview');
+  const artifacts = t.raw('artifacts') as { kind: string; name: string; size: string }[];
 
   return (
     <div className={cn(frame, className)} aria-hidden={decorative || undefined}>
       <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
-        <span className="text-2xs font-medium text-foreground">Artefatos · 4</span>
+        <span className="text-2xs font-medium text-foreground">{t('artifactsTitle')}</span>
         <span className="rounded-full border border-border px-2 py-0.5 font-mono text-[9px] text-foreground-muted">
-          prévia
+          {t('artifactsBadge')}
         </span>
       </div>
 
@@ -406,6 +420,8 @@ export function ArtifactsFragment({ decorative, className }: FragmentProps) {
 
 /** Chrome de janela para o tour: title bar + área de conteúdo. */
 export function WindowFrame({ children }: { children: React.ReactNode }) {
+  const t = useTranslations('Preview');
+
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-surface-raised shadow-float">
       <div className="flex h-9 items-center gap-2 border-b border-border px-3">
@@ -415,9 +431,11 @@ export function WindowFrame({ children }: { children: React.ReactNode }) {
           <span className="size-2 rounded-full bg-border-strong" />
         </span>
         <span className="mx-auto inline-flex items-center gap-1 rounded-full bg-surface-hover p-0.5 text-2xs">
-          <span className="rounded-full bg-surface-raised px-2 py-0.5 text-foreground">Chat</span>
-          <span className="px-2 py-0.5 text-foreground-muted">Code</span>
-          <span className="px-2 py-0.5 text-foreground-muted">Agentes</span>
+          <span className="rounded-full bg-surface-raised px-2 py-0.5 text-foreground">
+            {t('modeChat')}
+          </span>
+          <span className="px-2 py-0.5 text-foreground-muted">{t('modeCode')}</span>
+          <span className="px-2 py-0.5 text-foreground-muted">{t('modeAgents')}</span>
         </span>
         <span className="w-10" aria-hidden="true" />
       </div>
