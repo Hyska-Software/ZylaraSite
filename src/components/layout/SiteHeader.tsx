@@ -35,6 +35,7 @@ export function SiteHeader() {
   const tFaq = useTranslations('FaqPage');
   const locale = useLocale() as Locale;
   const pathname = usePathname();
+  const isDocs = pathname === '/docs' || pathname.startsWith('/docs/');
   const reduced = useReducedMotion();
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -171,14 +172,13 @@ export function SiteHeader() {
               items={item.items}
             />
           ))}
-          <a
-            href={site.docsUrl}
-            target="_blank"
-            rel="noreferrer noopener"
+          <Link
+            href="/docs"
+            aria-current={pathname === '/docs' ? 'page' : isDocs ? 'true' : undefined}
             className="hidden rounded-full px-3.5 py-2 text-sm text-foreground transition-colors duration-150 hover:bg-surface-hover lg:inline-flex"
           >
             {t('guide')}
-          </a>
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -268,15 +268,13 @@ export function SiteHeader() {
                 );
               })}
 
-              <a
-                href={site.docsUrl}
-                target="_blank"
-                rel="noreferrer noopener"
+              <Link
+                href="/docs"
                 onClick={() => setOpen(false)}
                 className="rounded-xl px-3 py-3 text-base text-foreground transition-colors hover:bg-surface-hover"
               >
                 {t('guide')}
-              </a>
+              </Link>
 
               <div className="mt-3 flex items-center gap-2 pt-4">
                 <LocaleSwitcher bordered={false} side="top" />

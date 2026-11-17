@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { routing } from '@/i18n/routing';
+import { docPath, docsEntrySlug, docsSlugs } from '@/lib/docs';
 import { legalPaths } from '@/lib/legal';
 import { languageAlternates, localizedPath } from '@/lib/locale';
 import { pagePaths } from '@/lib/pages';
@@ -22,6 +23,15 @@ type Entry = {
 const entries: Entry[] = [
   { path: '/', changeFrequency: 'monthly', priority: 1 },
   { path: '/download', changeFrequency: 'weekly', priority: 0.9 },
+  { path: '/docs', changeFrequency: 'weekly', priority: 0.8 },
+  // Páginas de tópico da documentação: o catálogo é a única fonte da lista.
+  ...docsSlugs(routing.defaultLocale)
+    .filter((slug) => slug !== docsEntrySlug)
+    .map((slug) => ({
+      path: docPath(slug),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
   { path: pagePaths.features, changeFrequency: 'monthly', priority: 0.8 },
   { path: pagePaths.howItWorks, changeFrequency: 'monthly', priority: 0.7 },
   { path: pagePaths.whyZylara, changeFrequency: 'monthly', priority: 0.7 },

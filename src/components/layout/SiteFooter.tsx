@@ -47,7 +47,7 @@ export async function SiteFooter() {
               { label: t('repository'), href: site.repoUrl, external: true },
               { label: t('issues'), href: site.issuesUrl, external: true },
               { label: t('releases'), href: site.releasesUrl, external: true },
-              { label: t('guide'), href: site.docsUrl, external: true },
+              { label: t('guide'), href: `${home}/docs` },
             ]}
           />
 
