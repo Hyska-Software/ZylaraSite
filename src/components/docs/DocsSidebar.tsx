@@ -16,10 +16,11 @@ type SidebarProps = {
 /**
  * Navegação lateral da documentação.
  *
- * Os grupos abrem e fecham (marcador `[-]` / `[ ]`, como na doc do OpenCode que
- * inspirou a estrutura) e começam todos abertos: esconder a página atual atrás
- * de um grupo fechado é o pior estado possível para quem chega por um link
- * direto. O item ativo vem de `usePathname`, que já chega sem prefixo de idioma.
+ * Os grupos abrem e fecham pelo mesmo chevron dos acordeões do site (FAQ e menu
+ * do cabeçalho): rótulo em caixa alta e discreto, seta à direita girando 180°.
+ * Todos começam abertos — esconder a página atual atrás de um grupo fechado é o
+ * pior estado possível para quem chega por um link direto. O item ativo vem de
+ * `usePathname`, que já chega sem prefixo de idioma.
  */
 export function DocsSidebar({ groups, chrome, version, repoUrl }: SidebarProps) {
   const [collapsed, setCollapsed] = useState<Set<DocGroupId>>(new Set());
@@ -50,7 +51,7 @@ export function DocsSidebar({ groups, chrome, version, repoUrl }: SidebarProps) 
           </a>
         </div>
 
-        <nav aria-label={chrome.nav} className="flex flex-col gap-5">
+        <nav aria-label={chrome.nav} className="flex flex-col gap-6">
           {groups.map((group) => {
             const open = !collapsed.has(group.id);
 
@@ -60,19 +61,21 @@ export function DocsSidebar({ groups, chrome, version, repoUrl }: SidebarProps) 
                   type="button"
                   onClick={() => toggle(group.id)}
                   aria-expanded={open}
-                  className="flex w-full items-center gap-2 rounded-md text-left transition-colors duration-150 hover:text-foreground"
+                  className="group flex w-full items-center justify-between gap-2 rounded-md py-1 text-left"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="w-5 shrink-0 font-mono text-2xs text-foreground-subtle"
-                  >
-                    {open ? '[-]' : '[ ]'}
+                  <span className="text-2xs font-medium uppercase tracking-[0.14em] text-foreground-muted transition-colors duration-150 group-hover:text-foreground">
+                    {group.label}
                   </span>
-                  <span className="text-sm font-medium text-foreground">{group.label}</span>
+                  <ChevronIcon
+                    className={cn(
+                      'text-foreground-subtle transition-transform duration-200',
+                      open && 'rotate-180',
+                    )}
+                  />
                 </button>
 
                 {open ? (
-                  <ul className="mt-1.5 flex flex-col gap-0.5 pl-5">
+                  <ul className="mt-1.5 flex flex-col gap-0.5">
                     {group.pages.map((page) => (
                       <NavLink
                         key={page.slug}
@@ -174,19 +177,16 @@ function NavLink({ href, title, active }: { href: string; title: string; active:
         href={href}
         aria-current={active ? 'page' : undefined}
         className={cn(
-          'flex items-center gap-2 rounded-md px-1.5 py-1.5 text-sm transition-colors duration-150',
+          'flex items-center gap-2 rounded-md py-1.5 pr-2 pl-1.5 text-sm transition-colors duration-150',
           active
             ? 'bg-surface-hover text-foreground'
             : 'text-foreground-muted hover:bg-surface-hover/60 hover:text-foreground',
         )}
       >
-        <span
-          aria-hidden="true"
-          className={cn(
-            'size-2 shrink-0 rounded-[3px] border transition-colors duration-150',
-            active ? 'border-accent bg-accent' : 'border-border-strong',
-          )}
-        />
+        {/* Coluna fixa: a bolinha da página atual não desloca o texto das outras. */}
+        <span aria-hidden="true" className="flex w-2 shrink-0 justify-center">
+          {active ? <span className="size-1.5 rounded-full bg-accent" /> : null}
+        </span>
         <span className="truncate">{title}</span>
       </Link>
     </li>

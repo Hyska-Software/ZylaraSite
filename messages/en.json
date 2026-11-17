@@ -16,7 +16,7 @@
     "closeMenu": "Close menu",
     "switchLanguage": "Switch language",
     "language": "Language",
-    "guide": "Guide",
+    "docs": "Docs",
     "overview": "Open the full page",
     "mainNav": "Main navigation",
     "mobileNav": "Mobile navigation"
@@ -305,7 +305,7 @@
     "privacy": "Privacy Policy",
     "contact": "Contact",
     "developers": "Developers",
-    "guide": "Setup guide",
+    "docs": "Docs",
     "cost": "Cost",
     "positioning": "Why Zylara",
     "license": "Open source · MIT"

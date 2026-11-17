@@ -16,7 +16,7 @@
     "closeMenu": "Fechar menu",
     "switchLanguage": "Mudar idioma",
     "language": "Idioma",
-    "guide": "Guia",
+    "docs": "Docs",
     "overview": "Ver a página completa",
     "mainNav": "Navegação principal",
     "mobileNav": "Navegação móvel"
@@ -305,7 +305,7 @@
     "privacy": "Política de Privacidade",
     "contact": "Contato",
     "developers": "Desenvolvedores",
-    "guide": "Guia de instalação",
+    "docs": "Docs",
     "cost": "Custo",
     "positioning": "Por que Zylara",
     "license": "Código aberto · MIT"

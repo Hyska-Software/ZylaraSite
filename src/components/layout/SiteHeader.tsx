@@ -177,7 +177,7 @@ export function SiteHeader() {
             aria-current={pathname === '/docs' ? 'page' : isDocs ? 'true' : undefined}
             className="hidden rounded-full px-3.5 py-2 text-sm text-foreground transition-colors duration-150 hover:bg-surface-hover lg:inline-flex"
           >
-            {t('guide')}
+            {t('docs')}
           </Link>
         </nav>
 
@@ -273,7 +273,7 @@ export function SiteHeader() {
                 onClick={() => setOpen(false)}
                 className="rounded-xl px-3 py-3 text-base text-foreground transition-colors hover:bg-surface-hover"
               >
-                {t('guide')}
+                {t('docs')}
               </Link>
 
               <div className="mt-3 flex items-center gap-2 pt-4">

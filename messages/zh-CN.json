@@ -16,7 +16,7 @@
     "closeMenu": "关闭菜单",
     "switchLanguage": "切换语言",
     "language": "语言",
-    "guide": "指南",
+    "docs": "文档",
     "overview": "打开完整页面",
     "mainNav": "主导航",
     "mobileNav": "移动端导航"
@@ -305,7 +305,7 @@
     "privacy": "隐私政策",
     "contact": "联系我们",
     "developers": "开发者",
-    "guide": "安装指南",
+    "docs": "文档",
     "cost": "费用",
     "positioning": "为什么选择 Zylara",
     "license": "开源 · MIT"
