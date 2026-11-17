@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 import { absoluteUrl } from '@/lib/url';
 import type { LatestRelease } from '@/lib/site';
 
@@ -18,6 +18,7 @@ function serialize(value: unknown) {
 }
 
 export async function StructuredData({ release }: { release: LatestRelease }) {
+  const locale = await getLocale();
   const metadata = await getTranslations('Metadata');
   const faq = await getTranslations('Faq');
   const items = faq.raw('items') as FaqItem[];
@@ -27,8 +28,9 @@ export async function StructuredData({ release }: { release: LatestRelease }) {
     '@type': 'SoftwareApplication',
     name: 'Zylara',
     applicationCategory: 'DeveloperApplication',
-    applicationSubCategory: 'Coding agent',
+    applicationSubCategory: metadata('appSubCategory'),
     operatingSystem: 'Windows, macOS, Linux',
+    inLanguage: locale,
     softwareVersion: release.version,
     description: metadata('description'),
     url: absoluteUrl('/'),

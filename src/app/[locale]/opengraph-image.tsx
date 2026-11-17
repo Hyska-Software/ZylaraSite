@@ -5,7 +5,10 @@ import { getTranslations } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { theme } from '@/lib/theme';
 
-export const alt = 'Zylara — desktop workspace for coding agents';
+// O `alt` do construtor de imagem é estático e vale para os dois idiomas: fica
+// só a marca. O alt descritivo e traduzido vem de `openGraph.images[].alt`
+// (`src/app/[locale]/layout.tsx`), que usa o título do catálogo.
+export const alt = 'Zylara';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -70,7 +73,7 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ loc
               fontSize: 22,
             }}
           >
-            local-first
+            {t('ogBadge')}
           </div>
           <div
             style={{

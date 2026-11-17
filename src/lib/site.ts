@@ -118,11 +118,6 @@ export const fallbackDownloads = {
 
 export const site = {
   name: 'Zylara',
-  /** Usado em <title>, JSON-LD e rodapé. */
-  tagline: {
-    en: 'The local-first agent workspace',
-    'pt-BR': 'O workspace de agentes local-first',
-  },
   repoUrl: REPO,
   releasesUrl: `${REPO}/releases`,
   /** Guia de instalação e compilação vive no README do repositório. */

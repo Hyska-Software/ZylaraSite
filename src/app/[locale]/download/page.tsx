@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import { DownloadConsole } from '@/components/download/DownloadConsole';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
-import { SkipLink } from '@/components/layout/SkipLink';
 import { routing } from '@/i18n/routing';
 import { getLatestRelease } from '@/lib/releases';
 import { site } from '@/lib/site';
@@ -59,7 +58,6 @@ export default async function DownloadPage({ params }: Props) {
 
   return (
     <>
-      <SkipLink />
       <SiteHeader />
       <main id="main">
         <section className="relative overflow-hidden pt-16 pb-12 md:pt-24 md:pb-16">

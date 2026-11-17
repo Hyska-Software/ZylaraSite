@@ -1,7 +1,9 @@
 {
   "Metadata": {
     "title": "Zylara — o workspace de agentes local-first",
-    "description": "Um workspace desktop para agentes de código. Planeje antes de escrever, aprove o que roda e revise cada diff — nos modos Chat, Code e Agentes."
+    "description": "Um workspace desktop para agentes de código. Planeje antes de escrever, aprove o que roda e revise cada diff — nos modos Chat, Code e Agentes.",
+    "ogBadge": "local-first",
+    "appSubCategory": "Agente de código"
   },
   "Nav": {
     "features": "Recursos",
@@ -10,7 +12,6 @@
     "faq": "FAQ",
     "download": "Baixar",
     "github": "GitHub",
-    "skipToContent": "Pular para o conteúdo",
     "openMenu": "Abrir menu",
     "closeMenu": "Fechar menu",
     "switchLanguage": "Mudar idioma",
@@ -767,6 +768,9 @@
     "planSteps": ["ler auth/middleware.ts", "bucket por IP", "teste do limite"],
     "planLocked": "Composer travado",
     "planApprove": "Aprovar plano",
+    "diffFile": "src/server/auth.ts",
+    "diffAdded": "+24",
+    "diffRemoved": "−3",
     "riskRead": "leitura",
     "riskCommand": "comando",
     "riskSecret": "segredo",
@@ -804,6 +808,11 @@
     "sourcesTitle": "Fontes · 3",
     "sourcesCaption": "citadas no turno",
     "sourcesFooter": "abrir no navegador padrão",
+    "sources": [
+      { "domain": "nodejs.org", "title": "Estratégias de rate limiting" },
+      { "domain": "owasp.org", "title": "Guia rápido de autenticação" },
+      { "domain": "github.com", "title": "bucket.ts · pull request 412" }
+    ],
     "artifactsTitle": "Artefatos · 4",
     "artifactsBadge": "prévia",
     "artifacts": [

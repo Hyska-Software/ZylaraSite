@@ -65,7 +65,9 @@ export function DownloadCta({ release, size = 'lg', className }: Props) {
     <>
       {platform ? <PlatformIcon platform={platform} size={17} /> : null}
       <span>{label}</span>
-      {experimental ? <span className="text-background/70">· beta</span> : null}
+      {experimental ? (
+        <span className="text-background/70">· {t('experimentalBadge')}</span>
+      ) : null}
     </>
   );
 

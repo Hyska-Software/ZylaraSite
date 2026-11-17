@@ -35,6 +35,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
             href={pathname}
             locale={value}
             hrefLang={localeLabels[value].htmlLang}
+            aria-label={localeLabels[value].label}
             aria-current={active ? 'true' : undefined}
             className={cn(
               'rounded-full px-2.5 py-1 text-2xs font-medium tracking-wide transition-colors duration-150',

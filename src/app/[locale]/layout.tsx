@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { routing } from '@/i18n/routing';
+import { localeLabels, routing } from '@/i18n/routing';
 import { theme } from '@/lib/theme';
 import { absoluteUrl, siteUrl } from '@/lib/url';
 import '../globals.css';
@@ -84,7 +84,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   setRequestLocale(locale);
 
-  const htmlLang = locale === 'pt-BR' ? 'pt-BR' : 'en';
+  const htmlLang = localeLabels[locale].htmlLang;
 
   return (
     <html lang={htmlLang} className={`${inter.variable} ${jetbrainsMono.variable} dark`}>

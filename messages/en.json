@@ -1,7 +1,9 @@
 {
   "Metadata": {
     "title": "Zylara — the local-first agent workspace",
-    "description": "A desktop workspace for coding agents. Plan before it writes, approve what it runs, and review every diff — in Chat, Code and Agents modes."
+    "description": "A desktop workspace for coding agents. Plan before it writes, approve what it runs, and review every diff — in Chat, Code and Agents modes.",
+    "ogBadge": "local-first",
+    "appSubCategory": "Coding agent"
   },
   "Nav": {
     "features": "Features",
@@ -10,7 +12,6 @@
     "faq": "FAQ",
     "download": "Download",
     "github": "GitHub",
-    "skipToContent": "Skip to content",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "switchLanguage": "Switch language",
@@ -767,6 +768,9 @@
     "planSteps": ["read auth/middleware.ts", "bucket per IP", "limit test"],
     "planLocked": "Composer locked",
     "planApprove": "Approve plan",
+    "diffFile": "src/server/auth.ts",
+    "diffAdded": "+24",
+    "diffRemoved": "−3",
     "riskRead": "read",
     "riskCommand": "command",
     "riskSecret": "secret",
@@ -804,6 +808,11 @@
     "sourcesTitle": "Sources · 3",
     "sourcesCaption": "cited in the turn",
     "sourcesFooter": "opens in the default browser",
+    "sources": [
+      { "domain": "nodejs.org", "title": "Rate limiting strategies" },
+      { "domain": "owasp.org", "title": "Authentication cheat sheet" },
+      { "domain": "github.com", "title": "bucket.ts · pull request 412" }
+    ],
     "artifactsTitle": "Artifacts · 4",
     "artifactsBadge": "preview",
     "artifacts": [

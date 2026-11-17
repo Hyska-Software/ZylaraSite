@@ -4,7 +4,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
-import { SkipLink } from '@/components/layout/SkipLink';
 import { CheckIcon } from '@/components/pages/PageIcons';
 import { PageCta } from '@/components/pages/PageCta';
 import { PageHero } from '@/components/pages/PageHero';
@@ -80,7 +79,6 @@ export default async function HowItWorksPage({ params }: Props) {
 
   return (
     <>
-      <SkipLink />
       <SiteHeader />
 
       <main id="main">

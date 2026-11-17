@@ -63,16 +63,18 @@ export function PlanFragment({ decorative, className }: FragmentProps) {
 }
 
 export function DiffFragment({ decorative, className }: FragmentProps) {
+  const t = useTranslations('Preview');
+
   return (
     <div
       className={cn(frame, 'font-mono text-[10px] leading-relaxed', className)}
       aria-hidden={decorative || undefined}
     >
       <div className="flex items-center justify-between gap-2 border-b border-border px-2.5 py-1.5">
-        <span className="min-w-0 truncate text-foreground-muted">src/server/auth.ts</span>
+        <span className="min-w-0 truncate text-foreground-muted">{t('diffFile')}</span>
         <span className="flex shrink-0 gap-1.5">
-          <span className="text-success">+24</span>
-          <span className="text-danger">−3</span>
+          <span className="text-success">{t('diffAdded')}</span>
+          <span className="text-danger">{t('diffRemoved')}</span>
         </span>
       </div>
       <div className="px-2.5 py-1.5">
@@ -343,11 +345,7 @@ export function TranscriptFragment({ decorative, className }: FragmentProps) {
 /** Painel de fontes citadas por uma resposta. */
 export function SourcesFragment({ decorative, className }: FragmentProps) {
   const t = useTranslations('Preview');
-  const sources = [
-    { domain: 'nodejs.org', title: 'Rate limiting strategies' },
-    { domain: 'owasp.org', title: 'Authentication cheat sheet' },
-    { domain: 'github.com', title: 'bucket.ts · pull request 412' },
-  ];
+  const sources = t.raw('sources') as { domain: string; title: string }[];
 
   return (
     <div className={cn(frame, className)} aria-hidden={decorative || undefined}>

@@ -1,7 +1,6 @@
 import { setRequestLocale } from 'next-intl/server';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
-import { SkipLink } from '@/components/layout/SkipLink';
 import { StructuredData } from '@/components/seo/StructuredData';
 import { Cost } from '@/components/sections/Cost';
 import { DownloadSection } from '@/components/sections/DownloadSection';
@@ -27,7 +26,6 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      <SkipLink />
       <SiteHeader />
       <main id="main">
         <Hero />

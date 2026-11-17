@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import { LegalDocument } from '@/components/legal/LegalDocument';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
-import { SkipLink } from '@/components/layout/SkipLink';
 import { routing } from '@/i18n/routing';
 import { legalPaths } from '@/lib/legal';
 import { absoluteUrl } from '@/lib/url';
@@ -51,7 +50,6 @@ export default async function PrivacyPage({ params }: Props) {
 
   return (
     <>
-      <SkipLink />
       <SiteHeader />
       <main id="main">
         <LegalDocument namespace="PrivacyPage" current="privacy" />
