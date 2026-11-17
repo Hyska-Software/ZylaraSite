@@ -3,7 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useLocale, useTranslations } from 'next-intl';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import type { KeyboardEvent, PointerEvent as ReactPointerEvent } from 'react';
+import type { KeyboardEvent, PointerEvent as ReactPointerEvent, ReactElement } from 'react';
 import { NavChevron } from '@/components/layout/NavMenu';
 import { Link, usePathname } from '@/i18n/navigation';
 import { localeLabels, locales, type Locale } from '@/i18n/routing';
@@ -234,17 +234,53 @@ export function LocaleSwitcher({
  * Bandeira em SVG, não emoji: o Windows não desenha emoji de bandeira (sai
  * "US"/"BR" em letras), então o mapa de caracteres regionais não serve aqui.
  * Os desenhos são simplificados — listras e estrelas do lado americano,
- * losango e círculo do brasileiro — para continuarem legíveis a 20×14px.
+ * losango e círculo do brasileiro, estrela grande e quatro pequenas do chinês —
+ * para continuarem legíveis a 20×14px.
+ *
+ * `Record<Locale, …>` é proposital: acrescentar um idioma em `routing.ts` sem
+ * desenhar a bandeira quebra o `typecheck`, em vez de cair no desenho errado.
  */
+const flags: Record<Locale, () => ReactElement> = {
+  en: UsFlag,
+  'pt-BR': BrazilFlag,
+  'zh-CN': ChinaFlag,
+};
+
 function LocaleFlag({ locale }: { locale: Locale }) {
+  const Flag = flags[locale];
+
   return (
     <span
       className="inline-flex shrink-0 overflow-hidden rounded-[3px] ring-1 ring-border ring-inset"
     >
       <svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true" className="block">
-        {locale === 'pt-BR' ? <BrazilFlag /> : <UsFlag />}
+        <Flag />
       </svg>
     </span>
+  );
+}
+
+/** Estrela de cinco pontas; `inner` é a razão do raio interno das oficiais. */
+function Star({ cx, cy, r }: { cx: number; cy: number; r: number }) {
+  const points = Array.from({ length: 10 }, (_, index) => {
+    const radius = index % 2 === 0 ? r : r * 0.42;
+    const angle = (Math.PI / 5) * index - Math.PI / 2;
+    return `${(cx + radius * Math.cos(angle)).toFixed(2)},${(cy + radius * Math.sin(angle)).toFixed(2)}`;
+  }).join(' ');
+
+  return <polygon points={points} fill="#ffde00" />;
+}
+
+function ChinaFlag() {
+  return (
+    <>
+      <rect width="20" height="14" fill="#de2910" />
+      <Star cx={5} cy={5} r={2.8} />
+      <Star cx={8.4} cy={2.5} r={0.95} />
+      <Star cx={9.6} cy={4.4} r={0.95} />
+      <Star cx={9.6} cy={6.4} r={0.95} />
+      <Star cx={8.4} cy={8.1} r={0.95} />
+    </>
   );
 }
 

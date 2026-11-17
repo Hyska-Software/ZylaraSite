@@ -318,7 +318,7 @@
     "updatedLabel": "Last updated",
     "contactLabel": "Contact",
     "languageLabel": "Language",
-    "languageNote": "Both language versions are authoritative. Where local consumer law requires the version in your language, that version prevails for consumers in that jurisdiction.",
+    "languageNote": "All three language versions are authoritative. Where local consumer law requires the version in your language, that version prevails for consumers in that jurisdiction.",
     "regionsLabel": "Jurisdiction",
     "regionsHint": "The same text covers all three jurisdictions. Choose one to jump to its section — the sections above apply everywhere.",
     "summaryTitle": "In short"

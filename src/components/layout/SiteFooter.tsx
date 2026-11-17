@@ -4,6 +4,7 @@ import { DistortedWordmark } from '@/components/brand/DistortedWordmark';
 import { Logo } from '@/components/brand/Logo';
 import type { Locale } from '@/i18n/routing';
 import { legalContactEmail, legalPaths } from '@/lib/legal';
+import { localePrefix } from '@/lib/locale';
 import { pageHref } from '@/lib/pages';
 import { getLatestRelease } from '@/lib/releases';
 import { site } from '@/lib/site';
@@ -13,7 +14,7 @@ export async function SiteFooter() {
   const locale = (await getLocale()) as Locale;
   const release = await getLatestRelease();
   const year = new Date().getFullYear();
-  const home = locale === 'en' ? '' : `/${locale}`;
+  const home = localePrefix(locale);
 
   return (
     <footer className="border-t border-border bg-surface">

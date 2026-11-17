@@ -8,6 +8,7 @@
  */
 
 import type { Locale } from '@/i18n/routing';
+import { localizedPath } from '@/lib/locale';
 
 export const pagePaths = {
   features: '/features',
@@ -41,8 +42,7 @@ export function featurePageHref(anchor: string) {
 
 /** Caminho com prefixo de idioma, para `<a>` que não passa pelo `Link`. */
 export function pageHref(locale: Locale, id: PageId) {
-  const path = pagePaths[id];
-  return locale === 'en' ? path : `/${locale}${path}`;
+  return localizedPath(locale, pagePaths[id]);
 }
 
 /**

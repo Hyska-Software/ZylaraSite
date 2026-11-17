@@ -4,6 +4,13 @@ import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { localeLabels, routing } from '@/i18n/routing';
+import {
+  languageAlternates,
+  localePrefix,
+  localizedPath,
+  ogAlternateLocales,
+  ogLocale,
+} from '@/lib/locale';
 import { theme } from '@/lib/theme';
 import { absoluteUrl, siteUrl } from '@/lib/url';
 import '../globals.css';
@@ -41,7 +48,8 @@ export async function generateMetadata({ params }: Omit<Props, 'children'>): Pro
   if (!hasLocale(routing.locales, locale)) notFound();
 
   const t = await getTranslations({ locale, namespace: 'Metadata' });
-  const path = locale === routing.defaultLocale ? '' : `/${locale}`;
+  const path = localePrefix(locale);
+  const canonical = localizedPath(locale, '/');
 
   return {
     metadataBase: new URL(siteUrl),
@@ -49,22 +57,18 @@ export async function generateMetadata({ params }: Omit<Props, 'children'>): Pro
     description: t('description'),
     applicationName: 'Zylara',
     alternates: {
-      canonical: path || '/',
-      languages: {
-        en: '/',
-        'pt-BR': '/pt-BR',
-        'x-default': '/',
-      },
+      canonical,
+      languages: languageAlternates('/'),
     },
     openGraph: {
       type: 'website',
       siteName: 'Zylara',
       title: t('title'),
       description: t('description'),
-      url: absoluteUrl(path || '/'),
-      locale: locale === 'en' ? 'en_US' : 'pt_BR',
-      alternateLocale: locale === 'en' ? ['pt_BR'] : ['en_US'],
-      images: [{ url: `${path || ''}/opengraph-image`, width: 1200, height: 630, alt: t('title') }],
+      url: absoluteUrl(canonical),
+      locale: ogLocale(locale),
+      alternateLocale: ogAlternateLocales(locale),
+      images: [{ url: `${path}/opengraph-image`, width: 1200, height: 630, alt: t('title') }],
     },
     twitter: {
       card: 'summary_large_image',

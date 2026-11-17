@@ -6,6 +6,7 @@ import { DownloadConsole } from '@/components/download/DownloadConsole';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { routing } from '@/i18n/routing';
+import { languageAlternates, localizedPath, ogAlternateLocales, ogLocale } from '@/lib/locale';
 import { getLatestRelease } from '@/lib/releases';
 import { site } from '@/lib/site';
 import { absoluteUrl } from '@/lib/url';
@@ -22,18 +23,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!hasLocale(routing.locales, locale)) notFound();
 
   const t = await getTranslations({ locale, namespace: 'DownloadPage' });
-  const path = locale === routing.defaultLocale ? '/download' : `/${locale}/download`;
+  const path = localizedPath(locale, '/download');
 
   return {
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: {
       canonical: path,
-      languages: {
-        en: '/download',
-        'pt-BR': '/pt-BR/download',
-        'x-default': '/download',
-      },
+      languages: languageAlternates('/download'),
     },
     openGraph: {
       type: 'website',
@@ -41,8 +38,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: t('metaTitle'),
       description: t('metaDescription'),
       url: absoluteUrl(path),
-      locale: locale === 'en' ? 'en_US' : 'pt_BR',
-      alternateLocale: locale === 'en' ? ['pt_BR'] : ['en_US'],
+      locale: ogLocale(locale),
+      alternateLocale: ogAlternateLocales(locale),
     },
   };
 }

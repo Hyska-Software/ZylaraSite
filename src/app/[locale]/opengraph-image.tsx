@@ -16,8 +16,13 @@ export default async function OpenGraphImage({ params }: { params: Promise<{ loc
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
 
-  const t = await getTranslations({ locale, namespace: 'Metadata' });
-  const hero = await getTranslations({ locale, namespace: 'Hero' });
+  // O `next/og` embute só a Noto Sans latina: um título em chinês sairia como
+  // caixas vazias na imagem. A arte de `zh-CN` usa o catálogo inglês para sair
+  // legível — o que muda de idioma é o texto da página, não o cartão social.
+  const copyLocale = locale === 'zh-CN' ? 'en' : locale;
+
+  const t = await getTranslations({ locale: copyLocale, namespace: 'Metadata' });
+  const hero = await getTranslations({ locale: copyLocale, namespace: 'Hero' });
 
   return new ImageResponse(
     (

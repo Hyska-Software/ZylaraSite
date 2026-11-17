@@ -7,6 +7,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { routing } from '@/i18n/routing';
 import { legalPaths } from '@/lib/legal';
+import { languageAlternates, localizedPath, ogAlternateLocales, ogLocale } from '@/lib/locale';
 import { absoluteUrl } from '@/lib/url';
 
 type Props = { params: Promise<{ locale: string }> };
@@ -18,18 +19,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!hasLocale(routing.locales, locale)) notFound();
 
   const t = await getTranslations({ locale, namespace: 'PrivacyPage' });
-  const path = locale === routing.defaultLocale ? slug : `/${locale}${slug}`;
+  const path = localizedPath(locale, slug);
 
   return {
     title: t('metaTitle'),
     description: t('metaDescription'),
     alternates: {
       canonical: path,
-      languages: {
-        en: slug,
-        'pt-BR': `/pt-BR${slug}`,
-        'x-default': slug,
-      },
+      languages: languageAlternates(slug),
     },
     openGraph: {
       type: 'website',
@@ -37,8 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: t('metaTitle'),
       description: t('metaDescription'),
       url: absoluteUrl(path),
-      locale: locale === 'en' ? 'en_US' : 'pt_BR',
-      alternateLocale: locale === 'en' ? ['pt_BR'] : ['en_US'],
+      locale: ogLocale(locale),
+      alternateLocale: ogAlternateLocales(locale),
     },
   };
 }

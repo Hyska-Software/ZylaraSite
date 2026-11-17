@@ -101,7 +101,9 @@
   --tracking-tight: -0.011em;
   --tracking-tighter: -0.028em;
 
-  --font-sans: var(--font-inter), 'Segoe UI', system-ui, sans-serif;
+  --font-sans:
+    var(--font-inter), 'Segoe UI', system-ui, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Noto Sans SC', sans-serif;
   --font-mono: var(--font-mono-jetbrains), ui-monospace, 'Cascadia Code', monospace;
 
   --radius-xl: 0.75rem;
