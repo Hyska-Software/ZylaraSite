@@ -28,7 +28,7 @@
     "ctaSecondary": "在 GitHub 上查看",
     "worksWith": "支持的模型",
     "worksWithMore": "另有 {count} 个",
-    "shotPlaceholder": "应用截图"
+    "shotAlt": "Zylara 桌面应用中打开的编程会话，一侧是智能体对话，另一侧是项目文件"
   },
   "Providers": {
     "label": "使用你已有的模型",

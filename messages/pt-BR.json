@@ -28,7 +28,7 @@
     "ctaSecondary": "Ver no GitHub",
     "worksWith": "Funciona com",
     "worksWithMore": "+{count} modelos",
-    "shotPlaceholder": "Captura do app"
+    "shotAlt": "O app desktop do Zylara aberto em uma sessão de código, com a conversa do agente de um lado e os arquivos do projeto do outro"
   },
   "Providers": {
     "label": "Traga os modelos que você já usa",
