@@ -182,7 +182,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <LocaleSwitcher className="hidden sm:flex" bordered={false} />
+          <LocaleSwitcher className="hidden sm:block" bordered={false} align="end" />
 
           <ExternalButtonLink
             href={site.repoUrl}
@@ -279,7 +279,7 @@ export function SiteHeader() {
               </a>
 
               <div className="mt-3 flex items-center gap-2 pt-4">
-                <LocaleSwitcher bordered={false} />
+                <LocaleSwitcher bordered={false} side="top" />
                 <ExternalButtonLink
                   href={site.repoUrl}
                   variant="secondary"
