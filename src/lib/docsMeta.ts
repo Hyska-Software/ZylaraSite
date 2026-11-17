@@ -1,8 +1,10 @@
 import 'server-only';
 
 import type { Metadata } from 'next';
+import { docsChrome } from '@/content/docs/chrome';
 import type { Locale } from '@/i18n/routing';
-import { docPath, docsChrome, docsPage, type DocSlug } from '@/lib/docs';
+import { docPath } from '@/lib/docs';
+import { getDocsData } from '@/lib/docsContent';
 import {
   languageAlternates,
   localizedPath,
@@ -14,12 +16,12 @@ import { absoluteUrl } from '@/lib/url';
 /**
  * Metadata de uma página da documentação.
  *
- * Título e descrição saem do catálogo da documentação (não de `messages/`), e o
- * canônico/hreflang usam o caminho da própria página — então uma página nova
- * aparece nos buscadores em todos os idiomas publicados sem configuração extra.
+ * Título e descrição vêm do próprio arquivo (`frontmatter` de `user-docs/`), e
+ * canônico/hreflang usam o caminho da página — uma página nova no `nav.json`
+ * entra nos buscadores em todos os idiomas publicados sem configuração extra.
  */
-export function buildDocsMetadata({ locale, slug }: { locale: Locale; slug: DocSlug }): Metadata {
-  const page = docsPage(locale, slug);
+export function buildDocsMetadata({ locale, slug }: { locale: Locale; slug: string }): Metadata {
+  const page = getDocsData(locale).pages[slug];
   if (!page) return {};
 
   const chrome = docsChrome(locale);
@@ -29,7 +31,7 @@ export function buildDocsMetadata({ locale, slug }: { locale: Locale; slug: DocS
 
   return {
     title,
-    description: page.summary,
+    description: page.description,
     alternates: {
       canonical: localized,
       languages: languageAlternates(path),
@@ -38,7 +40,7 @@ export function buildDocsMetadata({ locale, slug }: { locale: Locale; slug: DocS
       type: 'article',
       siteName: 'Zylara',
       title,
-      description: page.summary,
+      description: page.description,
       url: absoluteUrl(localized),
       locale: ogLocale(locale),
       alternateLocale: ogAlternateLocales(locale),

@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "basePath": "/docs",
+  "sections": [
+    {
+      "title": "Comece aqui",
+      "items": [
+        {
+          "title": "Visão geral",
+          "slug": "",
+          "description": "O que é o Zylara, o que você pode fazer com ele e por onde começar."
+        },
+        {
+          "title": "O que é o Zylara",
+          "slug": "introduction",
+          "description": "Um app desktop de IA local-first com três layouts: Chat, Código e Agentes."
+        },
+        {
+          "title": "Instalação",
+          "slug": "installation",
+          "description": "Instale no Windows, macOS ou Linux, abra pela primeira vez e desinstale com segurança."
+        },
+        {
+          "title": "Primeiros passos",
+          "slug": "first-steps",
+          "description": "Conecte um provedor, escolha um modelo, envie uma mensagem e receba seu primeiro arquivo."
+        }
+      ]
+    },
+    {
+      "title": "Chat",
+      "items": [
+        {
+          "title": "Interface",
+          "slug": "interface",
+          "description": "Barra de título, barra lateral, campo de mensagem, painéis e a paleta de comandos."
+        },
+        {
+          "title": "Conversas",
+          "slug": "conversations",
+          "description": "Histórico, busca, fixar, exportar, editar mensagens e enfileirar respostas."
+        },
+        {
+          "title": "Modelos e provedores",
+          "slug": "models-and-providers",
+          "description": "Conecte provedores, escolha modelos, controle o raciocínio e leia uso e custo."
+        },
+        {
+          "title": "Anexos",
+          "slug": "attachments",
+          "description": "Envie documentos, planilhas, slides, imagens e código como contexto."
+        },
+        {
+          "title": "Artefatos",
+          "slug": "artifacts",
+          "description": "Arquivos que o agente cria, como eles são pré-visualizados e como salvá-los."
+        },
+        {
+          "title": "Biblioteca",
+          "slug": "library",
+          "description": "Todos os arquivos de todas as conversas em um só lugar pesquisável."
+        },
+        {
+          "title": "Busca na web e fontes",
+          "slug": "web-search",
+          "description": "Deixe o agente buscar na web, ler páginas e citar fontes."
+        },
+        {
+          "title": "Interface generativa",
+          "slug": "generative-ui",
+          "description": "Cards, tabelas, gráficos e blocos interativos declarativos na conversa."
+        },
+        {
+          "title": "Markdown e matemática",
+          "slug": "markdown-and-math",
+          "description": "Tabelas, matemática, diagramas, blocos de código e pré-visualizações isoladas."
+        }
+      ]
+    },
+    {
+      "title": "Ferramentas",
+      "items": [
+        {
+          "title": "Execução de código",
+          "slug": "code-execution",
+          "description": "Deixe o agente rodar Python ou Node para gerar arquivos reais, com limites."
+        },
+        {
+          "title": "Habilidades",
+          "slug": "skills",
+          "description": "Instruções e scripts que ensinam o agente a montar cada formato."
+        },
+        {
+          "title": "Personalização",
+          "slug": "customization",
+          "description": "Tema, tamanho do texto, idioma, layouts, temas instalados e interface de plugins."
+        }
+      ]
+    },
+    {
+      "title": "Código",
+      "items": [
+        {
+          "title": "Workspaces e sessões",
+          "slug": "code-workspaces",
+          "description": "Abra uma pasta, confie nela e rode sessões de código nos seus próprios arquivos."
+        },
+        {
+          "title": "Workbench",
+          "slug": "code-workbench",
+          "description": "Arquivos, alterações, diffs, commits, branches e o terminal."
+        },
+        {
+          "title": "Permissões e aprovações",
+          "slug": "permissions-and-approvals",
+          "description": "Modos Leitura, Revisão, Edição e Autônomo, aprovações e o sandbox Docker."
+        },
+        {
+          "title": "Objetivos e tarefas",
+          "slug": "goals-and-tasks",
+          "description": "Modo de planejamento, listas de tarefas, objetivos longos, contexto e jobs em segundo plano."
+        }
+      ]
+    },
+    {
+      "title": "Agentes",
+      "items": [
+        {
+          "title": "Agentes",
+          "slug": "agents",
+          "description": "Crie personas com modelo, instruções, memória e permissões próprios."
+        },
+        {
+          "title": "Rotinas e filas",
+          "slug": "routines-and-queues",
+          "description": "Enfileire mensagens enquanto o agente trabalha e agende instruções recorrentes."
+        },
+        {
+          "title": "Canais e equipes",
+          "slug": "channels-and-teams",
+          "description": "Deixe vários agentes responderem em um canal e acompanhe o uso por agente."
+        },
+        {
+          "title": "Uso do computador",
+          "slug": "computer-use",
+          "description": "Dê a um agente um desktop privado no Docker, com aprovação por ação."
+        }
+      ]
+    },
+    {
+      "title": "Referência",
+      "items": [
+        {
+          "title": "Plugins",
+          "slug": "plugins",
+          "description": "Instale, revise permissões, atualize e remova extensões de terceiros."
+        },
+        {
+          "title": "Referência de configurações",
+          "slug": "settings-reference",
+          "description": "Cada aba de configurações, controle, padrão e faixa de valores."
+        },
+        {
+          "title": "Atalhos de teclado",
+          "slug": "keyboard-shortcuts",
+          "description": "Todos os atalhos globais, do campo de mensagem, da paleta e das listas."
+        },
+        {
+          "title": "Dados e privacidade",
+          "slug": "data-and-privacy",
+          "description": "Onde ficam seus dados, o que sai da máquina e como fazer backup ou apagar tudo."
+        },
+        {
+          "title": "Solução de problemas",
+          "slug": "troubleshooting",
+          "description": "Resolva problemas comuns com provedores, streaming, execução de código, Docker e atualizações."
+        }
+      ]
+    }
+  ]
+}

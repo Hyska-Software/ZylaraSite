@@ -36,6 +36,54 @@ description: One sentence used for the page header, meta description and search 
 - Numbers (limits, defaults, timeouts, counts) come from code or from the internal docs
   listed below. If a behaviour changes, update the page and this map together.
 
+## Translations
+
+The site publishes the documentation in English, Brazilian Portuguese and Simplified Chinese
+(`src/i18n/routing.ts`). English lives at the root of this folder and is the source of truth:
+it defines the sidebar order, the list of pages and the text of anything not translated yet.
+Each other language is an overlay folder:
+
+```
+user-docs/
+  README.md              this file (not published)
+  nav.json               English sidebar tree
+  *.md                   English pages
+  pt-BR/
+    nav.json             same sections and slugs, in the same order — only text translated
+    *.md                 translated pages
+  zh-CN/
+    nav.json
+    *.md
+```
+
+Both `nav.json` files are read together: the English tree decides order and route, the localized
+one supplies the translated section titles and page titles. A page that is missing in a locale
+falls back to English, so a partial translation is always publishable — but `npm run check:docs`
+treats a missing page as a failure.
+
+Rules for a translated page (the site's own parser and checker enforce most of them):
+
+- same block skeleton as the English file: same `##`/`###` count and order, same fenced code
+  blocks with the same language, same tables with the same columns and rows, same list shapes,
+  and the `:::downloads` directive copied verbatim;
+- frontmatter with `title` and `description`, both translated, one line each;
+- never translate inline `code`, commands, paths, file names, keyboard shortcuts, URLs or product
+  names;
+- link paths stay identical, but the `#fragment` follows the translated heading: anchors are
+  generated from the heading text (lowercase, accents removed, `-` between words), so
+  `#docker-command-sandbox` becomes `#sandbox-de-comandos-do-docker` in `pt-BR` and
+  `#docker-命令沙箱` in `zh-CN`;
+- keep the closing continuation paragraph, in the page language: `Próximo: [Página](/docs/slug).`
+  or `下一步：[页面](/docs/slug)。`;
+- UI labels are translated too (the app is localized) and keep the `→` separator.
+
+Verify with `npm run check:docs`. It compares every locale against the English source (structure,
+tables, code fences, links and anchors, external URLs, continuation paragraph) and is part of
+`npm run check`.
+
+To add a language: create `user-docs/<locale>/`, copy `nav.json` and translate the pages, then add
+the locale to `routing.ts` and to `docsChrome` in `src/content/docs/chrome.ts`.
+
 ## Page → source map (for maintenance)
 
 | Page | Ground truth |

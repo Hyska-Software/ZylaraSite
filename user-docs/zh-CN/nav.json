@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "basePath": "/docs",
+  "sections": [
+    {
+      "title": "从这里开始",
+      "items": [
+        {
+          "title": "概览",
+          "slug": "",
+          "description": "Zylara 是什么、你能用它做什么，以及从哪里开始。"
+        },
+        {
+          "title": "Zylara 是什么",
+          "slug": "introduction",
+          "description": "本地优先的 AI 桌面应用，提供三种布局：聊天、代码和智能体。"
+        },
+        {
+          "title": "安装",
+          "slug": "installation",
+          "description": "在 Windows、macOS 或 Linux 上安装、首次运行，以及安全卸载。"
+        },
+        {
+          "title": "快速上手",
+          "slug": "first-steps",
+          "description": "连接提供商、选择模型、发送消息，拿到你的第一个文件。"
+        }
+      ]
+    },
+    {
+      "title": "聊天",
+      "items": [
+        {
+          "title": "界面",
+          "slug": "interface",
+          "description": "标题栏、侧边栏、输入框、面板和命令面板。"
+        },
+        {
+          "title": "对话",
+          "slug": "conversations",
+          "description": "历史记录、搜索、置顶、导出、编辑消息和排队回复。"
+        },
+        {
+          "title": "模型与提供商",
+          "slug": "models-and-providers",
+          "description": "连接提供商、选择模型、控制思考模式，并查看用量与费用。"
+        },
+        {
+          "title": "附件",
+          "slug": "attachments",
+          "description": "把文档、表格、演示文稿、图片和代码作为上下文发送。"
+        },
+        {
+          "title": "产物",
+          "slug": "artifacts",
+          "description": "智能体创建的文件、预览方式以及如何保存。"
+        },
+        {
+          "title": "资料库",
+          "slug": "library",
+          "description": "所有对话里的全部文件，集中在一个可搜索的地方。"
+        },
+        {
+          "title": "网页搜索与来源",
+          "slug": "web-search",
+          "description": "让智能体搜索网页、阅读页面并引用来源。"
+        },
+        {
+          "title": "生成式界面",
+          "slug": "generative-ui",
+          "description": "对话中的声明式卡片、表格、图表和交互区块。"
+        },
+        {
+          "title": "Markdown 与数学",
+          "slug": "markdown-and-math",
+          "description": "表格、数学公式、图表、代码块和沙箱预览。"
+        }
+      ]
+    },
+    {
+      "title": "工具",
+      "items": [
+        {
+          "title": "代码执行",
+          "slug": "code-execution",
+          "description": "让智能体运行 Python 或 Node 生成真实文件，并带有各种限制。"
+        },
+        {
+          "title": "技能",
+          "slug": "skills",
+          "description": "教智能体如何构建每种格式的说明和脚本。"
+        },
+        {
+          "title": "自定义",
+          "slug": "customization",
+          "description": "主题、字号、语言、布局、已安装主题和插件界面。"
+        }
+      ]
+    },
+    {
+      "title": "代码",
+      "items": [
+        {
+          "title": "工作区与会话",
+          "slug": "code-workspaces",
+          "description": "打开并信任一个文件夹，在自己的文件上运行编码会话。"
+        },
+        {
+          "title": "工作台",
+          "slug": "code-workbench",
+          "description": "文件、更改、差异、提交、分支和终端。"
+        },
+        {
+          "title": "权限与批准",
+          "slug": "permissions-and-approvals",
+          "description": "只读、审阅、编辑和自主模式，批准流程以及 Docker 沙箱。"
+        },
+        {
+          "title": "目标与任务",
+          "slug": "goals-and-tasks",
+          "description": "计划模式、任务列表、长时目标、上下文和后台作业。"
+        }
+      ]
+    },
+    {
+      "title": "智能体",
+      "items": [
+        {
+          "title": "智能体",
+          "slug": "agents",
+          "description": "创建拥有独立模型、指令、记忆和权限的角色。"
+        },
+        {
+          "title": "例行任务与队列",
+          "slug": "routines-and-queues",
+          "description": "在智能体工作时排队消息，并安排重复执行的指令。"
+        },
+        {
+          "title": "频道与团队",
+          "slug": "channels-and-teams",
+          "description": "让多个智能体在同一频道中回答，并按智能体统计用量。"
+        },
+        {
+          "title": "电脑操作",
+          "slug": "computer-use",
+          "description": "在 Docker 中为智能体提供私有桌面，并对每个操作单独批准。"
+        }
+      ]
+    },
+    {
+      "title": "参考",
+      "items": [
+        {
+          "title": "插件",
+          "slug": "plugins",
+          "description": "安装第三方扩展、审查权限、更新和移除。"
+        },
+        {
+          "title": "设置参考",
+          "slug": "settings-reference",
+          "description": "每一设置标签页、控件、默认值和取值范围。"
+        },
+        {
+          "title": "键盘快捷键",
+          "slug": "keyboard-shortcuts",
+          "description": "所有全局、输入框、命令面板和列表快捷键。"
+        },
+        {
+          "title": "数据与隐私",
+          "slug": "data-and-privacy",
+          "description": "数据存放位置、什么会离开本机，以及如何备份或清除。"
+        },
+        {
+          "title": "疑难解答",
+          "slug": "troubleshooting",
+          "description": "解决提供商、流式输出、代码执行、Docker 和更新中的常见问题。"
+        }
+      ]
+    }
+  ]
+}

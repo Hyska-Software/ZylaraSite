@@ -36,6 +36,7 @@ const RELEASE_TAG = 'github-release';
 type GithubAsset = {
   name?: unknown;
   browser_download_url?: unknown;
+  size?: unknown;
 };
 
 type GithubRelease = {
@@ -131,7 +132,9 @@ export function parseRelease(payload: unknown): LatestRelease | null {
 
     const classified = classifyAsset(name);
     if (!classified) continue;
-    files[classified.platform].push({ ...classified, url });
+
+    const size = typeof asset.size === 'number' && asset.size > 0 ? asset.size : undefined;
+    files[classified.platform].push({ ...classified, url, ...(size ? { size } : {}) });
   }
 
   // Uma release incompleta (build falhou no meio) não deve virar CTA quebrado.
@@ -163,7 +166,13 @@ export function parseRelease(payload: unknown): LatestRelease | null {
 function sortFiles(files: ClassifiedAsset[]): ReleaseFile[] {
   return [...files]
     .sort((a, b) => a.rank - b.rank || a.file.localeCompare(b.file))
-    .map(({ format, arch, file, url }) => ({ format, arch, file, url }));
+    .map(({ format, arch, file, url, size }) => ({
+      format,
+      arch,
+      file,
+      url,
+      ...(size ? { size } : {}),
+    }));
 }
 
 /** Último release conhecido: usado quando o GitHub não responde. */

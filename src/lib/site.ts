@@ -46,6 +46,8 @@ export type ReleaseFile = {
   file: string;
   /** URL absoluta do asset na release publicada. */
   url: string;
+  /** Tamanho em bytes, quando a API informa (o fallback pinado não informa). */
+  size?: number;
 };
 
 export type DownloadTarget = {

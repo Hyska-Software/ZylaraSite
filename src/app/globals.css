@@ -212,6 +212,20 @@
   mask-image: radial-gradient(ellipse 60% 55% at 50% 0%, #000 20%, transparent 78%);
 }
 
+/* Barra de rolagem invisível para painéis internos da documentação.
+ *
+ * O conteúdo continua rolando por roda, teclado e arrasto; some apenas o desenho
+ * nativo, que no Windows ocupa ~17px e corta a coluna de navegação. Fica restrito
+ * aos containers da doc: a página em si mantém a barra do navegador, que é o
+ * indicador de posição do documento. */
+@utility scrollbar-none {
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* ---------------------------------------------------------------------------
  * Navbar: blur e sombra de fundo, sempre ligados.
  *

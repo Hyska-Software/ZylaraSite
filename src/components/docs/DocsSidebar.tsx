@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useId, useState } from 'react';
-import type { DocGroupId, DocsChrome } from '@/content/docs/types';
+import type { DocsChrome } from '@/content/docs/types';
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
 import type { DocsNavGroup } from '@/lib/docs';
@@ -9,7 +9,6 @@ import type { DocsNavGroup } from '@/lib/docs';
 type SidebarProps = {
   groups: readonly DocsNavGroup[];
   chrome: DocsChrome;
-  version: string;
   repoUrl: string;
 };
 
@@ -22,11 +21,11 @@ type SidebarProps = {
  * pior estado possível para quem chega por um link direto. O item ativo vem de
  * `usePathname`, que já chega sem prefixo de idioma.
  */
-export function DocsSidebar({ groups, chrome, version, repoUrl }: SidebarProps) {
-  const [collapsed, setCollapsed] = useState<Set<DocGroupId>>(new Set());
+export function DocsSidebar({ groups, chrome, repoUrl }: SidebarProps) {
+  const [collapsed, setCollapsed] = useState<Set<string>>(new Set());
   const pathname = usePathname();
 
-  function toggle(id: DocGroupId) {
+  function toggle(id: string) {
     setCollapsed((current) => {
       const next = new Set(current);
       if (next.has(id)) next.delete(id);
@@ -37,7 +36,7 @@ export function DocsSidebar({ groups, chrome, version, repoUrl }: SidebarProps) 
 
   return (
     <aside className="hidden lg:block">
-      <div className="sticky top-16 -mx-2 flex max-h-[calc(100dvh-4rem)] flex-col gap-6 overflow-y-auto px-2 pt-6 pb-10">
+      <div className="scrollbar-none sticky top-16 -mx-2 flex max-h-[calc(100dvh-4rem)] flex-col gap-6 overflow-y-auto px-2 pt-6 pb-10">
         <div className="flex items-center justify-between gap-3 px-1">
           <p className="font-mono text-base tracking-tight text-foreground">{chrome.label}</p>
           <a
@@ -90,8 +89,6 @@ export function DocsSidebar({ groups, chrome, version, repoUrl }: SidebarProps) 
             );
           })}
         </nav>
-
-        <p className="mt-auto font-mono text-2xs text-foreground-subtle">v{version}</p>
       </div>
     </aside>
   );
@@ -101,7 +98,6 @@ export function DocsSidebar({ groups, chrome, version, repoUrl }: SidebarProps) 
 export function DocsMobileNav({
   groups,
   chrome,
-  version,
 }: Omit<SidebarProps, 'repoUrl'>) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -160,10 +156,6 @@ export function DocsMobileNav({
               </ul>
             </div>
           ))}
-
-          <p className="border-t border-border pt-2.5 font-mono text-2xs text-foreground-subtle">
-            v{version}
-          </p>
         </nav>
       ) : null}
     </div>

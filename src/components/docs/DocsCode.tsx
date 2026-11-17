@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useId, useRef, useState } from 'react';
-import type { DocCodeTab } from '@/content/docs/types';
 import { cn } from '@/lib/cn';
 
 /**
@@ -17,7 +16,7 @@ export function DocsCode({
   copyLabel,
   copiedLabel,
 }: {
-  tabs: readonly DocCodeTab[];
+  tabs: readonly { label: string; code: string }[];
   copyLabel: string;
   copiedLabel: string;
 }) {
@@ -99,7 +98,7 @@ export function DocsCode({
         role={multiple ? 'tabpanel' : undefined}
         aria-labelledby={multiple ? `${baseId}-tab-${active}` : undefined}
       >
-        <pre className="overflow-x-auto px-3 py-3 font-mono text-xs leading-relaxed text-foreground">
+        <pre className="scrollbar-none overflow-x-auto px-3 py-3 font-mono text-xs leading-relaxed text-foreground">
           <code>{currentTab.code}</code>
         </pre>
       </div>

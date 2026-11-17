@@ -1,11 +1,11 @@
-import type { DocBlock, DocPage, DocsChrome } from '@/content/docs/types';
+import type { DocBlock, DocList, DocPage, DocsChrome } from '@/content/docs/types';
 import { DocsCode } from '@/components/docs/DocsCode';
 import { DocsInline } from '@/components/docs/DocsInline';
 import { DocsInstallers } from '@/components/docs/DocsInstallers';
 import { DocsToc } from '@/components/docs/DocsToc';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
-import type { DocsNavItem, DocsTocItem } from '@/lib/docs';
+import type { DocsPageLink, DocsTocItem } from '@/lib/docs';
 import type { LatestRelease } from '@/lib/site';
 
 /**
@@ -15,8 +15,9 @@ import type { LatestRelease } from '@/lib/site';
  * leitura (`max-w-2xl`) e índice "Nesta página". Em telas menores o índice vira
  * um bloco recolhível acima do texto — nunca some, só muda de lugar.
  *
- * O conteúdo é declarativo (`DocBlock`): este componente decide a tipografia e
- * os tokens, então uma página nova não precisa de CSS próprio.
+ * Os blocos vêm do Markdown do acervo (`user-docs/`); este componente é o único
+ * lugar que decide tipografia, espaçamento e tokens, então uma página nova não
+ * precisa de CSS próprio.
  */
 export function DocsArticle({
   page,
@@ -29,17 +30,22 @@ export function DocsArticle({
   page: DocPage;
   toc: readonly DocsTocItem[];
   chrome: DocsChrome;
-  release: LatestRelease;
-  previous?: DocsNavItem;
-  next?: DocsNavItem;
+  /** Só é resolvida quando a página tem um bloco `:::downloads`. */
+  release?: LatestRelease | null;
+  previous?: DocsPageLink;
+  next?: DocsPageLink;
 }) {
+  const sections = groupBlocks(page.blocks);
+
   return (
     <div className="grid grid-cols-1 gap-10 pt-8 pb-16 xl:grid-cols-[minmax(0,1fr)_13rem] xl:gap-16">
       <article className="min-w-0 max-w-2xl">
         <h1 className="text-3xl font-semibold tracking-tighter text-foreground md:text-4xl">
           {page.title}
         </h1>
-        <p className="mt-4 text-lg text-foreground-muted">{page.lede}</p>
+        {page.description ? (
+          <p className="mt-4 text-lg text-foreground-muted">{page.description}</p>
+        ) : null}
 
         {toc.length > 1 ? (
           <details className="mt-8 rounded-xl border border-border bg-surface px-3 py-2.5 xl:hidden">
@@ -51,26 +57,33 @@ export function DocsArticle({
           </details>
         ) : null}
 
-        {page.sections.map((section) => (
-          <section
-            key={section.id}
-            id={section.id}
-            aria-labelledby={`${section.id}-title`}
-            className="mt-10 scroll-mt-24 border-t border-border pt-8"
-          >
-            <h2
-              id={`${section.id}-title`}
-              className="text-xl font-semibold tracking-tight text-foreground"
-            >
-              {section.title}
-            </h2>
-
-            <div className="mt-4 flex flex-col gap-4">
-              {section.blocks.map((block, index) => (
-                <Block key={index} block={block} chrome={chrome} release={release} />
-              ))}
-            </div>
-          </section>
+        {sections.map((section, index) => (
+          <div key={section.heading?.id ?? `intro-${index}`}>
+            {section.heading ? (
+              <section
+                aria-labelledby={section.heading.id}
+                className="mt-10 border-t border-border pt-8"
+              >
+                <h2
+                  id={section.heading.id}
+                  className="scroll-mt-24 text-xl font-semibold tracking-tight text-foreground"
+                >
+                  {section.heading.text}
+                </h2>
+                <div className="mt-4 flex flex-col gap-4">
+                  {section.body.map((block, blockIndex) => (
+                    <DocBlockView key={blockIndex} block={block} chrome={chrome} release={release} />
+                  ))}
+                </div>
+              </section>
+            ) : (
+              <div className="mt-8 flex flex-col gap-4">
+                {section.body.map((block, blockIndex) => (
+                  <DocBlockView key={blockIndex} block={block} chrome={chrome} release={release} />
+                ))}
+              </div>
+            )}
+          </div>
         ))}
 
         <DocsPager chrome={chrome} previous={previous} next={next} />
@@ -83,79 +96,70 @@ export function DocsArticle({
   );
 }
 
-function Block({
+type Section = { heading?: { id: string; text: string }; body: DocBlock[] };
+
+/** Agrupa o fluxo do Markdown em seções `##`: o que vem antes é a abertura. */
+function groupBlocks(blocks: readonly DocBlock[]): Section[] {
+  const sections: Section[] = [];
+  let current: Section = { body: [] };
+
+  for (const block of blocks) {
+    if (block.type === 'h2') {
+      sections.push(current);
+      current = { heading: { id: block.id, text: block.text }, body: [] };
+      continue;
+    }
+
+    current.body.push(block);
+  }
+
+  sections.push(current);
+  return sections.filter((section) => section.heading || section.body.length > 0);
+}
+
+function DocBlockView({
   block,
   chrome,
   release,
 }: {
   block: DocBlock;
   chrome: DocsChrome;
-  release: LatestRelease;
+  release?: LatestRelease | null;
 }) {
-  switch (block.kind) {
-    case 'text':
+  switch (block.type) {
+    case 'h3':
+      return (
+        <h3
+          id={block.id}
+          className="mt-4 scroll-mt-24 text-base font-semibold tracking-tight text-foreground"
+        >
+          {block.text}
+        </h3>
+      );
+
+    case 'p':
       return (
         <p className="text-base text-foreground-muted">
-          <DocsInline text={block.text} />
+          <DocsInline nodes={block.content} />
         </p>
       );
 
     case 'list':
-      if (block.ordered) {
-        return (
-          <ol className="flex list-decimal flex-col gap-2 pl-5 text-base text-foreground-muted marker:text-foreground-subtle">
-            {block.items.map((item, index) => (
-              <li key={index}>
-                <DocsInline text={item} />
-              </li>
-            ))}
-          </ol>
-        );
-      }
-
-      return (
-        <ul className="flex flex-col gap-2 text-base text-foreground-muted">
-          {block.items.map((item, index) => (
-            <li key={index} className="flex items-start gap-2.5">
-              <span
-                aria-hidden="true"
-                className="mt-[0.7em] size-1 shrink-0 rounded-full bg-border-strong"
-              />
-              <span className="min-w-0">
-                <DocsInline text={item} />
-              </span>
-            </li>
-          ))}
-        </ul>
-      );
-
-    case 'note':
-      return (
-        <div className="flex items-start gap-2.5 text-base text-foreground-muted">
-          <InfoIcon />
-          <p className="min-w-0">
-            <span className="mr-1.5 font-medium text-foreground">{block.label}</span>
-            <DocsInline text={block.text} />
-          </p>
-        </div>
-      );
-
-    case 'code':
-      return <DocsCode tabs={block.tabs} copyLabel={chrome.copy} copiedLabel={chrome.copied} />;
+      return <DocListView list={block.list} />;
 
     case 'table':
       return (
-        <div className="overflow-x-auto">
+        <div className="scrollbar-none overflow-x-auto">
           <table className="w-full border-collapse text-left text-sm">
             <thead>
               <tr>
-                {block.head.map((cell) => (
+                {block.head.map((cell, index) => (
                   <th
-                    key={cell}
+                    key={index}
                     scope="col"
                     className="border-b border-border pb-2 pr-4 text-2xs font-medium uppercase tracking-[0.12em] text-foreground-subtle"
                   >
-                    {cell}
+                    <DocsInline nodes={cell} />
                   </th>
                 ))}
               </tr>
@@ -168,16 +172,16 @@ function Block({
                       <th
                         key={cellIndex}
                         scope="row"
-                        className="border-b border-border py-2.5 pr-4 text-left align-top font-medium text-foreground"
+                        className="border-b border-border py-2.5 pr-4 align-top text-left font-medium text-foreground"
                       >
-                        {cell}
+                        <DocsInline nodes={cell} />
                       </th>
                     ) : (
                       <td
                         key={cellIndex}
                         className="border-b border-border py-2.5 pr-4 align-top text-foreground-muted"
                       >
-                        <DocsInline text={cell} />
+                        <DocsInline nodes={cell} />
                       </td>
                     ),
                   )}
@@ -188,9 +192,45 @@ function Block({
         </div>
       );
 
-    case 'installers':
-      return <DocsInstallers release={release} chrome={chrome} />;
+    case 'code':
+      return (
+        <DocsCode
+          tabs={[{ label: block.lang || 'text', code: block.code }]}
+          copyLabel={chrome.copy}
+          copiedLabel={chrome.copied}
+        />
+      );
+
+    case 'slot':
+      // Sem release (fetch falhou no build), o bloco simplesmente não aparece:
+      // melhor do que um card vazio ou com link inventado.
+      if (block.name === 'downloads' && release) {
+        return <DocsInstallers release={release} chrome={chrome} />;
+      }
+      return null;
   }
+}
+
+function DocListView({ list, nested = false }: { list: DocList; nested?: boolean }) {
+  const Tag = list.ordered ? 'ol' : 'ul';
+
+  return (
+    <Tag
+      start={list.ordered && list.start !== 1 ? list.start : undefined}
+      className={cn(
+        'flex flex-col gap-2 pl-5 text-base text-foreground-muted marker:text-foreground-subtle',
+        list.ordered ? 'list-decimal' : 'list-disc',
+        nested && 'mt-2 gap-1.5 text-[0.95em]',
+      )}
+    >
+      {list.items.map((item, index) => (
+        <li key={index} className="min-w-0">
+          <DocsInline nodes={item.content} />
+          {item.children ? <DocListView list={item.children} nested /> : null}
+        </li>
+      ))}
+    </Tag>
+  );
 }
 
 function DocsPager({
@@ -199,8 +239,8 @@ function DocsPager({
   next,
 }: {
   chrome: DocsChrome;
-  previous?: DocsNavItem;
-  next?: DocsNavItem;
+  previous?: DocsPageLink;
+  next?: DocsPageLink;
 }) {
   if (!previous && !next) return null;
 
@@ -222,7 +262,7 @@ function PagerLink({
   label,
   direction,
 }: {
-  item: DocsNavItem;
+  item: DocsPageLink;
   label: string;
   direction: 'previous' | 'next';
 }) {
@@ -282,23 +322,6 @@ function ChevronIcon({ className }: { className?: string }) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </svg>
-  );
-}
-
-function InfoIcon() {
-  return (
-    <svg
-      width="15"
-      height="15"
-      viewBox="0 0 16 16"
-      fill="none"
-      aria-hidden="true"
-      className="mt-1 shrink-0 text-foreground-subtle"
-    >
-      <circle cx="8" cy="8" r="6.25" stroke="currentColor" strokeWidth="1.3" />
-      <path d="M8 7.25v3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <circle cx="8" cy="5.1" r="0.75" fill="currentColor" />
     </svg>
   );
 }

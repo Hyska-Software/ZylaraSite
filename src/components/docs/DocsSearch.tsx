@@ -4,9 +4,9 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import type { DocsChrome } from '@/content/docs/types';
 import { useRouter } from '@/i18n/navigation';
 import { cn } from '@/lib/cn';
-import type { DocsNavItem } from '@/lib/docs';
+import type { DocsPageLink } from '@/lib/docs';
 
-type SearchItem = DocsNavItem & { group: string };
+type SearchItem = DocsPageLink & { group: string };
 
 /** Sem acentos e em caixa baixa: "introdução" e "introducao" acham a mesma página. */
 function normalize(value: string): string {
@@ -18,7 +18,9 @@ function normalize(value: string): string {
 
 /** Palavras do texto normalizado, para a comparação por radical. */
 function words(value: string): string[] {
-  return value.split(/[^a-z0-9]+/).filter(Boolean);
+  // `\p{L}\p{N}` em vez de `a-z0-9`: em chinês a "palavra" é o próprio trecho,
+  // e cortar só em ASCII deixaria o título inteiro de fora do radical.
+  return value.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
 }
 
 /**
@@ -177,7 +179,7 @@ export function DocsSearch({
 
         {/* O `id` do wrapper é o alvo do `aria-controls`: o listbox só existe
             quando há resultado, e a referência não pode ficar pendurada. */}
-        <div id={listId} className="max-h-80 overflow-y-auto">
+        <div id={listId} className="scrollbar-none max-h-80 overflow-y-auto">
           {results.length > 0 ? (
             <ul role="listbox" aria-label={chrome.search} className="list-none p-2">
               {results.map((item, index) => (
