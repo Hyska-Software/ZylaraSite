@@ -142,8 +142,8 @@ export function NavMenu({ label, path, active, overviewLabel, items }: Props) {
         onClick={() => (open ? setOpen(false) : openMenu())}
         onKeyDown={onTriggerKeyDown}
         className={cn(
-          'inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm transition-colors duration-150 hover:bg-surface-hover hover:text-foreground',
-          open || active ? 'bg-surface-hover text-foreground' : 'text-foreground-muted',
+          'inline-flex items-center gap-1 rounded-full px-3.5 py-2 text-sm text-foreground transition-colors duration-150 hover:bg-surface-hover',
+          (open || active) && 'bg-surface-hover',
         )}
       >
         {label}
@@ -161,7 +161,7 @@ export function NavMenu({ label, path, active, overviewLabel, items }: Props) {
               exit={reduced ? { opacity: 0 } : { opacity: 0, y: -6 }}
               transition={{ duration: 0.16, ease: [0.22, 0.61, 0.36, 1] }}
               onKeyDown={onPanelKeyDown}
-              className="rounded-2xl border border-border bg-surface-raised p-1.5 shadow-float"
+              className="rounded-2xl bg-surface-raised p-1.5 shadow-float"
             >
               <ul>
                 {items.map((item) => (
@@ -184,11 +184,11 @@ export function NavMenu({ label, path, active, overviewLabel, items }: Props) {
                 ))}
               </ul>
 
-              <div className="mt-1 border-t border-border pt-1">
+              <div className="mt-1 pt-1">
                 <Link
                   href={path}
                   onClick={() => setOpen(false)}
-                  className="flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm text-foreground-muted transition-colors duration-150 hover:bg-surface-hover hover:text-foreground"
+                  className="flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm text-foreground transition-colors duration-150 hover:bg-surface-hover"
                 >
                   {overviewLabel}
                   <NavChevron className="-rotate-90" />

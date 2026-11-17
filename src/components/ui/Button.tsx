@@ -16,7 +16,7 @@ const variants: Record<Variant, string> = {
   primary: 'bg-foreground text-background hover:bg-foreground/90 active:bg-foreground/85',
   secondary:
     'border border-border-strong bg-surface-raised text-foreground hover:bg-surface-hover active:bg-surface-hover',
-  ghost: 'text-foreground-muted hover:bg-surface-hover hover:text-foreground',
+  ghost: 'text-foreground hover:bg-surface-hover',
 };
 
 const sizes: Record<Size, string> = {

@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
-import { BrandIcon, ProviderGlyphSprite } from '@/components/brand/ProviderIcons';
+import { BrandIcon } from '@/components/brand/ProviderIcons';
 import type { ProviderIconName } from '@/components/brand/provider-glyphs';
+import { brands, MODEL_FAMILIES, type Brand } from '@/lib/providers';
 
 /**
  * Modelos e rotas de acesso.
@@ -15,27 +16,6 @@ import type { ProviderIconName } from '@/components/brand/provider-glyphs';
  * a revisão da landing o estado de repouso é neutro: tints de risco eram lidos
  * como semântica de status, e aqui não existe status de marca.
  */
-
-type Brand = { key: ProviderIconName; name: string };
-
-const brands: Brand[] = [
-  { key: 'deepseek', name: 'DeepSeek' },
-  { key: 'google', name: 'Gemini' },
-  { key: 'openai', name: 'GPT' },
-  { key: 'anthropic', name: 'Claude' },
-  { key: 'zai', name: 'GLM' },
-  { key: 'qwen', name: 'Qwen' },
-  { key: 'kimi', name: 'Kimi' },
-  { key: 'minimax', name: 'MiniMax' },
-  { key: 'grok', name: 'Grok' },
-  { key: 'mistral', name: 'Mistral' },
-  { key: 'hunyuan', name: 'Hunyuan' },
-  { key: 'nvidia', name: 'Nemotron' },
-  { key: 'xiaomimimo', name: 'MiMo' },
-  { key: 'longcat', name: 'LongCat' },
-  { key: 'stepfun', name: 'StepFun' },
-  { key: 'meta', name: 'Muse' },
-];
 
 /** As quatro rotas reais de acesso (docs/MODELS.md). */
 const routes: { key: ProviderIconName; name: string; detailKey: 'go' | 'zen' | 'openai' | 'anthropic' }[] = [
@@ -53,9 +33,6 @@ const routes: { key: ProviderIconName; name: string; detailKey: 'go' | 'zen' | '
  */
 const PASSES_PER_HALF = 2;
 
-/** Quantidade publicada em `Providers.caption` — mantenha as duas em sincronia. */
-const MODEL_FAMILIES = 16;
-
 export async function ProviderRail() {
   const t = await getTranslations('Providers');
   const stats = t.raw('stats') as { value: string; label: string }[];
@@ -66,8 +43,6 @@ export async function ProviderRail() {
       aria-labelledby="providers-title"
       className="scroll-mt-24 border-y border-border bg-surface py-16 md:py-20"
     >
-      <ProviderGlyphSprite />
-
       <div className="container-page">
         <div className="grid gap-x-10 gap-y-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
           <div className="max-w-2xl">

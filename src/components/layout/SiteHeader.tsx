@@ -9,7 +9,6 @@ import { NavChevron, NavMenu, type NavSubItem } from '@/components/layout/NavMen
 import { ButtonLink, ExternalButtonLink } from '@/components/ui/Button';
 import { Link, usePathname } from '@/i18n/navigation';
 import type { Locale } from '@/i18n/routing';
-import { cn } from '@/lib/cn';
 import {
   faqGeneralSectionId,
   featurePageHref,
@@ -38,7 +37,6 @@ export function SiteHeader() {
   const pathname = usePathname();
   const reduced = useReducedMotion();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelId = useId();
@@ -96,13 +94,6 @@ export function SiteHeader() {
     },
   ];
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
   // Esc fecha, Tab fica contido no painel e o foco volta ao gatilho.
   useEffect(() => {
     if (!open) return;
@@ -149,15 +140,18 @@ export function SiteHeader() {
   }, [pathname, locale]);
 
   return (
-    <header
-      className={cn(
-        'sticky top-0 z-50 border-b transition-colors duration-200',
-        scrolled
-          ? 'border-border bg-background/85 backdrop-blur-lg'
-          : 'border-transparent bg-transparent',
-      )}
-    >
-      <div className="container-page flex h-16 items-center justify-between gap-4">
+    <header className="sticky top-0 z-50">
+      {/* Fundo da navbar: só blur e véu, sempre ligados, sem cor de superfície e
+          sem borda. A força do blur é do raio (8px); o véu `nav-shade` escurece
+          o topo e dissolve até a base, e a máscara `nav-blur` desvanece os dois
+          juntos. Fica atrás do conteúdo (`-z-10`) para o backdrop não pegar os
+          próprios rótulos do menu. */}
+      <div
+        aria-hidden="true"
+        className="nav-blur nav-shade pointer-events-none absolute inset-x-0 top-0 -z-10 h-16 backdrop-blur-sm"
+      />
+
+      <div className="container-page relative flex h-16 items-center justify-between gap-4">
         <Link
           href="/"
           aria-label="Zylara"
@@ -181,14 +175,14 @@ export function SiteHeader() {
             href={site.docsUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="hidden rounded-full px-3.5 py-2 text-sm text-foreground-muted transition-colors duration-150 hover:bg-surface-hover hover:text-foreground lg:inline-flex"
+            className="hidden rounded-full px-3.5 py-2 text-sm text-foreground transition-colors duration-150 hover:bg-surface-hover lg:inline-flex"
           >
             {t('guide')}
           </a>
         </nav>
 
         <div className="flex items-center gap-2">
-          <LocaleSwitcher className="hidden sm:flex" />
+          <LocaleSwitcher className="hidden sm:flex" bordered={false} />
 
           <ExternalButtonLink
             href={site.repoUrl}
@@ -232,7 +226,7 @@ export function SiteHeader() {
             animate={{ opacity: 1, y: 0 }}
             exit={reduced ? { opacity: 0 } : { opacity: 0, y: -8 }}
             transition={{ duration: 0.18, ease: [0.22, 0.61, 0.36, 1] }}
-            className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border bg-background lg:hidden"
+            className="max-h-[calc(100dvh-4rem)] overflow-y-auto bg-background lg:hidden"
           >
             <nav aria-label={t('mobileNav')} className="container-page flex flex-col gap-1 py-4">
               {navItems.map((item) => {
@@ -241,16 +235,13 @@ export function SiteHeader() {
                 return (
                   <details key={item.id} className="group rounded-xl">
                     <summary
-                      className={cn(
-                        'flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-3 py-3 text-base transition-colors hover:bg-surface-hover hover:text-foreground [&::-webkit-details-marker]:hidden',
-                        active ? 'text-foreground' : 'text-foreground-muted',
-                      )}
+                      className="flex cursor-pointer list-none items-center justify-between gap-3 rounded-xl px-3 py-3 text-base text-foreground transition-colors hover:bg-surface-hover [&::-webkit-details-marker]:hidden"
                     >
                       {item.label}
                       <NavChevron className="group-open:rotate-180" />
                     </summary>
 
-                    <ul className="mb-1 ml-3 flex flex-col border-l border-border pl-2">
+                    <ul className="mb-1 ml-3 flex flex-col pl-2">
                       <li>
                         <Link
                           href={item.path}
@@ -266,7 +257,7 @@ export function SiteHeader() {
                           <Link
                             href={leaf.href}
                             onClick={() => setOpen(false)}
-                            className="block rounded-lg px-3 py-2 text-sm text-foreground-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+                            className="block rounded-lg px-3 py-2 text-sm text-foreground transition-colors hover:bg-surface-hover"
                           >
                             {leaf.label}
                           </Link>
@@ -282,13 +273,13 @@ export function SiteHeader() {
                 target="_blank"
                 rel="noreferrer noopener"
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-3 text-base text-foreground-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+                className="rounded-xl px-3 py-3 text-base text-foreground transition-colors hover:bg-surface-hover"
               >
                 {t('guide')}
               </a>
 
-              <div className="mt-3 flex items-center gap-2 border-t border-border pt-4">
-                <LocaleSwitcher />
+              <div className="mt-3 flex items-center gap-2 pt-4">
+                <LocaleSwitcher bordered={false} />
                 <ExternalButtonLink
                   href={site.repoUrl}
                   variant="secondary"

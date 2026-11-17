@@ -22,29 +22,13 @@
     "mobileNav": "Navegação móvel"
   },
   "Hero": {
-    "eyebrow": "Agente de código para desktop",
     "title": "Seu código fica na sua máquina.",
     "titleAccent": "Seu agente também.",
     "subtitle": "Zylara é um workspace desktop para agentes de código. Planeje antes de escrever, aprove o que roda e revise cada diff — sem sair do seu computador.",
     "ctaSecondary": "Ver no GitHub",
-    "note": "Windows é o build estável. macOS e Linux estão em beta.",
-    "previewLabel": "Prévia do Zylara",
-    "prompt": "Adicione rate limiting ao endpoint de login",
-    "planLabel": "Plano",
-    "planSteps": [
-      "Ler o middleware de auth e seus testes",
-      "Adicionar um token bucket por IP",
-      "Cobrir o limite com um teste"
-    ],
-    "permissionValue": "Revisar",
-    "diffFile": "src/server/auth.ts",
-    "diffAdded": "+24",
-    "diffRemoved": "−3",
-    "approvedLabel": "Aprovado",
-    "appliedLabel": "3 arquivos alterados",
-    "riskLabel": "comando",
-    "denyLabel": "Negar",
-    "approveLabel": "Permitir"
+    "worksWith": "Funciona com",
+    "worksWithMore": "+{count} modelos",
+    "shotPlaceholder": "Captura do app"
   },
   "Providers": {
     "label": "Traga os modelos que você já usa",
@@ -752,12 +736,6 @@
         "Escreva para legal@hyska.com.br informando o direito que quer exercer e o endereço de e-mail envolvido. Respondemos no prazo definido para a sua região e nunca cobramos por isso."
       ]
     }
-  },
-  "Proof": {
-    "license": "MIT",
-    "noAccount": "Sem conta para abrir",
-    "localData": "Dados na sua máquina",
-    "starsLabel": "{count} estrelas no GitHub"
   },
   "Preview": {
     "modeChat": "Chat",

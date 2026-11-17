@@ -211,6 +211,49 @@
 }
 
 /* ---------------------------------------------------------------------------
+ * Navbar: blur e sombra de fundo, sempre ligados.
+ *
+ * A barra não tem cor de superfície nem borda: o fundo é blur mais um véu de
+ * `--background` que escurece o topo e desaparece na base. A força do blur vem
+ * do raio da camada (`backdrop-blur-sm`, 8px), não da máscara: máscara parcial
+ * com raio grande deixa cópia borrada somada à cópia nítida, e o texto de trás
+ * lê como se estivesse brilhando. Máscara em 10% (pedido literal anterior)
+ * deixava ~1,2px de blur efetivo, ou seja, nenhum efeito visível.
+ *
+ * O véu (`nav-shade`) é o que segura o brilho: o topo fica mais escuro que a
+ * base, em gradiente. Ele mora na MESMA camada do blur porque a máscara
+ * `nav-blur` também vale para o fundo — assim blur e véu desvanecem juntos, sem
+ * precisar de um segundo elemento.
+ *
+ * A camada precisa ficar atrás do conteúdo (`-z-10`), senão o backdrop pega os
+ * próprios rótulos do menu.
+ * ------------------------------------------------------------------------- */
+
+@utility nav-blur {
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 1) 45%,
+    rgb(0 0 0 / 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 1) 0%,
+    rgb(0 0 0 / 1) 45%,
+    rgb(0 0 0 / 0) 100%
+  );
+}
+
+@utility nav-shade {
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--background) 65%, transparent) 0%,
+    color-mix(in oklab, var(--background) 22%, transparent) 60%,
+    transparent 100%
+  );
+}
+
+/* ---------------------------------------------------------------------------
  * Footer: as palavras dos links rolam para cima no hover.
  *
  * Cada palavra é uma janela de uma linha (`height: 1lh`, então nenhum

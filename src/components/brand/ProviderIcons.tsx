@@ -14,7 +14,11 @@ import { PROVIDER_GLYPHS, type ProviderIconName } from './provider-glyphs';
  * A nuvem da seção de provedores repete cada marca várias vezes para o marquee
  * nunca deixar buraco. Para isso não multiplicar o HTML, existem duas peças:
  * `ProviderGlyphSprite` (define cada `<symbol>` uma única vez) e `BrandIcon`
- * (referencia com `<use>`). O sprite é invisível e fica no topo da seção.
+ * (referencia com `<use>`). O sprite é invisível, aparece **uma única vez por
+ * documento** e precisa vir antes de qualquer `BrandIcon` — hoje é o primeiro
+ * filho do `<main>` da home (`src/app/[locale]/page.tsx`), porque o hero também
+ * usa os glifos. Dois sprites na mesma página duplicariam os ids e o `<use>`
+ * passaria a apontar para o primeiro símbolo encontrado.
  */
 
 const SPRITE_ID = 'provider-glyphs';

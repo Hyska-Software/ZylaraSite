@@ -1,4 +1,5 @@
 import { setRequestLocale } from 'next-intl/server';
+import { ProviderGlyphSprite } from '@/components/brand/ProviderIcons';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { StructuredData } from '@/components/seo/StructuredData';
@@ -28,6 +29,9 @@ export default async function HomePage({ params }: Props) {
     <>
       <SiteHeader />
       <main id="main">
+        {/* Sprite dos glifos de marca: precisa vir antes do hero, que já usa
+            `BrandIcon`; a seção de provedores reaproveita os mesmos `<symbol>`. */}
+        <ProviderGlyphSprite />
         <Hero />
         <ProductTour />
         <ProviderRail />
