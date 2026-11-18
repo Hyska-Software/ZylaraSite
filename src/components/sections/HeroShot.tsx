@@ -4,9 +4,11 @@ import { getTranslations } from 'next-intl/server';
 /**
  * Captura do app no fim da dobra inicial.
  *
- * A captura real mora em `public/app/hero.png` (1918×1031) e entra **dentro** da
- * moldura de janela (title bar com os três pontos + borda + sombra): é a moldura
- * que segura o peso visual da dobra, então ela fica mesmo com a imagem no lugar.
+ * A captura real mora em `public/app/hero.png` (1918×1031) e vai direto na
+ * página: sem moldura, borda, title bar ou sombra em volta. O acabamento é o
+ * próprio `rounded-2xl` na imagem — o mesmo raio que as demais superfícies do
+ * site usam —, então nada de `overflow-hidden` num wrapper: o canto arredondado
+ * é da imagem, e uma troca de raio é uma classe só.
  *
  * A proporção vem das próprias dimensões da captura — o slot não força
  * `aspect-[16/9]`, só `h-auto`. Trocar a imagem por outra proporção pede apenas
@@ -28,25 +30,15 @@ export async function HeroShot() {
 
   return (
     <figure className="w-full">
-      <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-float">
-        <div className="flex h-10 items-center gap-1.5 border-b border-border px-4">
-          <span className="size-2.5 rounded-full bg-border-strong" />
-          <span className="size-2.5 rounded-full bg-border-strong" />
-          <span className="size-2.5 rounded-full bg-border-strong" />
-        </div>
-
-        <div className="p-3 md:p-4">
-          <Image
-            src="/app/hero.png"
-            alt={t('shotAlt')}
-            width={SHOT_WIDTH}
-            height={SHOT_HEIGHT}
-            sizes="(min-width: 1312px) 1216px, 100vw"
-            priority
-            className="block h-auto w-full rounded-lg"
-          />
-        </div>
-      </div>
+      <Image
+        src="/app/hero.png"
+        alt={t('shotAlt')}
+        width={SHOT_WIDTH}
+        height={SHOT_HEIGHT}
+        sizes="(min-width: 1312px) 1216px, 100vw"
+        priority
+        className="block h-auto w-full rounded-2xl"
+      />
     </figure>
   );
 }
